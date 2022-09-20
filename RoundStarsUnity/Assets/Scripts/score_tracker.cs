@@ -20,8 +20,8 @@ public class score_tracker : MonoBehaviour
     void Update()
     {
         //adaptive scoreboard here
-        P1_scoreText.SetText ("Player 1 : {0}",P1_score);
-        //P2_scoreText.SetText ("Player 2 : {0}",P2_score);
+        P1_scoreText.SetText ("{0} Pts",P1_score);
+        P2_scoreText.SetText ("{0} Pts",P2_score);
     }
 
     public void addScore(float enemyValue,int player)

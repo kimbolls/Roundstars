@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -20,14 +21,19 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private bool SpawnStatus = true;
     public DifficultyEnum  Difficulty;
+    public enum PhaseEnum{Game,Upgrade,Quiz};
+    public PhaseEnum phase;
+    
    
     private int index;
     private int i,seconds;
     private string secondscount;
+    [SerializeField]
+    private TMP_Text timer_display;
     // Start is called before the first frame update
     void Start()
     {
-        MaxWaveDuration = WaveDuration;
+        WaveDuration = MaxWaveDuration;
         Difficulty = DifficultyEnum.Easy;
         index = SpawnPoint.Length;
     }
@@ -35,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        timer_display.SetText("{0}",Mathf.Round(WaveDuration));
         PhaseControl();
     }
 
@@ -66,6 +72,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnWave -= 1;  
             SpawnStatus = true;
             WaveDuration = MaxWaveDuration;
+            phase = PhaseEnum.Quiz;
 
         }
         if(SpawnWave == 5 && SpawnStatus == true) 
