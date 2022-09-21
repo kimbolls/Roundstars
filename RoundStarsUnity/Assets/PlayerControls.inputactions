@@ -15,6 +15,42 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "NaviRight",
+                    "type": "Button",
+                    "id": "138759a3-d242-4d2a-9ee7-5fd5841abaf4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NaviLeft",
+                    "type": "Button",
+                    "id": "3bfa3fd5-296f-47b1-bb08-d1813af2d1aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NaviDown",
+                    "type": "Button",
+                    "id": "064b4930-87cd-4088-8b4d-6c82fccabf4b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NaviUp",
+                    "type": "Button",
+                    "id": "daacf151-9183-42fe-8562-7dd6fd026134",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "dede54dc-0234-4def-97cf-d02796aab48e",
@@ -152,36 +188,58 @@
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "New action map",
-            "id": "d40afe37-1915-4b31-ae49-de2f709ab2f8",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "d0058fbe-6885-40d8-a8f0-80b0c961b6db",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "323318f6-28de-4651-9f2f-38f417c9dcdd",
-                    "path": "",
+                    "id": "1013ae00-de2d-4c82-80af-8874a8414a4a",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "Controller",
+                    "action": "NaviUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65975748-3b59-4800-8ac3-a013e2d6cada",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "NaviDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "790f377d-97da-4fdc-af58-e4daf8faad48",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "NaviLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "790b27ab-d43e-4a0a-b5ca-7afac9a086f9",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "NaviRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Navi",
+            "id": "d40afe37-1915-4b31-ae49-de2f709ab2f8",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

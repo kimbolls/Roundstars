@@ -37,6 +37,42 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""NaviRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""138759a3-d242-4d2a-9ee7-5fd5841abaf4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NaviLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bfa3fd5-296f-47b1-bb08-d1813af2d1aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NaviDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""064b4930-87cd-4088-8b4d-6c82fccabf4b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NaviUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""daacf151-9183-42fe-8562-7dd6fd026134"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""dede54dc-0234-4def-97cf-d02796aab48e"",
@@ -174,36 +210,58 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""New action map"",
-            ""id"": ""d40afe37-1915-4b31-ae49-de2f709ab2f8"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""d0058fbe-6885-40d8-a8f0-80b0c961b6db"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""323318f6-28de-4651-9f2f-38f417c9dcdd"",
-                    ""path"": """",
+                    ""id"": ""1013ae00-de2d-4c82-80af-8874a8414a4a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
+                    ""groups"": ""Controller"",
+                    ""action"": ""NaviUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65975748-3b59-4800-8ac3-a013e2d6cada"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""NaviDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""790f377d-97da-4fdc-af58-e4daf8faad48"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""NaviLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""790b27ab-d43e-4a0a-b5ca-7afac9a086f9"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""NaviRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Navi"",
+            ""id"": ""d40afe37-1915-4b31-ae49-de2f709ab2f8"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": [
@@ -234,12 +292,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_NaviRight = m_Player.FindAction("NaviRight", throwIfNotFound: true);
+        m_Player_NaviLeft = m_Player.FindAction("NaviLeft", throwIfNotFound: true);
+        m_Player_NaviDown = m_Player.FindAction("NaviDown", throwIfNotFound: true);
+        m_Player_NaviUp = m_Player.FindAction("NaviUp", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
+        // Navi
+        m_Navi = asset.FindActionMap("Navi", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -300,6 +361,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_NaviRight;
+    private readonly InputAction m_Player_NaviLeft;
+    private readonly InputAction m_Player_NaviDown;
+    private readonly InputAction m_Player_NaviUp;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Shoot;
@@ -308,6 +373,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @NaviRight => m_Wrapper.m_Player_NaviRight;
+        public InputAction @NaviLeft => m_Wrapper.m_Player_NaviLeft;
+        public InputAction @NaviDown => m_Wrapper.m_Player_NaviDown;
+        public InputAction @NaviUp => m_Wrapper.m_Player_NaviUp;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
@@ -323,6 +392,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @NaviRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
+                @NaviRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
+                @NaviRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
+                @NaviLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
+                @NaviLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
+                @NaviLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
+                @NaviDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
+                @NaviDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
+                @NaviDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
+                @NaviUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
+                @NaviUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
+                @NaviUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -339,6 +420,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @NaviRight.started += instance.OnNaviRight;
+                @NaviRight.performed += instance.OnNaviRight;
+                @NaviRight.canceled += instance.OnNaviRight;
+                @NaviLeft.started += instance.OnNaviLeft;
+                @NaviLeft.performed += instance.OnNaviLeft;
+                @NaviLeft.canceled += instance.OnNaviLeft;
+                @NaviDown.started += instance.OnNaviDown;
+                @NaviDown.performed += instance.OnNaviDown;
+                @NaviDown.canceled += instance.OnNaviDown;
+                @NaviUp.started += instance.OnNaviUp;
+                @NaviUp.performed += instance.OnNaviUp;
+                @NaviUp.canceled += instance.OnNaviUp;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -353,38 +446,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private INewactionmapActions m_NewactionmapActionsCallbackInterface;
-    private readonly InputAction m_Newactionmap_Newaction;
-    public struct NewactionmapActions
+    // Navi
+    private readonly InputActionMap m_Navi;
+    private INaviActions m_NaviActionsCallbackInterface;
+    public struct NaviActions
     {
         private @PlayerControls m_Wrapper;
-        public NewactionmapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        public NaviActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_Navi; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-        public void SetCallbacks(INewactionmapActions instance)
+        public static implicit operator InputActionMap(NaviActions set) { return set.Get(); }
+        public void SetCallbacks(INaviActions instance)
         {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterface != null)
+            if (m_Wrapper.m_NaviActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
             }
-            m_Wrapper.m_NewactionmapActionsCallbackInterface = instance;
+            m_Wrapper.m_NaviActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
             }
         }
     }
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
+    public NaviActions @Navi => new NaviActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -406,12 +491,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnNaviRight(InputAction.CallbackContext context);
+        void OnNaviLeft(InputAction.CallbackContext context);
+        void OnNaviDown(InputAction.CallbackContext context);
+        void OnNaviUp(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
     }
-    public interface INewactionmapActions
+    public interface INaviActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
     }
 }
