@@ -139,6 +139,11 @@ public class EnemySpawner : MonoBehaviour
             masterNavi.activemenu = masterNavi.pausemenu;
             Time.timeScale = 0f;
         }
+        // else if(phase == PhaseEnum.Game)
+        // {
+        //     masternavi.phase = masternavi.PhaseEnum.Game;
+        //     Time.timeScale = 1f;
+        // }
     }
 
     void SpawnControl(float a)

@@ -14,15 +14,13 @@ public class NaviMenu : MonoBehaviour
     public GameObject selected;
     [SerializeField]
     private float pauseTimer;
+    public EnemySpawner enemyspawner;
     
     public GameObject activeButton;
     public GameObject thisMenu;
     public GameObject QuizMenu;
     public GameObject PauseMenu;
-    // public int[] maxLeft;
-    // public int[] maxRight;
-    // public int[] maxUp;
-    // public int[] maxDown;
+    //public Button activeButton;
     
     public  List<int> maxleft = new List<int>();
     public  List<int> maxRight = new List<int>();
@@ -33,7 +31,7 @@ public class NaviMenu : MonoBehaviour
     void Start()
     {
         masternavi = GameObject.Find("Player 2").GetComponent<Master_Navigator>();
-        
+        enemyspawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -59,7 +57,7 @@ public class NaviMenu : MonoBehaviour
     {
             
         activeButton = selected.transform.GetChild(2).gameObject;   //get child 3 means = P2 button
-        selectedButton(selected);
+        selectedAnswer(selected);
         pauseTimer -= Time.unscaledDeltaTime;
         if(pauseTimer <= 0f)
         {
@@ -69,7 +67,30 @@ public class NaviMenu : MonoBehaviour
         }
     }
 
+    public void OnResume()
+    {
+        enemyspawner.phase = EnemySpawner.PhaseEnum.Game;
+        Time.timeScale = 1f;
+        thisMenu.SetActive(false);
+
+    }
+
+    public void OnMenu()
+    {
+
+    }
+
+    public void OnQuit()
+    {
+
+    }
+
     public void selectedButton(GameObject selected)
+    {
+        Button btn = selected.GetComponent<Button>();
+        
+    }
+    public void selectedAnswer(GameObject selected)
     {
         activeButton.SetActive(true);
     }
@@ -78,6 +99,7 @@ public class NaviMenu : MonoBehaviour
 
         if(!maxRight.Contains(i))
         {
+            if(thisMenu == QuizMenu)
             activeButton.SetActive(false);
             i++;
         }
@@ -89,6 +111,7 @@ public class NaviMenu : MonoBehaviour
     {
         if(!maxleft.Contains(i))
         {
+            if(thisMenu == QuizMenu)
             activeButton.SetActive(false);
             i--;
         }
@@ -99,6 +122,7 @@ public class NaviMenu : MonoBehaviour
     {
         if(!maxUp.Contains(i))
         {
+            if(thisMenu == QuizMenu)
             activeButton.SetActive(false);
             i = i -2;
         }
@@ -110,6 +134,7 @@ public class NaviMenu : MonoBehaviour
 
         if(!maxDown.Contains(i))
         {
+            if(thisMenu == QuizMenu)
             activeButton.SetActive(false);
             i = i + 2;
         }
