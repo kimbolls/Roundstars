@@ -13,10 +13,15 @@ public class JoystickAim : MonoBehaviour
     private GameObject Gun;
     public bool shoot = false;
     private Gun2_Shooting gun2;
+    public Vector2 aimValue = Vector2.zero;
 
     public void OnShoot(InputAction.CallbackContext context){
         //jumped = context.ReadValue<bool>();
         shoot = context.action.triggered;
+    }
+
+    public void OnAim(InputAction.CallbackContext context){
+        aimValue = context.ReadValue<Vector2>();
     }
     // Start is called before the first frame update
     void Start()

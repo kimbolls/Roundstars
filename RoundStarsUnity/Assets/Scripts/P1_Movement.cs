@@ -15,7 +15,8 @@ public class  P1_Movement : MonoBehaviour
     public int MaxJumpCharge;
     public int CurrentJumpCharge;
     
-   // private Vector2 movementInput = Vector2.zero;
+    [SerializeField]
+    private Vector2 movementInput = Vector2.zero;
     public bool jumped = false;
 
     public float facingDirection;
@@ -29,14 +30,14 @@ public class  P1_Movement : MonoBehaviour
         CurrentJumpCharge = MaxJumpCharge;
     }
 
-    // public void OnMove(InputAction.CallbackContext context){
-    //     movementInput = context.ReadValue<Vector2>();
-    // }
+     public void OnMove(InputAction.CallbackContext context){
+        movementInput = context.ReadValue<Vector2>();
+    }
 
-    // public void OnJump(InputAction.CallbackContext context){
-    //     //jumped = context.ReadValue<bool>();
-    //     jumped = context.action.triggered;
-    // }
+     public void OnJump(InputAction.CallbackContext context){
+        //jumped = context.ReadValue<bool>();
+        jumped = context.action.triggered;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -51,7 +52,7 @@ public class  P1_Movement : MonoBehaviour
 
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal");
+        float x = movementInput.x;
         // float x = movementInput.x;  //get input from user, horizontals
         float moveBy = x * speed;  // multiply the input with speed 
         rb.velocity = new Vector2(moveBy, rb.velocity.y);  // set velocity of player with the moveBy variable
@@ -59,19 +60,20 @@ public class  P1_Movement : MonoBehaviour
 
     void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            jumped = true;
-        }
-        else
-        {
-            jumped = false;
-        }
+        // if(Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     jumped = true;
+        // }
+        // else
+        // {
+        //     jumped = false;
+        // }
          if (jumped && CurrentJumpCharge != 0 && Time.timeScale != 0f) // allow user to jump when space is inputted, prevents jumping when no stamina
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);  // set velocity with jumpforce
             CurrentJumpCharge -= 1;
             if(CurrentJumpCharge <= 0){CurrentJumpCharge = 0;}
+            jumped = false;
             
            
         }

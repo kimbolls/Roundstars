@@ -10,11 +10,11 @@ public class Master_Navigator : MonoBehaviour
     
     [SerializeField]
     private Vector2 NaviInput = Vector2.zero;
-    [SerializeField]
-    public GameObject quizmenu,pausemenu;
-    [SerializeField] 
-    public GameObject activemenu;
-    private NaviMenu selectedmenu;
+    // [SerializeField]
+    // public GameObject quizmenu,pausemenu;
+    // [SerializeField] 
+    // public GameObject activemenu;
+    //private NaviMenu selectedmenu;
     public EnemySpawner spawner;
     public bool paused = false;
     
@@ -52,27 +52,28 @@ public class Master_Navigator : MonoBehaviour
     void Update()
     {
         
-        if(activemenu.activeSelf)
-        {
-            selectedmenu = activemenu.GetComponent<NaviMenu>();
-            if(RightInput)
-        {
+        // if(activemenu.activeSelf)
+        // {
+        //     selectedmenu = activemenu.GetComponent<NaviMenu>();
+            
+        // // if(RightInput)
+        // // {
 
-            selectedmenu.moveRight();
-        }
-        else if(LeftInput)
-        {
-            selectedmenu.moveLeft();
-        }
-        else if(DownInput)
-        {
-            selectedmenu.moveDown();
-        }
-        else if(UpInput)
-        {
-            selectedmenu.moveUp();
-        }
-        }
+        // //     selectedmenu.moveRight();
+        // // }
+        // // else if(LeftInput)
+        // // {
+        // //     selectedmenu.moveLeft();
+        // // }
+        // // else if(DownInput)
+        // // {
+        // //     selectedmenu.moveDown();
+        // // }
+        // // else if(UpInput)
+        // // {
+        // //     selectedmenu.moveUp();
+        // // }
+        // }
         
     }
 

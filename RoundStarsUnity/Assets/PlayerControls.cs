@@ -37,42 +37,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""NaviRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""138759a3-d242-4d2a-9ee7-5fd5841abaf4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NaviLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""3bfa3fd5-296f-47b1-bb08-d1813af2d1aa"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NaviDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""064b4930-87cd-4088-8b4d-6c82fccabf4b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NaviUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""daacf151-9183-42fe-8562-7dd6fd026134"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""dede54dc-0234-4def-97cf-d02796aab48e"",
@@ -96,13 +60,58 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""id"": ""c6997a87-c16e-451c-8627-df89a305becc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""cb093dd1-654f-44d1-86e9-812f8a7a74e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""dd62418e-2d26-4abc-bd96-60a5a53083fd"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NaviUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""daacf151-9183-42fe-8562-7dd6fd026134"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NaviDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""064b4930-87cd-4088-8b4d-6c82fccabf4b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NaviLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bfa3fd5-296f-47b1-bb08-d1813af2d1aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NaviRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""138759a3-d242-4d2a-9ee7-5fd5841abaf4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
@@ -222,34 +231,45 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1013ae00-de2d-4c82-80af-8874a8414a4a"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""9921200e-b81e-4073-8d33-326c5caa7504"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""NaviUp"",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""65975748-3b59-4800-8ac3-a013e2d6cada"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""05d43ec3-e28b-4ea0-a950-ae9e4c9cd2da"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
-                    ""action"": ""NaviDown"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""790f377d-97da-4fdc-af58-e4daf8faad48"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""49b27b4b-8152-4dc0-82eb-745e7f1d8b40"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""NaviLeft"",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4a5416c-5049-4058-beb4-4b8e18fcd7dd"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -266,12 +286,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05d43ec3-e28b-4ea0-a950-ae9e4c9cd2da"",
-                    ""path"": ""<Gamepad>/start"",
+                    ""id"": ""790f377d-97da-4fdc-af58-e4daf8faad48"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
-                    ""action"": ""Pause"",
+                    ""action"": ""NaviLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65975748-3b59-4800-8ac3-a013e2d6cada"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""NaviDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1013ae00-de2d-4c82-80af-8874a8414a4a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""NaviUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -312,14 +354,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_NaviRight = m_Player.FindAction("NaviRight", throwIfNotFound: true);
-        m_Player_NaviLeft = m_Player.FindAction("NaviLeft", throwIfNotFound: true);
-        m_Player_NaviDown = m_Player.FindAction("NaviDown", throwIfNotFound: true);
-        m_Player_NaviUp = m_Player.FindAction("NaviUp", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
+        m_Player_NaviUp = m_Player.FindAction("NaviUp", throwIfNotFound: true);
+        m_Player_NaviDown = m_Player.FindAction("NaviDown", throwIfNotFound: true);
+        m_Player_NaviLeft = m_Player.FindAction("NaviLeft", throwIfNotFound: true);
+        m_Player_NaviRight = m_Player.FindAction("NaviRight", throwIfNotFound: true);
         // Navi
         m_Navi = asset.FindActionMap("Navi", throwIfNotFound: true);
     }
@@ -382,27 +425,29 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_NaviRight;
-    private readonly InputAction m_Player_NaviLeft;
-    private readonly InputAction m_Player_NaviDown;
-    private readonly InputAction m_Player_NaviUp;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Mouse;
+    private readonly InputAction m_Player_NaviUp;
+    private readonly InputAction m_Player_NaviDown;
+    private readonly InputAction m_Player_NaviLeft;
+    private readonly InputAction m_Player_NaviRight;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @NaviRight => m_Wrapper.m_Player_NaviRight;
-        public InputAction @NaviLeft => m_Wrapper.m_Player_NaviLeft;
-        public InputAction @NaviDown => m_Wrapper.m_Player_NaviDown;
-        public InputAction @NaviUp => m_Wrapper.m_Player_NaviUp;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
+        public InputAction @NaviUp => m_Wrapper.m_Player_NaviUp;
+        public InputAction @NaviDown => m_Wrapper.m_Player_NaviDown;
+        public InputAction @NaviLeft => m_Wrapper.m_Player_NaviLeft;
+        public InputAction @NaviRight => m_Wrapper.m_Player_NaviRight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -415,18 +460,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @NaviRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
-                @NaviRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
-                @NaviRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
-                @NaviLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
-                @NaviLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
-                @NaviLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
-                @NaviDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
-                @NaviDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
-                @NaviDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
-                @NaviUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
-                @NaviUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
-                @NaviUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -439,6 +472,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Mouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouse;
+                @NaviUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
+                @NaviUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
+                @NaviUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
+                @NaviDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
+                @NaviDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
+                @NaviDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
+                @NaviLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
+                @NaviLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
+                @NaviLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
+                @NaviRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
+                @NaviRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
+                @NaviRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -446,18 +494,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @NaviRight.started += instance.OnNaviRight;
-                @NaviRight.performed += instance.OnNaviRight;
-                @NaviRight.canceled += instance.OnNaviRight;
-                @NaviLeft.started += instance.OnNaviLeft;
-                @NaviLeft.performed += instance.OnNaviLeft;
-                @NaviLeft.canceled += instance.OnNaviLeft;
-                @NaviDown.started += instance.OnNaviDown;
-                @NaviDown.performed += instance.OnNaviDown;
-                @NaviDown.canceled += instance.OnNaviDown;
-                @NaviUp.started += instance.OnNaviUp;
-                @NaviUp.performed += instance.OnNaviUp;
-                @NaviUp.canceled += instance.OnNaviUp;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -470,6 +506,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
+                @NaviUp.started += instance.OnNaviUp;
+                @NaviUp.performed += instance.OnNaviUp;
+                @NaviUp.canceled += instance.OnNaviUp;
+                @NaviDown.started += instance.OnNaviDown;
+                @NaviDown.performed += instance.OnNaviDown;
+                @NaviDown.canceled += instance.OnNaviDown;
+                @NaviLeft.started += instance.OnNaviLeft;
+                @NaviLeft.performed += instance.OnNaviLeft;
+                @NaviLeft.canceled += instance.OnNaviLeft;
+                @NaviRight.started += instance.OnNaviRight;
+                @NaviRight.performed += instance.OnNaviRight;
+                @NaviRight.canceled += instance.OnNaviRight;
             }
         }
     }
@@ -520,14 +571,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnNaviRight(InputAction.CallbackContext context);
-        void OnNaviLeft(InputAction.CallbackContext context);
-        void OnNaviDown(InputAction.CallbackContext context);
-        void OnNaviUp(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
+        void OnNaviUp(InputAction.CallbackContext context);
+        void OnNaviDown(InputAction.CallbackContext context);
+        void OnNaviLeft(InputAction.CallbackContext context);
+        void OnNaviRight(InputAction.CallbackContext context);
     }
     public interface INaviActions
     {

@@ -7,6 +7,7 @@ public class Gun2_Shooting : MonoBehaviour
     public Transform TwistPoint;
     public float returnTime = .8f;
     public Player2_Movement movement;
+    public JoystickAim joystick;
     public Vector3 angle;
 
     //
@@ -24,6 +25,7 @@ public class Gun2_Shooting : MonoBehaviour
     void Start()
     {
        movement = GameObject.Find("Player 2").GetComponent<Player2_Movement>();
+       joystick = GameObject.Find("Player 2").GetComponent<JoystickAim>();
     }
 
     // Update is called once per frame
@@ -36,8 +38,8 @@ public class Gun2_Shooting : MonoBehaviour
 
     public void Aim(){
         angle = TwistPoint.transform.localEulerAngles;
-        float HorizontalAxis = Input.GetAxis("HorizontalRightStick");
-        float VerticalAxis = Input.GetAxis("VerticalRightStick");
+        float HorizontalAxis = joystick.aimValue.x;
+        float VerticalAxis = joystick.aimValue.y;
 
         
         if(HorizontalAxis == 0f && VerticalAxis == 0f)

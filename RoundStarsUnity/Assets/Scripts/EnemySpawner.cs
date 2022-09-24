@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class EnemySpawner : MonoBehaviour
@@ -24,18 +26,25 @@ public class EnemySpawner : MonoBehaviour
     public enum PhaseEnum{Game,Upgrade,Quiz,Pause};
     public PhaseEnum phase;
     public Master_Navigator masterNavi;
+    public EventSystem eventsystem;
     
     public GameObject QuizMenu;
-    public GameObject PauseMenu;
+    public GameObject pausemenu;
     private int index;
     private int i,seconds;
     private string secondscount;
-    // public bool paused;
+    public bool paused;
     [SerializeField]
     private TMP_Text timer_display;
-    // Start is called before the first frame update
+
+    public void OnPaused(InputAction.CallbackContext context){
+        
+        paused = context.action.triggered;
+        PauseGame(paused);
+    }
     void Start()
     {
+        
         WaveDuration = MaxWaveDuration;
         Difficulty = DifficultyEnum.Easy;
         index = SpawnPoint.Length;
@@ -46,7 +55,6 @@ public class EnemySpawner : MonoBehaviour
     {
         timer_display.SetText("{0}",Mathf.Round(WaveDuration));
         PhaseControl();
-        PauseGame(false);
     }
 
     int Randomize(int num)
@@ -79,7 +87,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnStatus = true;
             WaveDuration = MaxWaveDuration;
             phase = PhaseEnum.Quiz;
-            PhaseChange(PhaseEnum.Quiz);
+            Quiztime();
         }
         if(SpawnWave == 5 && SpawnStatus == true) 
         {
@@ -118,33 +126,31 @@ public class EnemySpawner : MonoBehaviour
 
     public void PauseGame(bool paused)
     {
-        if(Input.GetKeyDown(KeyCode.Escape) || paused)
+        if(paused && phase == PhaseEnum.Game)
         {
+            pausemenu.SetActive(true);
+            Time.timeScale = 0f;
             phase = PhaseEnum.Pause;
-            PhaseChange(PhaseEnum.Pause);
+        }
+        else if(paused && phase == PhaseEnum.Pause)
+        {
+            ResumeGame();
         }
     }
 
-    void PhaseChange(PhaseEnum phase)
+    public void ResumeGame()
     {
-        if(phase == PhaseEnum.Quiz)
-        {
-            QuizMenu.SetActive(true);
-            masterNavi.activemenu = masterNavi.quizmenu;
-            Time.timeScale = 0f;
-        }
-        else if(phase == PhaseEnum.Pause)
-        {
-            PauseMenu.SetActive(true);
-            masterNavi.activemenu = masterNavi.pausemenu;
-            Time.timeScale = 0f;
-        }
-        // else if(phase == PhaseEnum.Game)
-        // {
-        //     masternavi.phase = masternavi.PhaseEnum.Game;
-        //     Time.timeScale = 1f;
-        // }
+        pausemenu.SetActive(false);
+        phase = PhaseEnum.Game;
+        Time.timeScale =1f;
     }
+
+    public void Quiztime()
+    {
+        QuizMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
 
     void SpawnControl(float a)
     {

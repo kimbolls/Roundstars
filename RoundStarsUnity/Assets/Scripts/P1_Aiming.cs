@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class P1_Aiming : MonoBehaviour
 {
     public GameObject GunPrefab;
     public Rigidbody2D rb;  
     private GameObject Gun;
-
-   
-
     public P1_Movement movement;
-    
+    public bool shoot = false;
+   //InputDevice mouse = Mouse.current;
     // Start is called before the first frame update
+
+    public void OnShoot(InputAction.CallbackContext context){
+        Debug.Log("shoot");
+        shoot = context.action.triggered;
+    }
     void Start()
     {
         Gun = Instantiate(GunPrefab,rb.position,Quaternion.identity);
@@ -36,7 +40,7 @@ public class P1_Aiming : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        //
     }
 
     void StickGun()
@@ -48,7 +52,7 @@ public class P1_Aiming : MonoBehaviour
        // angle = Mathf.Atan2(lookDir.y,lookDir.x) * Mathf.Rad2Deg;
         //Gunrb.position = rb.position;
         //Gunrb.rotation = angle;
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
         difference.Normalize();
 
         float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
