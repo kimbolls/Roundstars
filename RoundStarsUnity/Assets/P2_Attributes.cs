@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class P1_Attributes : MonoBehaviour
+public class P2_Attributes : MonoBehaviour
 {
     public float max_hp = 100f,current_hp;
-    public P1_Movement movement;
+    public Player2_Movement movement;
     //public float max_mp,current_mp;
     public Slider HP_Slider;
 
-    public bool hybernate = false;
+    public  bool hybernate = false;
     [SerializeField]
-    private Gun1_Shooting shooting;
+    private Gun2_Shooting shooting;
     private GameObject gun;
 
     [SerializeField]
@@ -84,8 +84,8 @@ public class P1_Attributes : MonoBehaviour
 
     void FindGun()
     {
-        gun = GameObject.Find("P1_Gun(Clone)");
-        shooting = gun.GetComponent<Gun1_Shooting>();
+        gun = GameObject.Find("P2_Gun(Clone)");
+        shooting = gun.GetComponent<Gun2_Shooting>();
         bfr_attackrate = shooting.attackrate;
         bfr_movementspeed = movement.speed;
         gunFound = true;

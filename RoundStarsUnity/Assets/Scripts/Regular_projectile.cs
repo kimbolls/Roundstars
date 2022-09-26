@@ -24,22 +24,19 @@ public class Regular_projectile : MonoBehaviour
 
          }
 
-        //  P2_Attributes player2 = hitInfo.gameObject.GetComponent<P2_Attributes>();
-        //  if(player2 != null)
+         P2_Attributes player2 = hitInfo.gameObject.GetComponent<P2_Attributes>();
+         if(player2 != null)
+         {
+            player2.TakeDamage(damage);
+
+         }
+
+
+        //  answerReceiver answer = hitInfo.gameObject.GetComponent<answerReceiver>();
+        //  if(answer != null)
         //  {
-        //     player2.TakeDamage(damage);
-
+        //     answer.TakeDamage(damage);
         //  }
-
-        //  enemy_hexagon boss = hitInfo.gameObject.GetComponent<enemy_hexagon>();
-        //  if(boss != null)
-        //  {
-        //     boss.TakeDamage(damage);
-            
-        //  }
-
-
-        // //Debug.Log(hitInfo.gameObject.name);
 
         if(hitInfo.gameObject.tag != "bullets") // destroy if collide with anything/dont need?
         {

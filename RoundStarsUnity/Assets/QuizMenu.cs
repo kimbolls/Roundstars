@@ -3,107 +3,105 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class QuizMenu : MonoBehaviour
 {
-    public GameObject[] buttonlist;
-    public GameObject selected;
-    public EventSystem eventsystem;
+    public TMP_Text quizDescription;
+    public TMP_Text quizTimerDisplay;
+    public TMP_Text[] answerdescription;
 
-    public MasterQuiz masterquiz;
+    public float max_timer,quiz_timer;
+    public string[] answerChoices;
 
-    public int playerID = 0;
-    public bool answerstatus;
-    public float answerTimer;
-    public float maxanswerTimer;
+    public string questionDescription;
+   
+    public int player1_answer, player2_answer;
+    public int TrueAnswer;
+    public GameObject[] questionsList;
+    
+    public GameObject questionschosen;
+    private bool fetchstatus = false;
+    void Start(){
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        answerstatus = false;
-        answerTimer = maxanswerTimer; 
-        if(selected != null)
-        {
-            eventsystem.SetSelectedGameObject(buttonlist[0]);
-        }
+        quiz_timer = max_timer;
+        TrueAnswer = 1;
+        FetchQuestions();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(answerstatus == false){
-            answerTimer -= Time.deltaTime;
-            if(answerTimer <= 0 )
-            {
-                if(playerID ==0){masterquiz.answerTimer1 = answerTimer;}
-                else{masterquiz.answerTimer2 = answerTimer;}
-                
-            }
+        if(quiz_timer >= 0)
+        {quiz_timer -= Time.deltaTime;}
+        quizTimerDisplay.SetText("{0}",Mathf.Round(quiz_timer));
+        if(quiz_timer <= 25 && fetchstatus == false)
+        {
+            fetchstatus = true;
+        }
+        else if(quiz_timer <= 10 && fetchstatus == false)
+        {
+            fetchstatus = true;
         }
     }
 
-    public void selectA(){
-        if(playerID == 0)
-        {
-            masterquiz.P1_answer = MasterQuiz.answerEnum.A;
-            
-        }
-        else
-        {   
-            masterquiz.P2_answer = MasterQuiz.answerEnum.A;
-        } 
-        disableButton(0);
-    }
-    public void selectB(){
-        if(playerID == 0)
-        {
-            masterquiz.P1_answer = MasterQuiz.answerEnum.B;
-        }
-        else
-        {   
-            masterquiz.P2_answer = MasterQuiz.answerEnum.B;
-        }
-        disableButton(1);
-    }
-    public void selectC(){
-        if(playerID == 0)
-        {
-            masterquiz.P1_answer = MasterQuiz.answerEnum.C;
-        }
-        else
-        {   
-            masterquiz.P2_answer = MasterQuiz.answerEnum.C;
-        }
-        disableButton(2);
-    }
-    public void selectD(){
-        if(playerID == 0)
-        {
-            masterquiz.P1_answer = MasterQuiz.answerEnum.D;
-        }
-        else
-        {   
-            masterquiz.P2_answer = MasterQuiz.answerEnum.D;
-        }
-        disableButton(3);
-    }
-
-     void disableButton(int i)
+    public void UpdateAnswer(int playerID,int answerID)
     {
-        for(int x = 0; x < buttonlist.Length; x ++)
+        if(playerID == 1)
         {
-            if(x != i)
+            player1_answer = answerID;
+            if(player1_answer == TrueAnswer)
             {
-                Button btn = buttonlist[x].GetComponent<Button>();
-                btn.interactable = false;
+                Debug.Log("correct");
             }
         }
-
-        if(playerID == 0)
-        {
-            masterquiz.answerTimer1 = answerTimer;
+        else{
+            player2_answer = answerID;
+            if(player2_answer == TrueAnswer)
+            {
+                Debug.Log("correct");
+            }
         }
-        else{masterquiz.answerTimer2 = answerTimer;}
-        answerstatus = true;
     }
+
+    void FetchQuestions()
+    {
+        int i = Random.Range(0,questionsList.Length);
+        questionschosen = questionsList[i];
+        questions questionsScript = questionschosen.GetComponent<questions>();
+        for(int x = 0; x < questionsScript.answerChoices.Length; x++)
+        {
+            answerChoices[x] = questionsScript.answerChoices[x];
+
+        }
+        for(int x = 0; x < answerChoices.Length; x++)
+        {
+            int rnd = Random.Range(0, answerChoices.Length);
+            string tempGO = answerChoices[rnd];
+            answerChoices[rnd] = answerChoices[x];
+            answerChoices[x] = tempGO;
+            if(answerChoices[x] == questionsScript.TrueAnswer)
+            {
+                TrueAnswer = x;
+            }
+
+        }
+        for(int x = 0; x <answerChoices.Length; x++)
+        {
+            answerdescription[x].SetText(answerChoices[x]);
+        }
+        questionDescription = questionsScript.questionDescription;
+        quizDescription.SetText(questionDescription);   
+
+    }
+
+    void ShuffleQuestions()
+    {
+        // string TrueAnswer_1;
+        
+    }
+
+
+
 }
+
+

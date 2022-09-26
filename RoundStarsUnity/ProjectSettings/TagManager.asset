@@ -21,10 +21,10 @@ TagManager:
   - Platform
   - Player2
   - Post_Processing
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Flag
+  - H_flag
+  - A_Zone
   - 
   - 
   - 

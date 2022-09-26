@@ -154,8 +154,9 @@ MonoBehaviour:
   TwistPoint: {fileID: 6471390559538518255}
   returnTime: 0.8
   movement: {fileID: 0}
+  joystick: {fileID: 0}
   angle: {x: 0, y: 0, z: 0}
   Firepoint: {fileID: 9084537076818252629}
   BulletPrefab: {fileID: 7730156155509919991, guid: b8f800b260ace694db39435dbe5fa3e5, type: 3}
-  bulletForce: 5
+  bulletForce: 15
   attackrate: 2
