@@ -34,8 +34,10 @@ public class EnemySpawner : MonoBehaviour
     private int i,seconds;
     private string secondscount;
     public bool paused;
+    public Transform[] player_respawn;
     [SerializeField]
     private TMP_Text timer_display;
+    public GameObject[] Player;
 
     public void OnPaused(InputAction.CallbackContext context){
         
@@ -48,12 +50,17 @@ public class EnemySpawner : MonoBehaviour
         WaveDuration = MaxWaveDuration;
         Difficulty = DifficultyEnum.Easy;
         index = SpawnPoint.Length;
+        Player[0] = GameObject.Find("Player 1");
+        Player[1] = GameObject.Find("Player 2");
     }
 
     // Update is called once per frame
     void Update()
     {
         timer_display.SetText("{0}",Mathf.Round(WaveDuration));
+        WaveDuration -= Time.deltaTime;
+        seconds = (int) WaveDuration;
+        secondscount = seconds.ToString();
         PhaseControl();
     }
 
@@ -75,9 +82,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void PhaseControl()
     {
-        WaveDuration -= Time.deltaTime;
-        seconds = (int) WaveDuration;
-        secondscount = seconds.ToString();
+        
 
         
 
@@ -86,8 +91,8 @@ public class EnemySpawner : MonoBehaviour
             SpawnWave -= 1;  
             SpawnStatus = true;
             WaveDuration = MaxWaveDuration;
-            phase = PhaseEnum.Quiz;
-            Quiztime();
+            //phase = PhaseEnum.Quiz;
+            //Quiztime();
         }
         if(SpawnWave == 5 && SpawnStatus == true) 
         {
@@ -157,6 +162,10 @@ public class EnemySpawner : MonoBehaviour
         InvokeRepeating("Spawn_Regular",5f,a);
     }
 
-    
+    public void ResetPlayerPos(int i)
+    {
+        Player[i].transform.position = player_respawn[i].position;
+        
+    }
     
 }

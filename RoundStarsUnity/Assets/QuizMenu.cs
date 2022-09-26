@@ -10,23 +10,32 @@ public class QuizMenu : MonoBehaviour
     public TMP_Text quizDescription;
     public TMP_Text quizTimerDisplay;
     public TMP_Text[] answerdescription;
-
     public float max_timer,quiz_timer;
-    public string[] answerChoices;
-
+    public float bracetimer,max_bracetimer;
     public string questionDescription;
    
     public int player1_answer, player2_answer;
     public int TrueAnswer;
-    public GameObject[] questionsList;
-    
     public GameObject questionschosen;
     private bool fetchstatus = false;
+    public int levelCount;
+    public int player1_upgPoint,player2_upgPoint;
+    public EnemySpawner enemyspawner;
+    public GameObject[] wallbarrier;
+    public GameObject[] questionsList;
+    public string[] answerChoices;
+    public GameObject quizCanvas;
+    public P1_Attributes player1;
+    public P2_Attributes player2;
     void Start(){
 
         quiz_timer = max_timer;
+        bracetimer = max_bracetimer;
         TrueAnswer = 1;
         FetchQuestions();
+        quizCanvas.SetActive(false);
+        player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
+        player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
     }
 
     void Update()
@@ -42,6 +51,19 @@ public class QuizMenu : MonoBehaviour
         {
             fetchstatus = true;
         }
+        if(bracetimer <= 0)
+        {
+            DisableBrace();
+        }
+        else if(bracetimer >= 0)
+        {
+            if(bracetimer <= 10)
+            {
+                quizCanvas.SetActive(true);
+            }
+            bracetimer -= Time.deltaTime;
+        }
+        
     }
 
     public void UpdateAnswer(int playerID,int answerID)
@@ -52,6 +74,10 @@ public class QuizMenu : MonoBehaviour
             if(player1_answer == TrueAnswer)
             {
                 Debug.Log("correct");
+                ResetLevel(1);
+            }
+            else{
+                player1.current_hp = 0;
             }
         }
         else{
@@ -59,6 +85,11 @@ public class QuizMenu : MonoBehaviour
             if(player2_answer == TrueAnswer)
             {
                 Debug.Log("correct");
+                ResetLevel(2);
+            }
+            else
+            {
+                player2.current_hp = 0;
             }
         }
     }
@@ -85,7 +116,7 @@ public class QuizMenu : MonoBehaviour
             }
 
         }
-        for(int x = 0; x <answerChoices.Length; x++)
+        for(int x = 0; x < answerChoices.Length; x++)
         {
             answerdescription[x].SetText(answerChoices[x]);
         }
@@ -94,11 +125,42 @@ public class QuizMenu : MonoBehaviour
 
     }
 
-    void ShuffleQuestions()
+    void DisableBrace()
     {
-        // string TrueAnswer_1;
+        for(int i = 0; i < wallbarrier.Length; i++)
+        {
+            wallbarrier[i].SetActive(false);
+        }
         
     }
+
+    void ActivateBrace()
+    {
+        for(int i = 0; i < wallbarrier.Length; i++)
+        {
+            wallbarrier[i].SetActive(true);
+        }
+    }
+
+    void ResetLevel(int x)
+    {
+        if(x == 1)
+        {
+            player1_upgPoint++;
+        }
+        else{
+            player2_upgPoint++;
+        }
+        quiz_timer = max_timer;
+        bracetimer = max_bracetimer;
+        levelCount++;
+        ActivateBrace();
+        FetchQuestions();
+        enemyspawner.ResetPlayerPos(0);
+        enemyspawner.ResetPlayerPos(1);
+    }
+
+    
 
 
 
