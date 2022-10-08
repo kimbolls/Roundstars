@@ -5,13 +5,13 @@ using UnityEngine;
 public class flag : MonoBehaviour
 {
     public GameObject currentHolder;
-    public BoxCollider2D collider;
+    public PolygonCollider2D collider;
     public Rigidbody2D rb;
     public player_flag player;
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        collider = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame

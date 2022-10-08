@@ -10,7 +10,7 @@ public class QuizMenu : MonoBehaviour
     public TMP_Text quizDescription;
     public TMP_Text quizTimerDisplay;
     public TMP_Text[] answerdescription;
-    public float max_timer,quiz_timer;
+    //public float max_timer,quiz_timer;
     public float bracetimer,max_bracetimer;
     public string questionDescription;
    
@@ -27,54 +27,99 @@ public class QuizMenu : MonoBehaviour
     public GameObject quizCanvas;
     public P1_Attributes player1;
     public P2_Attributes player2;
+    public score_tracker score;
+    public ScoredMenu scoredscript;
+    public GameObject scoredmenu;
+    public flag flag;
+    public float slowMoTimer;  
+    public float maxslowMoTimer;  
+    private bool slowMoStatus = false;
     void Start(){
 
-        quiz_timer = max_timer;
+        //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
         TrueAnswer = 1;
         FetchQuestions();
         quizCanvas.SetActive(false);
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
         player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+        flag = GameObject.Find("Flag").GetComponent<flag>();
+        slowMoTimer = maxslowMoTimer;
+        // scoredscript = GameObject.Find("ScoredMenu").GetComponent<ScoredMenu>();
+        
     }
 
     void Update()
     {
-        if(quiz_timer >= 0)
-        {quiz_timer -= Time.deltaTime;}
-        quizTimerDisplay.SetText("{0}",Mathf.Round(quiz_timer));
-        if(quiz_timer <= 25 && fetchstatus == false)
+        // if(quiz_timer >= 0)
+        // {quiz_timer -= Time.deltaTime;}
+        quizTimerDisplay.SetText("{0}",Mathf.Round(bracetimer));
+        // if(quiz_timer <= 25 && fetchstatus == false)
+        // {
+        //     fetchstatus = true;
+        // }
+        // else if(quiz_timer <= 10 && fetchstatus == false)
+        // {
+        //     fetchstatus = true;
+        // }
+        
+        if(slowMoStatus == true)
         {
-            fetchstatus = true;
+            Time.timeScale = 0.2f;
+            slowMoTimer -= Time.deltaTime;
+            if(slowMoTimer <= 0)
+            {
+                maxslowMoTimer = 0.4f;
+                Time.timeScale = 1f;
+                slowMoStatus = false;
+                scoredmenu.SetActive(false);
+                ResetLevel();
+            }
         }
-        else if(quiz_timer <= 10 && fetchstatus == false)
-        {
-            fetchstatus = true;
-        }
+
         if(bracetimer <= 0)
         {
             DisableBrace();
+            quizTimerDisplay.SetText("Fight!");
         }
         else if(bracetimer >= 0)
         {
-            if(bracetimer <= 10)
-            {
+            // if(bracetimer <= 10)
+            // {
                 quizCanvas.SetActive(true);
-            }
+            // }
             bracetimer -= Time.deltaTime;
         }
+
+        if(player1_upgPoint == 5)
+        {
+            
+            ResetScore();
+        }
+        else if(player2_upgPoint == 5)
+        {
+            ResetScore();
+        }
+        
+        //-------------------
         
     }
 
     public void UpdateAnswer(int playerID,int answerID)
     {
+        
         if(playerID == 1)
         {
             player1_answer = answerID;
             if(player1_answer == TrueAnswer)
             {
                 Debug.Log("correct");
-                ResetLevel(1);
+                score.P1_score += 100;
+                player1_upgPoint++;
+                slowMoStatus = true;
+                scoredmenu.SetActive(true);
+                scoredscript.player1Win();
+                // ResetLevel(1);
             }
             else{
                 player1.current_hp = 0;
@@ -85,7 +130,12 @@ public class QuizMenu : MonoBehaviour
             if(player2_answer == TrueAnswer)
             {
                 Debug.Log("correct");
-                ResetLevel(2);
+                score.P2_score += 100;
+                player2_upgPoint++;
+                slowMoStatus = true;
+                scoredmenu.SetActive(true);
+                scoredscript.player2Win();
+                // ResetLevel(2);
             }
             else
             {
@@ -110,15 +160,19 @@ public class QuizMenu : MonoBehaviour
             string tempGO = answerChoices[rnd];
             answerChoices[rnd] = answerChoices[x];
             answerChoices[x] = tempGO;
-            if(answerChoices[x] == questionsScript.TrueAnswer)
-            {
-                TrueAnswer = x;
-            }
+            // if(answerChoices[x] == questionsScript.TrueAnswer)
+            // {
+            //     TrueAnswer = x;
+            // }
 
         }
         for(int x = 0; x < answerChoices.Length; x++)
         {
             answerdescription[x].SetText(answerChoices[x]);
+            if(answerChoices[x] == questionsScript.TrueAnswer)
+            {
+                TrueAnswer = x;
+            }
         }
         questionDescription = questionsScript.questionDescription;
         quizDescription.SetText(questionDescription);   
@@ -142,16 +196,16 @@ public class QuizMenu : MonoBehaviour
         }
     }
 
-    void ResetLevel(int x)
+    void ResetLevel()
     {
-        if(x == 1)
-        {
-            player1_upgPoint++;
-        }
-        else{
-            player2_upgPoint++;
-        }
-        quiz_timer = max_timer;
+        // if(x == 1)
+        // {
+        //     player1_upgPoint++;
+        // }
+        // else{
+        //     player2_upgPoint++;
+        // }
+        //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
         levelCount++;
         ActivateBrace();
@@ -159,6 +213,19 @@ public class QuizMenu : MonoBehaviour
         enemyspawner.ResetPlayerPos(0);
         enemyspawner.ResetPlayerPos(1);
     }
+
+    void ResetScore()
+    {
+        player1_upgPoint = 0;
+        player2_upgPoint = 0;
+    }
+
+    void UpgradeTime()
+    {
+        
+    }
+
+    
 
     
 

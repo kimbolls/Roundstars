@@ -94,38 +94,38 @@ public class EnemySpawner : MonoBehaviour
             //phase = PhaseEnum.Quiz;
             //Quiztime();
         }
-        if(SpawnWave == 5 && SpawnStatus == true) 
-        {
-            if(Difficulty == DifficultyEnum.Easy)
-                {
-                    SpawnControl(5f);
-                }
-            else if(Difficulty == DifficultyEnum.Normal)
-                {
-                    SpawnControl(3f);
-                }
-            else if(Difficulty == DifficultyEnum.Hard)
-                {
-                    SpawnControl(2f);
-                }
-            SpawnStatus = false;
-        }
-        else if(SpawnWave == 4 && SpawnStatus == true) 
-        {
-            if(Difficulty == DifficultyEnum.Easy)
-                {
-                    SpawnControl(4f);
-                }
-            else if(Difficulty == DifficultyEnum.Normal)
-                {
-                    SpawnControl(3f);
-                }
-            else if(Difficulty == DifficultyEnum.Hard)
-                {
-                    SpawnControl(1f);
-                }
-            SpawnStatus = false;
-        }
+        // if(SpawnWave == 5 && SpawnStatus == true) 
+        // {
+        //     if(Difficulty == DifficultyEnum.Easy)
+        //         {
+        //             SpawnControl(8f);
+        //         }
+        //     else if(Difficulty == DifficultyEnum.Normal)
+        //         {
+        //             SpawnControl(3f);
+        //         }
+        //     else if(Difficulty == DifficultyEnum.Hard)
+        //         {
+        //             SpawnControl(2f);
+        //         }
+        //     SpawnStatus = false;
+        // }
+        // else if(SpawnWave == 4 && SpawnStatus == true) 
+        // {
+        //     if(Difficulty == DifficultyEnum.Easy)
+        //         {
+        //             SpawnControl(4f);
+        //         }
+        //     else if(Difficulty == DifficultyEnum.Normal)
+        //         {
+        //             SpawnControl(3f);
+        //         }
+        //     else if(Difficulty == DifficultyEnum.Hard)
+        //         {
+        //             SpawnControl(1f);
+        //         }
+        //     SpawnStatus = false;
+        // }
         
     }
 

@@ -10,7 +10,7 @@ public class answer_zone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       quizmenu = GameObject.Find("Platforms_game").GetComponent<QuizMenu>();
+       quizmenu = GameObject.Find("Quiz_Manager").GetComponent<QuizMenu>();
     }
 
     // Update is called once per frame
