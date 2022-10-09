@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6826033326061296344}
   - component: {fileID: 4379785522671674609}
-  - component: {fileID: 5045315688923846561}
   - component: {fileID: 8494315892219738108}
+  - component: {fileID: 5045315688923846561}
   m_Layer: 7
   m_Name: P1_Gun
   m_TagString: Untagged
@@ -118,23 +118,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5045315688923846561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8846706436009931195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5df9a80c5e2e0254bbd567362bcc2c16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Firepoint: {fileID: 7527531933515138841}
-  BulletPrefab: {fileID: 7730156155509919991, guid: 9a2e20a7612275a458c28c1b5ba8bdf6, type: 3}
-  aiming: {fileID: 0}
-  bulletForce: 15
-  attackrate: 2
 --- !u!50 &8494315892219738108
 Rigidbody2D:
   serializedVersion: 4
@@ -156,3 +139,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5045315688923846561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846706436009931195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df9a80c5e2e0254bbd567362bcc2c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Firepoint: {fileID: 7527531933515138841}
+  BulletPrefab: {fileID: 7730156155509919991, guid: 9a2e20a7612275a458c28c1b5ba8bdf6, type: 3}
+  aiming: {fileID: 0}
+  bulletForce: 15
+  attackrate: 2

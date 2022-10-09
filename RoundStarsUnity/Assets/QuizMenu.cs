@@ -33,7 +33,9 @@ public class QuizMenu : MonoBehaviour
     public flag flag;
     public float slowMoTimer;  
     public float maxslowMoTimer;  
+    public GameObject upgrademenu;
     private bool slowMoStatus = false;
+    public upgradescript  UpgradeScript;
     void Start(){
 
         //quiz_timer = max_timer;
@@ -44,6 +46,7 @@ public class QuizMenu : MonoBehaviour
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
         player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
         flag = GameObject.Find("Flag").GetComponent<flag>();
+        UpgradeScript = upgrademenu.GetComponent<upgradescript>();
         slowMoTimer = maxslowMoTimer;
         // scoredscript = GameObject.Find("ScoredMenu").GetComponent<ScoredMenu>();
         
@@ -91,15 +94,7 @@ public class QuizMenu : MonoBehaviour
             bracetimer -= Time.deltaTime;
         }
 
-        if(player1_upgPoint == 5)
-        {
-            
-            ResetScore();
-        }
-        else if(player2_upgPoint == 5)
-        {
-            ResetScore();
-        }
+        
         
         //-------------------
         
@@ -212,12 +207,25 @@ public class QuizMenu : MonoBehaviour
         FetchQuestions();
         enemyspawner.ResetPlayerPos(0);
         enemyspawner.ResetPlayerPos(1);
+
+        if(player1_upgPoint == 1)
+        {
+            
+            ResetScore(1);
+        }
+        else if(player2_upgPoint == 1)
+        {
+            ResetScore(2);
+        }
     }
 
-    void ResetScore()
+    void ResetScore(int player)
     {
         player1_upgPoint = 0;
         player2_upgPoint = 0;
+        upgrademenu.SetActive(true);
+        UpgradeScript.i = player;
+        Time.timeScale = 0f;
     }
 
     void UpgradeTime()

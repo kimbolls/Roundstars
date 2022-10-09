@@ -18,8 +18,7 @@ public class P1_Attributes : MonoBehaviour
     [SerializeField]
     private float bfr_attackrate,bfr_movementspeed;
 
-    [SerializeField]
-    private float regen_hp = 5f;
+    public float regen_hp = 5f;
     private bool gunFound = false;
     // Start is called before the first frame update
     void Start()
