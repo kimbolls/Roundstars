@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PauseMenu : MonoBehaviour
         enemyspawner.ResumeGame();
     }
 
-    void OnMenu(){}
+    public void OnMenu(){
+        SceneManager.LoadScene(0);
+    }
     void OnQuit(){}
 }
