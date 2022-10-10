@@ -44,7 +44,7 @@ public class P1_Attributes : MonoBehaviour
             shooting.attackrate = shooting.attackrate / 2;
             movement.speed = movement.speed / 5;
         }
-        else if(current_hp >= max_hp && gunFound == true)
+        else if(current_hp >= max_hp && gunFound == true && hybernate==true)
         {
             current_hp = max_hp;
             hybernate = false;

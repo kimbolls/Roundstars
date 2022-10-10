@@ -72,6 +72,7 @@ public class QuizMenu : MonoBehaviour
             slowMoTimer -= Time.deltaTime;
             if(slowMoTimer <= 0)
             {
+                slowMoTimer = maxslowMoTimer;
                 maxslowMoTimer = 0.4f;
                 Time.timeScale = 1f;
                 slowMoStatus = false;
