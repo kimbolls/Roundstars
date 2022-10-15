@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class P1_Attributes : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class P1_Attributes : MonoBehaviour
     [SerializeField]
     private Gun1_Shooting shooting;
     private GameObject gun;
+    public TMP_Text playername;
 
     [SerializeField]
     private float bfr_attackrate,bfr_movementspeed;
@@ -25,6 +27,7 @@ public class P1_Attributes : MonoBehaviour
     {
         current_hp = max_hp;
         HP_Slider.maxValue = max_hp;
+        playername.SetText(PlayerPrefs.GetString("player1Name"));
        
     }
 

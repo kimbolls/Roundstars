@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CustomizeMenu : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class CustomizeMenu : MonoBehaviour
     public GameObject[] headItem,eyesItem,mouthItem;
     public GameObject[] torsoItem;
     public int torsoIndex;
-    public TMP_Text playername;
+    public TMP_Text playername_display;
+    // public TMP_Text playername_edit;
+    public TMP_InputField playername_edit;
+
+    public string name;
 
 
 
@@ -31,10 +36,10 @@ public class CustomizeMenu : MonoBehaviour
         torsoItem[torsoIndex].SetActive(true);
         if(torsoIndex != 1)
         {
-            playername.SetText("PLAYER 1");
+            playername_display.SetText(PlayerPrefs.GetString("player1Name"));
         }
         else{
-            playername.SetText("PLAYER 2");
+            playername_display.SetText(PlayerPrefs.GetString("player2Name"));
         }
         // eyesItem[eyesIndex].transform.position = eyesPos.position;
     }
@@ -108,12 +113,23 @@ public class CustomizeMenu : MonoBehaviour
     public void SaveCharacter(){
         if(torsoIndex == 0)
         {
+            if(!string.IsNullOrWhiteSpace(playername_edit.text))
+            {
+                PlayerPrefs.SetString("player1Name",playername_edit.text);
+                
+            }
+           
             PlayerPrefs.SetInt("player1Head",headIndex);
             PlayerPrefs.SetInt("player1Eyes",eyesIndex);
             PlayerPrefs.SetInt("player1Mouths",mouthIndex);
         }
         else
         {
+            if(!string.IsNullOrWhiteSpace(playername_edit.text))
+            {
+                PlayerPrefs.SetString("player2Name",playername_edit.text);
+                
+            }
             PlayerPrefs.SetInt("player2Head",headIndex);
             PlayerPrefs.SetInt("player2Eyes",eyesIndex);
             PlayerPrefs.SetInt("player2Mouths",mouthIndex);

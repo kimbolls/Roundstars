@@ -38,12 +38,12 @@ public class upgradescript : MonoBehaviour
     
         if(i == 1)
         {
-            playername.SetText("PLAYER 1");
+            playername.SetText(PlayerPrefs.GetString("player1Name"));
             
             
         }
         else{
-            playername.SetText("PLAYER 2");
+            playername.SetText(PlayerPrefs.GetString("player2Name"));
            
         }
     }
