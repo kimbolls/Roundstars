@@ -13,11 +13,16 @@ public class score_tracker : MonoBehaviour
     // public GameObject p1_upimage,p2_upimage;
     public Sprite[] spritelist;
     public QuizMenu quizmenu;
-    public GameObject imagesprite;
-    
+    private GameObject imagesprite;
+
+    public float gametimer;
+    public TMP_Text gametimer_text;
+    public Slider gametimer_slider;
+    private float slidermaxvalue;
     // Start is called before the first frame update
     void Start()
     {
+        slidermaxvalue = gametimer;
         P1_score = 0;
         P2_score = 0;
         // set color
@@ -28,11 +33,21 @@ public class score_tracker : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        gametimer_text.SetText("{0}",Mathf.Round(gametimer));
+        gametimer_slider.maxValue = slidermaxvalue;
+        //game timer
+        while(quizmenu.bracetimer > 0)
+        {
+            gametimer -= Time.deltaTime;
+        }
         //adaptive scoreboard here
+
+        //display score
         P1_scoreText.SetText ("{0} Pts",P1_score);
         P2_scoreText.SetText ("{0} Pts",P2_score);
 
+        //display upgrade points
         if(quizmenu.player1_upgPoint > 0 && quizmenu.player1_upgPoint < 5)
         {
             for(int i = 0; i < quizmenu.player1_upgPoint; i++)
