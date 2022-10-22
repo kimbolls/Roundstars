@@ -209,12 +209,12 @@ public class QuizMenu : MonoBehaviour
         enemyspawner.ResetPlayerPos(0);
         enemyspawner.ResetPlayerPos(1);
 
-        if(player1_upgPoint == 1)
+        if(player1_upgPoint == 5)
         {
             
             ResetScore(1);
         }
-        else if(player2_upgPoint == 1)
+        else if(player2_upgPoint == 5)
         {
             ResetScore(2);
         }
