@@ -25,6 +25,7 @@ public class score_tracker : MonoBehaviour
         slidermaxvalue = gametimer;
         P1_score = 0;
         P2_score = 0;
+        gametimer_slider.maxValue = slidermaxvalue;
         // set color
 
         //
@@ -35,12 +36,13 @@ public class score_tracker : MonoBehaviour
     void Update()
     {   
         gametimer_text.SetText("{0}",Mathf.Round(gametimer));
-        gametimer_slider.maxValue = slidermaxvalue;
+        gametimer_slider.value = gametimer;
         //game timer
-        while(quizmenu.bracetimer > 0)
+        if(quizmenu.bracetimer > 0)
         {
             gametimer -= Time.deltaTime;
         }
+        // gametimer -= Time.deltaTime;
         //adaptive scoreboard here
 
         //display score
