@@ -64,6 +64,10 @@ public class score_tracker : MonoBehaviour
         //     gametimer -= Time.deltaTime;
         // }
         gametimer -= Time.deltaTime;
+        if(gametimer <= 0)
+        {
+            gametimer = 0;
+        }
         //adaptive scoreboard here
 
         //display score

@@ -39,6 +39,7 @@ public class QuizMenu : MonoBehaviour
     private bool slowMoStatus = false;
     public upgradescript  UpgradeScript;
     public int questiontype;
+    public GameObject winmenu;
     void Start(){
         questiontype = PlayerPrefs.GetInt("QuestionType");
         //quiz_timer = max_timer;
@@ -238,6 +239,23 @@ public class QuizMenu : MonoBehaviour
         else if(player2_upgPoint == 5)
         {
             ResetScore(2);
+        }
+
+        if(score.player1_correctpoint != score.player2_correctpoint)
+        { 
+            if(score.gametimer <= 0 )
+            {
+                WinMenu win = winmenu.GetComponent<WinMenu>();
+                winmenu.SetActive(true);
+                if(score.player1_correctpoint > score.player2_correctpoint)
+                {
+                    win.SetWinner(0);
+                }
+                else
+                {
+                    win.SetWinner(1);
+                }
+            }
         }
     }
 
