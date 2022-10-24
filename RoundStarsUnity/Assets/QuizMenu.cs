@@ -223,6 +223,7 @@ public class QuizMenu : MonoBehaviour
         // }
         //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
+        score.bracecur = 0;
         levelCount++;
         ActivateBrace();
         FetchQuestions(questiontype);

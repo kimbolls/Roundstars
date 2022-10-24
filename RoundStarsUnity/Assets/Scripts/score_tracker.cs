@@ -19,8 +19,11 @@ public class score_tracker : MonoBehaviour
     public TMP_Text gametimer_text;
     public Slider gametimer_slider;
     private float slidermaxvalue;
+    public TMP_Text p1score_text,p2score_text;
 
     public  int player1_correctpoint,player2_correctpoint;
+    public Slider braceslider;
+    public float bracemax,bracecur;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,8 @@ public class score_tracker : MonoBehaviour
         P1_score = 0;
         P2_score = 0;
         gametimer_slider.maxValue = slidermaxvalue;
+        bracemax = quizmenu.max_bracetimer;
+        braceslider.maxValue = bracemax;
         // set color
 
         //
@@ -38,7 +43,21 @@ public class score_tracker : MonoBehaviour
     void Update()
     {   
         gametimer_text.SetText("{0}",Mathf.Round(gametimer));
+        p1score_text.SetText("{0}",player1_correctpoint);
+        p2score_text.SetText("{0}",player2_correctpoint);
         gametimer_slider.value = gametimer;
+
+        // if(quizmenu.bracetimer == quizmenu.max_bracetimer)
+        // {
+        //     bracecur = 0;
+        // }
+        if(quizmenu.bracetimer > 0)
+        {
+            bracecur += Time.deltaTime;
+        }
+
+        braceslider.value = bracecur;
+
         //game timer
         // if(quizmenu.bracetimer < 0)
         // {

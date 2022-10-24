@@ -86,4 +86,4 @@ MonoBehaviour:
     value: 95
   kernelSize:
     overrideState: 1
-    value: 1
+    value: 0
