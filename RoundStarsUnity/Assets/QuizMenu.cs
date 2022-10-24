@@ -193,6 +193,7 @@ public class QuizMenu : MonoBehaviour
         }
         questionDescription = questionsScript.questionDescription;
         quizDescription.SetText(questionDescription);   
+        Destroy(questionschosen);
 
     }
 
