@@ -19,6 +19,8 @@ public class score_tracker : MonoBehaviour
     public TMP_Text gametimer_text;
     public Slider gametimer_slider;
     private float slidermaxvalue;
+
+    public  int player1_correctpoint,player2_correctpoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,11 +40,11 @@ public class score_tracker : MonoBehaviour
         gametimer_text.SetText("{0}",Mathf.Round(gametimer));
         gametimer_slider.value = gametimer;
         //game timer
-        if(quizmenu.bracetimer > 0)
-        {
-            gametimer -= Time.deltaTime;
-        }
-        // gametimer -= Time.deltaTime;
+        // if(quizmenu.bracetimer < 0)
+        // {
+        //     gametimer -= Time.deltaTime;
+        // }
+        gametimer -= Time.deltaTime;
         //adaptive scoreboard here
 
         //display score
@@ -96,4 +98,6 @@ public class score_tracker : MonoBehaviour
             P2_score += enemyValue;
         }
     }
+
+
 }

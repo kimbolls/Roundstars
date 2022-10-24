@@ -22,7 +22,9 @@ public class QuizMenu : MonoBehaviour
     public int player1_upgPoint,player2_upgPoint;
     public EnemySpawner enemyspawner;
     public GameObject[] wallbarrier;
-    public GameObject[] questionsList;
+    public GameObject[] questionsList1;
+    public GameObject[] questionsList2;
+    public GameObject[] questionsList3;
     public string[] answerChoices;
     public GameObject quizCanvas;
     public P1_Attributes player1;
@@ -36,12 +38,13 @@ public class QuizMenu : MonoBehaviour
     public GameObject upgrademenu;
     private bool slowMoStatus = false;
     public upgradescript  UpgradeScript;
+    public int questiontype;
     void Start(){
-
+        questiontype = PlayerPrefs.GetInt("QuestionType");
         //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
         TrueAnswer = 1;
-        FetchQuestions();
+        FetchQuestions(questiontype);
         quizCanvas.SetActive(false);
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
         player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
@@ -111,6 +114,7 @@ public class QuizMenu : MonoBehaviour
             {
                 Debug.Log("correct");
                 score.P1_score += 100;
+                score.player1_correctpoint++;
                 player1_upgPoint++;
                 slowMoStatus = true;
                 scoredmenu.SetActive(true);
@@ -127,6 +131,7 @@ public class QuizMenu : MonoBehaviour
             {
                 Debug.Log("correct");
                 score.P2_score += 100;
+                score.player2_correctpoint++;
                 player2_upgPoint++;
                 slowMoStatus = true;
                 scoredmenu.SetActive(true);
@@ -140,10 +145,25 @@ public class QuizMenu : MonoBehaviour
         }
     }
 
-    void FetchQuestions()
+    void FetchQuestions(int questiontype)
     {
-        int i = Random.Range(0,questionsList.Length);
-        questionschosen = questionsList[i];
+        int i;
+        if(questiontype == 0)
+        {
+            i = Random.Range(0,questionsList1.Length);
+            questionschosen = questionsList1[i];
+        }
+        else if(questiontype == 1)
+        {
+            i = Random.Range(0,questionsList2.Length);
+            questionschosen = questionsList2[i];
+        }
+        else if(questiontype == 2)
+        {
+            i = Random.Range(0,questionsList3.Length);
+            questionschosen = questionsList3[i];
+        }
+        
         questions questionsScript = questionschosen.GetComponent<questions>();
         for(int x = 0; x < questionsScript.answerChoices.Length; x++)
         {
@@ -205,7 +225,7 @@ public class QuizMenu : MonoBehaviour
         bracetimer = max_bracetimer;
         levelCount++;
         ActivateBrace();
-        FetchQuestions();
+        FetchQuestions(questiontype);
         enemyspawner.ResetPlayerPos(0);
         enemyspawner.ResetPlayerPos(1);
 

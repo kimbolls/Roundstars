@@ -21,11 +21,11 @@ public class ScoredMenu : MonoBehaviour
 
     public void player1Win()
     {
-        text = "SCORE TO PLAYER 1!";
+        text = "SCORE TO " + PlayerPrefs.GetString("player1Name") + "!";
     }
 
     public void player2Win()
     {   
-        text = "SCORE TO PLAYER 2!";
+        text = "SCORE TO " + PlayerPrefs.GetString("player2Name") + "!";
     }
 }
