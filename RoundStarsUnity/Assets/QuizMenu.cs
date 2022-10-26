@@ -242,6 +242,9 @@ public class QuizMenu : MonoBehaviour
         enemyspawner.ResetPlayerPos(0);
         enemyspawner.ResetPlayerPos(1);
 
+        player1.current_hp = player1.max_hp;
+        player2.current_hp = player2.max_hp;
+
         if(player1_upgPoint == 5)
         {
             
