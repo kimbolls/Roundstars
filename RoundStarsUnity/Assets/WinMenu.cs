@@ -52,4 +52,9 @@ public class WinMenu : MonoBehaviour
             scoretext.SetText("{0}",score.player2_correctpoint);
         }
     }
+    public void OnRestart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
+    }
 }

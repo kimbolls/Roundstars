@@ -161,18 +161,27 @@ public class QuizMenu : MonoBehaviour
         int i;
         if(questiontype == 0)
         {
-            i = Random.Range(0,questionsList1.Length);
+            do{
+                i = Random.Range(0,questionsList1.Length);
             questionschosen = questionsList1[i];
+            }while(questionschosen == null);
+            
+           
         }
         else if(questiontype == 1)
         {
+            do{
             i = Random.Range(0,questionsList2.Length);
             questionschosen = questionsList2[i];
+            }while(questionschosen == null);
         }
         else if(questiontype == 2)
         {
+            do{
             i = Random.Range(0,questionsList3.Length);
             questionschosen = questionsList3[i];
+            }while(questionschosen == null);
+
         }
         
         questions questionsScript = questionschosen.GetComponent<questions>();
@@ -181,6 +190,7 @@ public class QuizMenu : MonoBehaviour
             answerChoices[x] = questionsScript.answerChoices[x];
 
         }
+
         for(int x = 0; x < answerChoices.Length; x++)
         {
             int rnd = Random.Range(0, answerChoices.Length);

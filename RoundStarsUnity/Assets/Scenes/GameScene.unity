@@ -1596,7 +1596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0021362305, y: -1.9564819}
+  m_AnchoredPosition: {x: -0.0020751953, y: -1.9564819}
   m_SizeDelta: {x: 0.0045166, y: -3.9133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88445480
@@ -2307,7 +2307,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb15b488ae2b08f4aa6bff4e08c6b1dd, type: 3}
   - {fileID: 21300000, guid: e1cbaa3f789670340ae2d00e6ae77ac7, type: 3}
   quizmenu: {fileID: 361698692}
-  gametimer: 30
+  gametimer: 120
   gametimer_text: {fileID: 547018390}
   gametimer_slider: {fileID: 1073531177}
   p1score_text: {fileID: 950105482}
@@ -2789,7 +2789,7 @@ GameObject:
   - component: {fileID: 217445972}
   - component: {fileID: 217445971}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2815,7 +2815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1bc4051717e49b94e81632cbb00e8328, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23e5ef7b048328146abb16867d20216e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2850,8 +2850,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95.818954, y: 0.0000042915}
-  m_SizeDelta: {x: 55.335, y: 55.647}
+  m_AnchoredPosition: {x: -125.598, y: -0.59149}
+  m_SizeDelta: {x: 40.445, y: 54.464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &226961208 stripped
 SpriteRenderer:
@@ -11526,8 +11526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonlist:
-  - {fileID: 2038655744}
   - {fileID: 1858886624}
+  - {fileID: 2038655744}
   selected: {fileID: 0}
   eventsystem: {fileID: 1577879910}
   enemyspawner: {fileID: 0}
@@ -12602,8 +12602,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40.08696, y: 0}
-  m_SizeDelta: {x: 144.294, y: 46}
+  m_AnchoredPosition: {x: 38, y: 0}
+  m_SizeDelta: {x: 167.798, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385065008
 MonoBehaviour:
@@ -12658,7 +12658,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -12688,7 +12688,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -37.770607, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.0556488, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14839,8 +14839,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.181076, y: 0.1725}
-  m_SizeDelta: {x: 145.979, y: 55.992}
+  m_AnchoredPosition: {x: 30.338, y: 0.1725}
+  m_SizeDelta: {x: 230.962, y: 55.992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545363080
 MonoBehaviour:
@@ -14862,7 +14862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: RESTART
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ed7906e76e6728419238f9b148acae8, type: 2}
   m_sharedMaterial: {fileID: 6983537545056094114, guid: 4ed7906e76e6728419238f9b148acae8, type: 2}
@@ -14889,13 +14889,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -14925,7 +14925,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.000003832576, w: 0}
+  m_margin: {x: -1.6688614, y: 0, z: 0.000003832576, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -16828,7 +16828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -93.863}
+  m_AnchoredPosition: {x: 0.00012207031, y: -93.862976}
   m_SizeDelta: {x: -694.142, y: -368.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817142424
@@ -17339,7 +17339,7 @@ GameObject:
   - component: {fileID: 1858886626}
   - component: {fileID: 1858886625}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17391,7 +17391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1173541810}
         m_TargetAssemblyTypeName: WinMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17420,7 +17420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.31, y: -371.8}
+  m_AnchoredPosition: {x: -156.31, y: -371.8}
   m_SizeDelta: {x: 291.638, y: 71.251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1860597815
@@ -18709,7 +18709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147.42, y: -371.8}
+  m_AnchoredPosition: {x: 156.31, y: -371.8}
   m_SizeDelta: {x: 294.832, y: 71.254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2039928763
