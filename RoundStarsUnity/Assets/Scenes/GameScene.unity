@@ -2307,7 +2307,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb15b488ae2b08f4aa6bff4e08c6b1dd, type: 3}
   - {fileID: 21300000, guid: e1cbaa3f789670340ae2d00e6ae77ac7, type: 3}
   quizmenu: {fileID: 361698692}
-  gametimer: 120
+  gametimer: 30
   gametimer_text: {fileID: 547018390}
   gametimer_slider: {fileID: 1073531177}
   p1score_text: {fileID: 950105482}
@@ -2955,7 +2955,7 @@ PrefabInstance:
       objectReference: {fileID: 1624200754}
     - target: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_Interactable
@@ -2964,6 +2964,18 @@ PrefabInstance:
     - target: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1644212984, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_Enabled
@@ -2980,6 +2992,22 @@ PrefabInstance:
     - target: {fileID: 2069853874, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069853875, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069853875, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069853875, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069853875, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4110629538795517149, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_Name
@@ -5596,8 +5624,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000061989, y: 0.0000059605}
-  m_SizeDelta: {x: 72.39, y: 45.11}
+  m_AnchoredPosition: {x: 0.0000061989, y: -0.24}
+  m_SizeDelta: {x: 72.39, y: 45.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547018390
 MonoBehaviour:
@@ -5646,13 +5674,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.8
+  m_fontSize: 37.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5782,6 +5810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 558499421}
   - component: {fileID: 558499420}
+  - component: {fileID: 558499422}
   m_Layer: 6
   m_Name: HPSlider
   m_TagString: Untagged
@@ -5810,7 +5839,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.63529414, g: 1, b: 0.59607846, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5874,6 +5903,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00000014901, y: 0.067}
   m_SizeDelta: {x: 0.5945, y: 0.0625}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &558499422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558499419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02a49a32aea7e44eb08a4dd0f4c5d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpfill: {fileID: 306446416}
+  hpslider: {fileID: 558499420}
+  cautioncolor: {r: 0.90588236, g: 0.91764706, b: 0.61960787, a: 1}
+  healthycolor: {r: 0.63529414, g: 1, b: 0.59607846, a: 1}
+  dangercolor: {r: 1, g: 0.375566, b: 0.2783019, a: 1}
 --- !u!1 &567030344
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +6943,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678377387}
   m_CullTransparentMesh: 1
+--- !u!1 &685776105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1101170455, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+  m_PrefabInstance: {fileID: 247170101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &685776107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1101170457, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+  m_PrefabInstance: {fileID: 247170101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685776105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &685776108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685776105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02a49a32aea7e44eb08a4dd0f4c5d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpfill: {fileID: 747350051}
+  hpslider: {fileID: 685776107}
+  cautioncolor: {r: 0.90588236, g: 0.91764706, b: 0.61960787, a: 1}
+  healthycolor: {r: 0.63529414, g: 1, b: 0.59607846, a: 1}
+  dangercolor: {r: 1, g: 0.375566, b: 0.2783019, a: 1}
 --- !u!212 &697637367 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8844715820581940159, guid: c01f853f1c0bb4f40a97259264d50b33, type: 3}
@@ -7150,6 +7229,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720393781}
   m_CullTransparentMesh: 1
+--- !u!114 &747350051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2069853875, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+  m_PrefabInstance: {fileID: 247170101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &749192632
 GameObject:
   m_ObjectHideFlags: 0
@@ -9595,7 +9685,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 60
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -17301,7 +17391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1173541810}
         m_TargetAssemblyTypeName: WinMenu, Assembly-CSharp
-        m_MethodName: OnMenu
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17857,7 +17947,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 60
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -18588,9 +18678,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1173541809}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1173541810}
+        m_TargetAssemblyTypeName: WinMenu, Assembly-CSharp
+        m_MethodName: OnMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

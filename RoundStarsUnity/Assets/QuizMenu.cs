@@ -82,8 +82,14 @@ public class QuizMenu : MonoBehaviour
                 slowMoStatus = false;
                 scoredmenu.SetActive(false);
                 ResetLevel();
+                CheckEndGame();
             }
         }
+        else
+        {
+            CheckEndGame();
+        }
+    
 
         if(bracetimer <= 0)
         {
@@ -100,10 +106,14 @@ public class QuizMenu : MonoBehaviour
         }
 
         
+
+        
         
         //-------------------
         
     }
+
+    
 
     public void UpdateAnswer(int playerID,int answerID)
     {
@@ -272,6 +282,26 @@ public class QuizMenu : MonoBehaviour
     void UpgradeTime()
     {
         
+    }
+    public void CheckEndGame()
+    {
+        if(score.player1_correctpoint != score.player2_correctpoint)
+        { 
+            if(score.gametimer <= 0 )
+            {
+                WinMenu win = winmenu.GetComponent<WinMenu>();
+                winmenu.SetActive(true);
+                Time.timeScale = 0f;
+                if(score.player1_correctpoint > score.player2_correctpoint)
+                {
+                    win.SetWinner(0);
+                }
+                else
+                {
+                    win.SetWinner(1);
+                }
+            }
+        }
     }
 
     

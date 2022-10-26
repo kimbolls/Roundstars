@@ -56,6 +56,11 @@ public class score_tracker : MonoBehaviour
             bracecur += Time.deltaTime;
         }
 
+        if(gametimer <= 0)
+        {
+            gametimer_text.SetText("OVERTIME");
+        }
+
         braceslider.value = bracecur;
 
         //game timer

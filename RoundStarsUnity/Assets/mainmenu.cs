@@ -11,8 +11,8 @@ public class mainmenu : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject Customizechar;
     public TMP_Dropdown dropdown;   
-    public int test;
-
+    // public int test;
+    public GameObject playmenu;
     //public GameObject QuitConfirm;
     // Start is called before the first frame update
     void Start()
@@ -24,13 +24,28 @@ public class mainmenu : MonoBehaviour
     void Update()
     {
         // PlayerPrefs.SetInt("QuestionType",dropdown.value);
-        test = PlayerPrefs.GetInt("QuestionType");
+        // test = PlayerPrefs.GetInt("QuestionType");
+    }
+    public void PlayMenu()
+    {
+        playmenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
-    public void PlayGame()
+    public void PlayMultiplayer()
     {
         SceneManager.LoadScene(1);
     }
+    public void PlaySingleplayer()
+    {
+
+    }
+
+    public void PlayTutorial()
+    {
+
+    }
+
 
     public void Customize()
     {
@@ -51,8 +66,16 @@ public class mainmenu : MonoBehaviour
 
     public void backtoMenu()
     {
+        if(SettingsMenu.active)
+        {
+            SettingsMenu.SetActive(false);
+        }
+        else if(playmenu.active)
+        {
+            playmenu.SetActive(false);
+        }
         mainMenu.SetActive(true);
-        SettingsMenu.SetActive(false);
+        
     }
     public void QuitGame(){}
 }

@@ -8,11 +8,11 @@ public class Regular_projectile : MonoBehaviour
     public int damage;
     public GameObject Particle;
     //public SpriteRenderer Sprite;
-
+    int bouncecount;
     void Start()
     {
-         
-        Destroy(gameObject,5f);
+        bouncecount = 2;
+        Destroy(gameObject,3f);
     }
 
     void OnCollisionEnter2D(Collision2D hitInfo)
@@ -40,15 +40,29 @@ public class Regular_projectile : MonoBehaviour
 
         if(hitInfo.gameObject.tag != "bullets") // destroy if collide with anything/dont need?
         {
+
         // impact = Instantiate(impact, transform.position, Quaternion.identity); *create effect upon collide*
         //GameObject ParticleObject = Instantiate(Particle,transform.position,Quaternion.identity);
         //ParticleSystem Effect = ParticleObject.GetComponent<ParticleSystem>();
         //var main = Effect.main;
         //main.startColor = Sprite.color;
-        Destroy(gameObject);
+
+            if(hitInfo.gameObject.layer == 15 && bouncecount != 0)
+            {
+                Vector3 v = Vector3.Reflect(transform.right, hitInfo.contacts[0].normal);
+                float rot = 90 - Mathf.Atan2(v.z, v.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, 0, rot);
+                bouncecount--;
+            }
+            else
+            {
+                Destroy(gameObject);
+
+            }
+        } 
 
         // Destroy(impact, 0.5f);
         }
         
-    }
+    
 }
