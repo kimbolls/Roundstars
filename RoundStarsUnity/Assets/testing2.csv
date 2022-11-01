@@ -1,0 +1,11 @@
+﻿Description,Choice 1,Choice 2 ,Choice 3,True Answer
+What function is used to append a character at the back of a string in C++?,push_back(),append(),insert(),push_back()
+When a pop() operation is called on an empty queue. what is the condition called?      ,Overflow,Underflow,Syntax Error,Underflow
+Which of the following represents the Postorder Traversal of a Binary Tree?,Left -> Right -> Root,Right -> Left -> Root,Right -> Root -> Left,Left -> Right -> Root
+Which data structure is mainly used for implementing the recursive algorithm?,Queue,Stack,Array,Stack
+What will be the best sorting algorithm given that the array elements are small (<= 1e6)?,Bubble Sort,Merge Sort,Counting Sort,Counting Sort
+Which of the following is a Divide and Conquer algorithm?,Bubble Sort,Selection Sort,Merge Sort,Merge Sort
+Which of the following sorting algorithms provide the best time complexity in the worst-case scenario?      ,Merge Sort,Quick Sort,Selection Sort,Merge Sort
+Which of the following is the advantage of the array data structure?      ,Elements of mixed data types can be stored,Easier to access the elements in an array,Index of the first element starts from 1,Easier to access the elements in an array
+How are String represented in memory in C?      ,LinkedList of characters,An array of characters,The object of some class,An array of characters
+What is the minimum number of required arguments to pass in Pandas series?,2,1,0,1
