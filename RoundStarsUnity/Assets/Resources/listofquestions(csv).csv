@@ -1,9 +1,9 @@
 ﻿Type,Description,Choice 1,Choice 2 ,Choice 3,True Answer
 Data Structures,What function is used to append a character at the back of a string in C++?,push_back(),append(),insert(),push_back()
-Data Structures,"When a pop() operation is called on an empty queue, what is the condition called?      ",Overflow,Underflow,Syntax Error,Underflow
+Data Structures,When a pop() operation is called on an empty queue what is the condition called?      ,Overflow,Underflow,Syntax Error,Underflow
 Data Structures,Which of the following represents the Postorder Traversal of a Binary Tree?,Left -> Right -> Root,Right -> Left -> Root,Right -> Root -> Left,Left -> Right -> Root
 Data Structures,Which data structure is mainly used for implementing the recursive algorithm?,Queue,Stack,Array,Stack
-Data Structures,"What will be the best sorting algorithm, given that the array elements are small (<= 1e6)?",Bubble Sort,Merge Sort,Counting Sort,Counting Sort
+Data Structures,What will be the best sorting algorithm given that the array elements are small (<= 1e6)?,Bubble Sort,Merge Sort,Counting Sort,Counting Sort
 Data Structures,Which of the following is a Divide and Conquer algorithm?,Bubble Sort,Selection Sort,Merge Sort,Merge Sort
 Data Structures,Which of the following sorting algorithms provide the best time complexity in the worst-case scenario?      ,Merge Sort,Quick Sort,Selection Sort,Merge Sort
 Data Structures,Which of the following is the advantage of the array data structure?      ,Elements of mixed data types can be stored,Easier to access the elements in an array,Index of the first element starts from 1,Easier to access the elements in an array

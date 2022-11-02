@@ -4145,6 +4145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361698691}
   - component: {fileID: 361698692}
+  - component: {fileID: 361698693}
   m_Layer: 0
   m_Name: Quiz_Manager
   m_TagString: Untagged
@@ -4195,7 +4196,6 @@ MonoBehaviour:
   - {fileID: 1163657680}
   bracetimer: 15
   max_bracetimer: 10
-  questionDescription: 
   player1_answer: 0
   player2_answer: 0
   TrueAnswer: 0
@@ -4207,43 +4207,6 @@ MonoBehaviour:
   wallbarrier:
   - {fileID: 1528805650}
   - {fileID: 1480239417}
-  questionsList1:
-  - {fileID: 189683530}
-  - {fileID: 1874649968}
-  - {fileID: 1713428162}
-  - {fileID: 432495583}
-  - {fileID: 1451014986}
-  - {fileID: 15603009}
-  - {fileID: 1529700810}
-  - {fileID: 2144093009}
-  - {fileID: 1251187436}
-  - {fileID: 2053386121}
-  questionsList2:
-  - {fileID: 310362364}
-  - {fileID: 1868641747}
-  - {fileID: 2144465781}
-  - {fileID: 1918038409}
-  - {fileID: 322821080}
-  - {fileID: 1588183349}
-  - {fileID: 1419457188}
-  - {fileID: 817505936}
-  - {fileID: 1067337968}
-  - {fileID: 1022810563}
-  questionsList3:
-  - {fileID: 1934340426}
-  - {fileID: 1547327643}
-  - {fileID: 1425717580}
-  - {fileID: 1070852432}
-  - {fileID: 1614408938}
-  - {fileID: 320043883}
-  - {fileID: 120425971}
-  - {fileID: 1376887953}
-  - {fileID: 846734399}
-  - {fileID: 1309365281}
-  answerChoices:
-  - 
-  - 
-  - 
   quizCanvas: {fileID: 1215232445}
   player1: {fileID: 0}
   player2: {fileID: 0}
@@ -4257,6 +4220,35 @@ MonoBehaviour:
   UpgradeScript: {fileID: 1879050679}
   questiontype: 0
   winmenu: {fileID: 1173541809}
+  readdatabase: {fileID: 361698693}
+  questionDescription: 
+  correctAnswer: 
+  answerDescription:
+  - 
+  - 
+  - 
+  CurrentQuestionList:
+    questions: []
+--- !u!114 &361698693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361698690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7217f8cfdb36864493bf355c633da52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAssetData: {fileID: 0}
+  jsonFile: {fileID: 0}
+  col: 7
+  MainMenu: {fileID: 0}
+  quizmenu: {fileID: 361698692}
+  uniquetype: []
+  myQuestionList:
+    questions: []
 --- !u!1 &364556166
 GameObject:
   m_ObjectHideFlags: 0
@@ -10048,7 +10040,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1012886481}
-  - component: {fileID: 1012886480}
   m_Layer: 0
   m_Name: QuestionsMaster
   m_TagString: Untagged
@@ -10056,21 +10047,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1012886480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012886479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0044f85949810c449a3314beddb7d6e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textAssetData: {fileID: 4900000, guid: 868b9e647630e5f4d812beafa722856b, type: 3}
-  jsonFile: {fileID: 4900000, guid: 1078de6ae247400469b7ab324dbefffa, type: 3}
-  col: 5
 --- !u!4 &1012886481
 Transform:
   m_ObjectHideFlags: 0

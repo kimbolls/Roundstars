@@ -2,7 +2,7 @@
    "questions":[
       {
          "type":"Data Structure",
-         "name":"How are String represented in memory in C?",
+         "description":"How are String represented in memory in C?",
          "correctAnswer":"An array of object",
          "possibleAnswer":[
             "Linked list of characters",
@@ -12,7 +12,7 @@
       },
       {
          "type":"Python",
-         "name":"What is Python?",
+         "description":"What is Python?",
          "correctAnswer":"Yes",
          "possibleAnswer":[
             "A programming language",
@@ -22,7 +22,7 @@
       },
       {
          "type":"idk",
-         "name":"What is Python?",
+         "description":"What is Python?",
          "correctAnswer":"Yes",
          "possibleAnswer":[
             "A programming language",

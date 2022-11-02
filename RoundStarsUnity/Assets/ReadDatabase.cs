@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
-public class testinglist : MonoBehaviour
+public class ReadDatabase : MonoBehaviour
 {
-    //try making an array of array
-    //
     public TextAsset textAssetData;
     public TextAsset jsonFile;
     public int col;
+    public mainmenu MainMenu;
+    public QuizMenu quizmenu;
   [System.Serializable]
     public class Question
     {
@@ -31,7 +33,7 @@ public class testinglist : MonoBehaviour
     void Start()
     {
         jsonFile = Resources.Load<TextAsset>("listofquestions(json)");
-        textAssetData = Resources.Load<TextAsset>("listofquestions(csv)");
+        textAssetData = Resources.Load<TextAsset>("listofquestions(tsv)");
        if(jsonFile != null)
        {
         ReadCSV2();
@@ -42,6 +44,8 @@ public class testinglist : MonoBehaviour
        }
 
        countUnique();
+       if(quizmenu != null)
+       {quizmenu.CreateNewQuestionList();}
     }
 
     // Update is called once per frame
@@ -53,7 +57,7 @@ public class testinglist : MonoBehaviour
     void ReadCSV1()
     {
 
-        string[] data = textAssetData.text.Split(new string[] {",","\n"}, StringSplitOptions.None);
+        string[] data = textAssetData.text.Split(new string[] {"\t","\n"}, StringSplitOptions.None);
 
         int tableSize = data.Length / col-1;
         myQuestionList.questions = new Question[tableSize];
@@ -61,11 +65,6 @@ public class testinglist : MonoBehaviour
         for(int i = 0; i <tableSize; i++)
         {
             myQuestionList.questions[i] = new Question();
-            // myQuestionList.questions[i].description = data[col* (i+1) + 1];
-            // myQuestionList.questions[i].possibleAnswer[0] = data[col* (i+1) + 2];
-            // myQuestionList.questions[i].possibleAnswer[1] = data[col* (i+1) + 3];
-            // myQuestionList.questions[i].possibleAnswer[2] = data[col* (i+1) + 4];
-            // myQuestionList.questions[i].correctAnswer = data[col* (i+1) + 5];
             myQuestionList.questions[i].type = data[col* (i+1)];
             myQuestionList.questions[i].description = data[col* (i+1) + 1];
             myQuestionList.questions[i].possibleAnswer[0] = data[col* (i+1) + 2];
@@ -98,10 +97,21 @@ public class testinglist : MonoBehaviour
                 uniquetype.Add(myQuestionList.questions[i].type);
             }
         }
+        // count unique
+        // for(int i = 0; i <uniquetype.Count;i++)
+        // {
+        //     Debug.Log(uniquetype[i]);
+        // }
 
-        for(int i = 0; i <uniquetype.Count;i++)
+
+        if(MainMenu != null)
         {
-            Debug.Log(uniquetype[i]);
+            MainMenu.dropdown.options.Clear();
+            foreach(string option in uniquetype)
+            {
+                MainMenu.dropdown.options.Add(new TMP_Dropdown.OptionData(option));
+            }
         }
+        
     }
 }
