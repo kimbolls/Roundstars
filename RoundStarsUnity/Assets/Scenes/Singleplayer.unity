@@ -2136,7 +2136,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb15b488ae2b08f4aa6bff4e08c6b1dd, type: 3}
   - {fileID: 21300000, guid: e1cbaa3f789670340ae2d00e6ae77ac7, type: 3}
   quizmenu: {fileID: 361698692}
-  gametimer: 30
+  gametimer: 90
   gametimer_text: {fileID: 547018390}
   gametimer_slider: {fileID: 1073531177}
   p1score_text: {fileID: 950105482}
@@ -2227,7 +2227,7 @@ RectTransform:
   - {fileID: 1260059573}
   - {fileID: 1781282299}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2941,7 +2941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4110629538795517154, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4110629538795517154, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19154,7 +19154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6211289438420497969, guid: afc911541ab7f854e9f0a84b3eea086e, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6211289438420497969, guid: afc911541ab7f854e9f0a84b3eea086e, type: 3}
       propertyPath: m_LocalPosition.x
