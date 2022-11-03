@@ -23,7 +23,7 @@ public class Enemy_Attributes : MonoBehaviour
     void Start()
     {
         current_hp = max_hp;
-        score = GameObject.Find("Score&TimerDisplay").GetComponent<score_tracker>();
+        score = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
         
        // HP_Slider.maxValue = max_hp;
 

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy_Movement : MonoBehaviour
 {
-    public GameObject player1,player2;
+    public GameObject player1;
+    // player2;
     public Rigidbody2D rb;
     public GameObject aimedplayer;
     public float speed;
@@ -15,27 +16,29 @@ public class Enemy_Movement : MonoBehaviour
     void Start()
     {
         player1 = GameObject.Find("Player 1");
-        player2 = GameObject.Find("Player 2");
-        RandomAim();
+        aimedplayer = player1;
+        // player2 = GameObject.Find("Player 2");
+        // RandomAim();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        aimtimer -= Time.deltaTime;
-        if(aimtimer <= 0)
-        {
-            if(aimedplayer == player1)
-            {
-                aimedplayer = player2;
-            }
-            else
-            {
-                aimedplayer = player1;
-            }
-            aimtimer = maxaimtimer;
-        }
+        
+        // aimtimer -= Time.deltaTime;
+        // if(aimtimer <= 0)
+        // {
+        //     if(aimedplayer == player1)
+        //     {
+        //         aimedplayer = player2;
+        //     }
+        //     else
+        //     {
+        //         aimedplayer = player1;
+        //     }
+        //     aimtimer = maxaimtimer;
+        // }
     }
 
     void FixedUpdate()
@@ -49,18 +52,18 @@ public class Enemy_Movement : MonoBehaviour
         
     }
 
-    void RandomAim(){
+    // void RandomAim(){
         
-        int num = Random.Range(0,2);
-        if(num == 0)
-        {
-            aimedplayer =  player1;
-        }
-        else if(num == 1)
-        {
-            aimedplayer =  player2;
-        }
+    //     int num = Random.Range(0,2);
+    //     if(num == 0)
+    //     {
+    //         aimedplayer =  player1;
+    //     }
+    //     else if(num == 1)
+    //     {
+    //         aimedplayer =  player2;
+    //     }
         
     
-    }
+    // }
 }

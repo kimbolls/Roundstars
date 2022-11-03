@@ -38,7 +38,7 @@ public class QuizMenu : MonoBehaviour
     private bool slowMoStatus = false;
     public upgradescript  UpgradeScript;
     public int questiontype;
-    public GameObject winmenu;
+    public GameObject winmenu,winmenu2;
     public ReadDatabase readdatabase;
     public string questionDescription,correctAnswer;
     public string[] answerDescription = new string[3];
@@ -152,7 +152,7 @@ public class QuizMenu : MonoBehaviour
             if(player1_answer == TrueAnswer)
             {
                 Debug.Log("correct");
-                score.P1_score += 100;
+                score.P1_points += 100;
                 score.player1_correctpoint++;
                 player1_upgPoint++;
                 slowMoStatus = true;
@@ -169,7 +169,7 @@ public class QuizMenu : MonoBehaviour
             if(player2_answer == TrueAnswer)
             {
                 Debug.Log("correct");
-                score.P2_score += 100;
+                score.P2_points += 100;
                 score.player2_correctpoint++;
                 player2_upgPoint++;
                 slowMoStatus = true;
@@ -249,7 +249,8 @@ public class QuizMenu : MonoBehaviour
     {
         for(int i = 0; i < wallbarrier.Length; i++)
         {
-            wallbarrier[i].SetActive(false);
+            if(wallbarrier[i] != null)
+            {wallbarrier[i].SetActive(false);}
         }
         
     }
@@ -258,35 +259,55 @@ public class QuizMenu : MonoBehaviour
     {
         for(int i = 0; i < wallbarrier.Length; i++)
         {
-            wallbarrier[i].SetActive(true);
+            if(wallbarrier[i] != null)
+            {wallbarrier[i].SetActive(true);}
         }
     }
 
     void ResetLevel()
     {
-        // if(x == 1)
-        // {
-        //     player1_upgPoint++;
-        // }
-        // else{
-        //     player2_upgPoint++;
-        // }
-        //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
         score.bracecur = 0;
         levelCount++;
         
         FetchQuestions2();
         enemyspawner.ResetPlayerPos(0);
+        ActivateBrace();
         if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
         {   
-            ActivateBrace();
-             enemyspawner.ResetPlayerPos(1);
+            
+            
+            enemyspawner.ResetPlayerPos(1);
+            player2.current_hp = player2.max_hp;
+        }
+        else
+        {
+            enemyspawner.SpawnStatus = true;
+            if(enemyspawner.tempvar >= 1)
+            {
+                enemyspawner.Spawn_Stop();
+            }
+            for(int i = 0; i < enemyspawner.enemyList.Length; i++) //destroy enemy on reset
+            {
+                if(enemyspawner.enemyList[i] != null)
+                {
+                    Destroy(enemyspawner.enemyList[i]);
+                }
+                
+            }
+
+            for(int i = 0; i < enemyspawner.bulletList.Length; i++) //destroy bulelt on reset
+            {
+                if(enemyspawner.bulletList[i] != null)
+                {
+                    Destroy(enemyspawner.bulletList[i]);
+                }
+            }
         }
        
 
         player1.current_hp = player1.max_hp;
-        player2.current_hp = player2.max_hp;
+       
 
         if(player1_upgPoint == 5)
         {
@@ -409,22 +430,37 @@ public class QuizMenu : MonoBehaviour
     }
     public void CheckEndGame()
     {
-        if(score.player1_correctpoint != score.player2_correctpoint)
-        { 
-            if(score.gametimer <= 0 )
-            {
-                WinMenu win = winmenu.GetComponent<WinMenu>();
-                winmenu.SetActive(true);
-                Time.timeScale = 0f;
-                if(score.player1_correctpoint > score.player2_correctpoint)
+        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {
+            if(score.player1_correctpoint != score.player2_correctpoint)
+            { 
+                if(score.gametimer <= 0 )
                 {
-                    win.SetWinner(0);
-                }
-                else
-                {
-                    win.SetWinner(1);
+                    WinMenu win = winmenu.GetComponent<WinMenu>();
+                    winmenu.SetActive(true);
+                    Time.timeScale = 0f;
+                    if(score.player1_correctpoint > score.player2_correctpoint)
+                    {
+                        win.SetWinner(0);
+                    }
+                    else
+                    {
+                        win.SetWinner(1);
+                    }
                 }
             }
+        }
+        else{
+             if(score.gametimer <= 0 )
+                {
+                    WinMenu win = winmenu.GetComponent<WinMenu>();
+                    winmenu.SetActive(true);
+                    Time.timeScale = 0f;
+                    if(score.player1_correctpoint > score.player2_correctpoint)
+                    {
+                        win.SetWinner(0);
+                    }
+                }
         }
     }
 

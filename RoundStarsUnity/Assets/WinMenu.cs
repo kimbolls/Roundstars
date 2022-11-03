@@ -13,6 +13,7 @@ public class WinMenu : MonoBehaviour
     public EventSystem eventsystem;
     public EnemySpawner enemyspawner;
     public TMP_Text winnertext,scoretext;
+    public TMP_Text pointstext;
 
     public score_tracker score;
     // Start is called before the first frame update
@@ -51,10 +52,16 @@ public class WinMenu : MonoBehaviour
             winnertext.SetText("PLAYER " + PlayerPrefs.GetString("player2Name") + " WINS!");
             scoretext.SetText("{0}",score.player2_correctpoint);
         }
+
+        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
+        {
+            pointstext.SetText("{0}",score.P1_points);
+        }
     }
     public void OnRestart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }
