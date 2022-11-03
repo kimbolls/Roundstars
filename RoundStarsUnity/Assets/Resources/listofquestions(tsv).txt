@@ -8,7 +8,6 @@ Data Structures	Which of the following is a Divide and Conquer algorithm?	Bubble
 Data Structures	Which of the following sorting algorithms provide the best time complexity in the worst-case scenario?      	Merge Sort	Quick Sort	Selection Sort	Merge Sort	
 Data Structures	Which of the following is the advantage of the array data structure?      	Elements of mixed data types can be stored	Easier to access the elements in an array	Index of the first element starts from 1	Easier to access the elements in an array	
 Data Structures	How are String represented in memory in C?	LinkedList of characters	An array of characters	The object of some class	An array of characters	
-Data Structures	What is the minimum number of required arguments to pass in Pandas series?	2	1	0	1	
 Python	What function to use to generate random whole numbers into an array?	rand()	randinteger()	randint()	randint()	
 Python	Which of the following is not the parameter of pyplots’s plot() function?	linestyle	marker	lineheight	lineheight	
 Python	What is a correct syntax to check the number of dimensions in an array?	np.dim	np.dim()	np.ndim	np.ndim 	

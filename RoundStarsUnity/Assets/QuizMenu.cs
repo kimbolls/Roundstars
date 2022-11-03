@@ -21,9 +21,9 @@ public class QuizMenu : MonoBehaviour
     public int player1_upgPoint,player2_upgPoint;
     public EnemySpawner enemyspawner;
     public GameObject[] wallbarrier;
-     GameObject[] questionsList1;
-     GameObject[] questionsList2;
-     GameObject[] questionsList3;
+    //  GameObject[] questionsList1;
+    //  GameObject[] questionsList2;
+    //  GameObject[] questionsList3;
      string[] answerChoices;
     public GameObject quizCanvas;
     public P1_Attributes player1;
@@ -60,6 +60,8 @@ public class QuizMenu : MonoBehaviour
     }
     public QuestionList CurrentQuestionList = new QuestionList();
     void Start(){
+
+        Time.timeScale = 1f;
         questiontype = PlayerPrefs.GetInt("QuestionType");
         //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
@@ -70,7 +72,11 @@ public class QuizMenu : MonoBehaviour
 
         quizCanvas.SetActive(false);
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
-        player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {
+            player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+        }
+        
         flag = GameObject.Find("Flag").GetComponent<flag>();
         UpgradeScript = upgrademenu.GetComponent<upgradescript>();
         slowMoTimer = maxslowMoTimer;
@@ -178,66 +184,66 @@ public class QuizMenu : MonoBehaviour
         }
     }
 
-    void FetchQuestions(int questiontype)
-    {
-        int i;
-        if(questiontype == 0)
-        {
-            do{
-                i = Random.Range(0,questionsList1.Length);
-            questionschosen = questionsList1[i];
-            }while(questionschosen == null);
+    // void FetchQuestions(int questiontype)
+    // {
+    //     int i;
+    //     if(questiontype == 0)
+    //     {
+    //         do{
+    //             i = Random.Range(0,questionsList1.Length);
+    //         questionschosen = questionsList1[i];
+    //         }while(questionschosen == null);
             
            
-        }
-        else if(questiontype == 1)
-        {
-            do{
-            i = Random.Range(0,questionsList2.Length);
-            questionschosen = questionsList2[i];
-            }while(questionschosen == null);
-        }
-        else if(questiontype == 2)
-        {
-            do{
-            i = Random.Range(0,questionsList3.Length);
-            questionschosen = questionsList3[i];
-            }while(questionschosen == null);
+    //     }
+    //     else if(questiontype == 1)
+    //     {
+    //         do{
+    //         i = Random.Range(0,questionsList2.Length);
+    //         questionschosen = questionsList2[i];
+    //         }while(questionschosen == null);
+    //     }
+    //     else if(questiontype == 2)
+    //     {
+    //         do{
+    //         i = Random.Range(0,questionsList3.Length);
+    //         questionschosen = questionsList3[i];
+    //         }while(questionschosen == null);
 
-        }
+    //     }
         
-        questions questionsScript = questionschosen.GetComponent<questions>();
-        for(int x = 0; x < questionsScript.answerChoices.Length; x++)
-        {
-            answerChoices[x] = questionsScript.answerChoices[x];
+    //     questions questionsScript = questionschosen.GetComponent<questions>();
+    //     for(int x = 0; x < questionsScript.answerChoices.Length; x++)
+    //     {
+    //         answerChoices[x] = questionsScript.answerChoices[x];
 
-        }
+    //     }
 
-        for(int x = 0; x < answerChoices.Length; x++)
-        {
-            int rnd = Random.Range(0, answerChoices.Length);
-            string tempGO = answerChoices[rnd];
-            answerChoices[rnd] = answerChoices[x];
-            answerChoices[x] = tempGO;
-            // if(answerChoices[x] == questionsScript.TrueAnswer)
-            // {
-            //     TrueAnswer = x;
-            // }
+    //     for(int x = 0; x < answerChoices.Length; x++)
+    //     {
+    //         int rnd = Random.Range(0, answerChoices.Length);
+    //         string tempGO = answerChoices[rnd];
+    //         answerChoices[rnd] = answerChoices[x];
+    //         answerChoices[x] = tempGO;
+    //         // if(answerChoices[x] == questionsScript.TrueAnswer)
+    //         // {
+    //         //     TrueAnswer = x;
+    //         // }
 
-        }
-        for(int x = 0; x < answerChoices.Length; x++)
-        {
-            answerdescription[x].SetText(answerChoices[x]);
-            if(answerChoices[x] == questionsScript.TrueAnswer)
-            {
-                TrueAnswer = x;
-            }
-        }
-        questionDescription = questionsScript.questionDescription;
-        quizDescription.SetText(questionDescription);   
-        Destroy(questionschosen);
+    //     }
+    //     for(int x = 0; x < answerChoices.Length; x++)
+    //     {
+    //         answerdescription[x].SetText(answerChoices[x]);
+    //         if(answerChoices[x] == questionsScript.TrueAnswer)
+    //         {
+    //             TrueAnswer = x;
+    //         }
+    //     }
+    //     questionDescription = questionsScript.questionDescription;
+    //     quizDescription.SetText(questionDescription);   
+    //     Destroy(questionschosen);
 
-    }
+    // }
 
     void DisableBrace()
     {
@@ -269,10 +275,15 @@ public class QuizMenu : MonoBehaviour
         bracetimer = max_bracetimer;
         score.bracecur = 0;
         levelCount++;
-        ActivateBrace();
+        
         FetchQuestions2();
         enemyspawner.ResetPlayerPos(0);
-        enemyspawner.ResetPlayerPos(1);
+        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {   
+            ActivateBrace();
+             enemyspawner.ResetPlayerPos(1);
+        }
+       
 
         player1.current_hp = player1.max_hp;
         player2.current_hp = player2.max_hp;
@@ -356,26 +367,10 @@ public class QuizMenu : MonoBehaviour
     {
         int i;
         int x = 0;
-        // TrueAnswer = 1;
-        // CurrentQuestionChosen.questions = new Question[1];
         do{
             i = Random.Range(0,CurrentQuestionList.questions.Length);
-            // questionschosen = CurrentQuestionList.questions[i];
+           
         }while(CurrentQuestionList.questions[i].answerstatus == true);
-
-
-
-
-        // string questionDescription,correctAnswer;
-        // string[] answerDescription = new string[3];
-        // CurrentQuestionList.questions[x] = new Question();
-        // CurrentQuestionList.questions[x].type = CurrentQuestionList.questions[i].type;
-        // CurrentQuestionList.questions[x].description = CurrentQuestionList.questions[i].description;
-        // CurrentQuestionList.questions[x].possibleAnswer[0] = CurrentQuestionList.questions[i].possibleAnswer[0];
-        // CurrentQuestionList.questions[x].possibleAnswer[1] = CurrentQuestionList.questions[i].possibleAnswer[1];
-        // CurrentQuestionList.questions[x].possibleAnswer[2] = CurrentQuestionList.questions[i].possibleAnswer[2];
-        // CurrentQuestionList.questions[x].correctAnswer = CurrentQuestionList.questions[i].correctAnswer;
-
         questionDescription = CurrentQuestionList.questions[i].description;
         correctAnswer = CurrentQuestionList.questions[i].correctAnswer;
 
@@ -392,30 +387,19 @@ public class QuizMenu : MonoBehaviour
             string tempGO = answerDescription[rnd];
             answerDescription[rnd] = answerDescription[z];
             answerDescription[z] = tempGO;
-            // if(answerDescription[z] == correctAnswer)
-            // {
-            //     TrueAnswer = z;
-            // }
-
         }
 
 
         for( x = 0; x < 3; x++)
         {
-            answerdescription[x].SetText(answerDescription[x]);
-            Debug.Log(answerDescription[x]);
-            
+            answerdescription[x].SetText(answerDescription[x]);  
             if(answerDescription[x] == correctAnswer)
             {
                 TrueAnswer = x;
-                Debug.Log("test");
+                
             }
-            if("500" == "500")
-            {
-                Debug.Log("test");
-            }
+            
         }
-        // questionDescription = questionsScript.questionDescription;
         quizDescription.SetText(questionDescription);  
 
         //prevents same questions repeated

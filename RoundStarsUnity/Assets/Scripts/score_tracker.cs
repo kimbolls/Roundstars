@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class score_tracker : MonoBehaviour
 {
     public float P1_score,P2_score;
-    public TMP_Text P1_scoreText,P2_scoreText;
     public GameObject[] p1_upgradeimage;
     public GameObject[] p2_upgradeimage;
     // public GameObject p1_charimage,p2_charimage;
@@ -24,9 +23,12 @@ public class score_tracker : MonoBehaviour
     public  int player1_correctpoint,player2_correctpoint;
     public Slider braceslider;
     public float bracemax,bracecur;
+
+    public EnemySpawner enemySpawner;
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         slidermaxvalue = gametimer;
         P1_score = 0;
         P2_score = 0;
@@ -42,15 +44,15 @@ public class score_tracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+
+        //primary scoreboard HUD
         gametimer_text.SetText("{0}",Mathf.Round(gametimer));
         p1score_text.SetText("{0}",player1_correctpoint);
-        p2score_text.SetText("{0}",player2_correctpoint);
+
+        if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {p2score_text.SetText("{0}",player2_correctpoint);}
         gametimer_slider.value = gametimer;
 
-        // if(quizmenu.bracetimer == quizmenu.max_bracetimer)
-        // {
-        //     bracecur = 0;
-        // }
         if(quizmenu.bracetimer > 0)
         {
             bracecur += Time.deltaTime;
@@ -75,9 +77,8 @@ public class score_tracker : MonoBehaviour
         }
         //adaptive scoreboard here
 
-        //display score
-        P1_scoreText.SetText ("{0} Pts",P1_score);
-        P2_scoreText.SetText ("{0} Pts",P2_score);
+        //display score if singleplayer
+        
 
         //display upgrade points
         if(quizmenu.player1_upgPoint > 0 && quizmenu.player1_upgPoint < 5)
