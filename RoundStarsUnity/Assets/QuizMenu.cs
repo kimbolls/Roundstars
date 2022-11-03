@@ -453,8 +453,8 @@ public class QuizMenu : MonoBehaviour
         else{
              if(score.gametimer <= 0 )
                 {
-                    WinMenu win = winmenu.GetComponent<WinMenu>();
-                    winmenu.SetActive(true);
+                    WinMenu win = winmenu2.GetComponent<WinMenu>();
+                    winmenu2.SetActive(true);
                     Time.timeScale = 0f;
                     if(score.player1_correctpoint > score.player2_correctpoint)
                     {

@@ -20,6 +20,7 @@ public class WinMenu : MonoBehaviour
     void Start()
     {
         eventsystem.SetSelectedGameObject(buttonlist[0]);
+        
         Time.timeScale = 0f;
     }
 
@@ -42,19 +43,23 @@ public class WinMenu : MonoBehaviour
 
     public void SetWinner(int x)
     {
+        enemyspawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         if(x == 0)
         {
-            winnertext.SetText("PLAYER " + PlayerPrefs.GetString("player1Name") + " WINS!");
+            winnertext.SetText(PlayerPrefs.GetString("player1Name") + " WINS!");
             scoretext.SetText("{0}",score.player1_correctpoint);
         }
         else
         {
-            winnertext.SetText("PLAYER " + PlayerPrefs.GetString("player2Name") + " WINS!");
+            winnertext.SetText(PlayerPrefs.GetString("player2Name") + " WINS!");
             scoretext.SetText("{0}",score.player2_correctpoint);
         }
 
         if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
         {
+            
+            
+            winnertext.SetText("TIME OUT!");
             pointstext.SetText("{0}",score.P1_points);
         }
     }
