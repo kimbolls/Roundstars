@@ -12,7 +12,6 @@ public class QuizMenu : MonoBehaviour
     public TMP_Text[] answerdescription;
     //public float max_timer,quiz_timer;
     public float bracetimer,max_bracetimer;
-    public string questionDescription;
    
     public int player1_answer, player2_answer;
     public int TrueAnswer;
@@ -22,10 +21,10 @@ public class QuizMenu : MonoBehaviour
     public int player1_upgPoint,player2_upgPoint;
     public EnemySpawner enemyspawner;
     public GameObject[] wallbarrier;
-    public GameObject[] questionsList1;
-    public GameObject[] questionsList2;
-    public GameObject[] questionsList3;
-    public string[] answerChoices;
+    //  GameObject[] questionsList1;
+    //  GameObject[] questionsList2;
+    //  GameObject[] questionsList3;
+     string[] answerChoices;
     public GameObject quizCanvas;
     public P1_Attributes player1;
     public P2_Attributes player2;
@@ -40,15 +39,44 @@ public class QuizMenu : MonoBehaviour
     public upgradescript  UpgradeScript;
     public int questiontype;
     public GameObject winmenu;
+    public ReadDatabase readdatabase;
+    public string questionDescription,correctAnswer;
+    public string[] answerDescription = new string[3];
+
+    //new list
+    [System.Serializable]
+    public class Question
+    {
+        public string description;
+        public string type;
+        public string[] possibleAnswer = new string[3];
+        public string correctAnswer;
+        public bool answerstatus = false;
+    }
+    [System.Serializable]
+    public class QuestionList
+    {
+        public Question[] questions;
+    }
+    public QuestionList CurrentQuestionList = new QuestionList();
     void Start(){
+
+        Time.timeScale = 1f;
         questiontype = PlayerPrefs.GetInt("QuestionType");
         //quiz_timer = max_timer;
         bracetimer = max_bracetimer;
-        TrueAnswer = 1;
-        FetchQuestions(questiontype);
+        
+        // FetchQuestions(questiontype);
+        // CreateNewQuestionList();
+
+
         quizCanvas.SetActive(false);
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
-        player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {
+            player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+        }
+        
         flag = GameObject.Find("Flag").GetComponent<flag>();
         UpgradeScript = upgrademenu.GetComponent<upgradescript>();
         slowMoTimer = maxslowMoTimer;
@@ -156,66 +184,66 @@ public class QuizMenu : MonoBehaviour
         }
     }
 
-    void FetchQuestions(int questiontype)
-    {
-        int i;
-        if(questiontype == 0)
-        {
-            do{
-                i = Random.Range(0,questionsList1.Length);
-            questionschosen = questionsList1[i];
-            }while(questionschosen == null);
+    // void FetchQuestions(int questiontype)
+    // {
+    //     int i;
+    //     if(questiontype == 0)
+    //     {
+    //         do{
+    //             i = Random.Range(0,questionsList1.Length);
+    //         questionschosen = questionsList1[i];
+    //         }while(questionschosen == null);
             
            
-        }
-        else if(questiontype == 1)
-        {
-            do{
-            i = Random.Range(0,questionsList2.Length);
-            questionschosen = questionsList2[i];
-            }while(questionschosen == null);
-        }
-        else if(questiontype == 2)
-        {
-            do{
-            i = Random.Range(0,questionsList3.Length);
-            questionschosen = questionsList3[i];
-            }while(questionschosen == null);
+    //     }
+    //     else if(questiontype == 1)
+    //     {
+    //         do{
+    //         i = Random.Range(0,questionsList2.Length);
+    //         questionschosen = questionsList2[i];
+    //         }while(questionschosen == null);
+    //     }
+    //     else if(questiontype == 2)
+    //     {
+    //         do{
+    //         i = Random.Range(0,questionsList3.Length);
+    //         questionschosen = questionsList3[i];
+    //         }while(questionschosen == null);
 
-        }
+    //     }
         
-        questions questionsScript = questionschosen.GetComponent<questions>();
-        for(int x = 0; x < questionsScript.answerChoices.Length; x++)
-        {
-            answerChoices[x] = questionsScript.answerChoices[x];
+    //     questions questionsScript = questionschosen.GetComponent<questions>();
+    //     for(int x = 0; x < questionsScript.answerChoices.Length; x++)
+    //     {
+    //         answerChoices[x] = questionsScript.answerChoices[x];
 
-        }
+    //     }
 
-        for(int x = 0; x < answerChoices.Length; x++)
-        {
-            int rnd = Random.Range(0, answerChoices.Length);
-            string tempGO = answerChoices[rnd];
-            answerChoices[rnd] = answerChoices[x];
-            answerChoices[x] = tempGO;
-            // if(answerChoices[x] == questionsScript.TrueAnswer)
-            // {
-            //     TrueAnswer = x;
-            // }
+    //     for(int x = 0; x < answerChoices.Length; x++)
+    //     {
+    //         int rnd = Random.Range(0, answerChoices.Length);
+    //         string tempGO = answerChoices[rnd];
+    //         answerChoices[rnd] = answerChoices[x];
+    //         answerChoices[x] = tempGO;
+    //         // if(answerChoices[x] == questionsScript.TrueAnswer)
+    //         // {
+    //         //     TrueAnswer = x;
+    //         // }
 
-        }
-        for(int x = 0; x < answerChoices.Length; x++)
-        {
-            answerdescription[x].SetText(answerChoices[x]);
-            if(answerChoices[x] == questionsScript.TrueAnswer)
-            {
-                TrueAnswer = x;
-            }
-        }
-        questionDescription = questionsScript.questionDescription;
-        quizDescription.SetText(questionDescription);   
-        Destroy(questionschosen);
+    //     }
+    //     for(int x = 0; x < answerChoices.Length; x++)
+    //     {
+    //         answerdescription[x].SetText(answerChoices[x]);
+    //         if(answerChoices[x] == questionsScript.TrueAnswer)
+    //         {
+    //             TrueAnswer = x;
+    //         }
+    //     }
+    //     questionDescription = questionsScript.questionDescription;
+    //     quizDescription.SetText(questionDescription);   
+    //     Destroy(questionschosen);
 
-    }
+    // }
 
     void DisableBrace()
     {
@@ -247,10 +275,15 @@ public class QuizMenu : MonoBehaviour
         bracetimer = max_bracetimer;
         score.bracecur = 0;
         levelCount++;
-        ActivateBrace();
-        FetchQuestions(questiontype);
+        
+        FetchQuestions2();
         enemyspawner.ResetPlayerPos(0);
-        enemyspawner.ResetPlayerPos(1);
+        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {   
+            ActivateBrace();
+             enemyspawner.ResetPlayerPos(1);
+        }
+       
 
         player1.current_hp = player1.max_hp;
         player2.current_hp = player2.max_hp;
@@ -292,9 +325,87 @@ public class QuizMenu : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    void UpgradeTime()
+    public void CreateNewQuestionList()
     {
+        //get questions type
+        string y = readdatabase.uniquetype[questiontype];
+
+        int x = 0;
+        int tablesize = 0;
+        // Debug.Log(readdatabase.myQuestionList.questions.Length);
+
+        //initialize list size
+        for(int i = 0; i < readdatabase.myQuestionList.questions.Length; i++)
+        {
+            if(readdatabase.myQuestionList.questions[i].type == y)
+            {
+                tablesize++;
+            }
+        }
+        CurrentQuestionList.questions = new Question[tablesize];
+
+
+        //enter list datas
+        for(int i = 0; i < readdatabase.myQuestionList.questions.Length; i++)
+        {
+            if(readdatabase.myQuestionList.questions[i].type == y)
+            {
+                CurrentQuestionList.questions[x] = new Question();
+                CurrentQuestionList.questions[x].type = readdatabase.myQuestionList.questions[i].type;
+                CurrentQuestionList.questions[x].description = readdatabase.myQuestionList.questions[i].description;
+                CurrentQuestionList.questions[x].possibleAnswer[0] = readdatabase.myQuestionList.questions[i].possibleAnswer[0];
+                CurrentQuestionList.questions[x].possibleAnswer[1] = readdatabase.myQuestionList.questions[i].possibleAnswer[1];
+                CurrentQuestionList.questions[x].possibleAnswer[2] = readdatabase.myQuestionList.questions[i].possibleAnswer[2];
+                CurrentQuestionList.questions[x].correctAnswer = readdatabase.myQuestionList.questions[i].correctAnswer;
+                x++;
+            }
+        }
+        FetchQuestions2();
         
+    }
+    void FetchQuestions2()
+    {
+        int i;
+        int x = 0;
+        do{
+            i = Random.Range(0,CurrentQuestionList.questions.Length);
+           
+        }while(CurrentQuestionList.questions[i].answerstatus == true);
+        questionDescription = CurrentQuestionList.questions[i].description;
+        correctAnswer = CurrentQuestionList.questions[i].correctAnswer;
+
+        
+        for(x = 0; x < 3; x++)
+        {
+            answerDescription[x] = CurrentQuestionList.questions[i].possibleAnswer[x];
+        }
+
+        //randomize answer choices
+        for(int z = 0; z < 3; z++)
+        {
+            int rnd = Random.Range(0, 3);
+            string tempGO = answerDescription[rnd];
+            answerDescription[rnd] = answerDescription[z];
+            answerDescription[z] = tempGO;
+        }
+
+
+        for( x = 0; x < 3; x++)
+        {
+            answerdescription[x].SetText(answerDescription[x]);  
+            if(answerDescription[x] == correctAnswer)
+            {
+                TrueAnswer = x;
+                
+            }
+            
+        }
+        quizDescription.SetText(questionDescription);  
+
+        //prevents same questions repeated
+        CurrentQuestionList.questions[i].answerstatus = true;
+        
+
     }
     public void CheckEndGame()
     {

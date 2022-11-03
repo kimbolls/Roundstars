@@ -10,33 +10,22 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     private Transform[] SpawnPoint;
+ 
+
     [SerializeField]
-    private int SpawnWave;
-    [SerializeField]
-    private float MaxWaveDuration;
-    [SerializeField]
-    private float WaveDuration;
-    [SerializeField]
-    public enum DifficultyEnum{Easy,Normal,Hard};
+    public enum GameModeEnum{Singleplayer,Multiplayer};
     [SerializeField]
     private GameObject enemy_1;
     [SerializeField]
     private bool SpawnStatus = true;
-    public DifficultyEnum  Difficulty;
+    public GameModeEnum  gameMode;
     public enum PhaseEnum{Game,Upgrade,Quiz,Pause};
     public PhaseEnum phase;
-    public Master_Navigator masterNavi;
-    public EventSystem eventsystem;
-    
-    public GameObject QuizMenu;
     public GameObject pausemenu;
     private int index;
     private int i,seconds;
-    private string secondscount;
     public bool paused;
     public Transform[] player_respawn;
-    [SerializeField]
-    private TMP_Text timer_display;
     public GameObject[] Player;
 
     public void OnPaused(InputAction.CallbackContext context){
@@ -47,8 +36,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         
-        WaveDuration = MaxWaveDuration;
-        Difficulty = DifficultyEnum.Easy;
+        // Difficulty = DifficultyEnum.Easy;
+        
         index = SpawnPoint.Length;
         Player[0] = GameObject.Find("Player 1");
         Player[1] = GameObject.Find("Player 2");
@@ -57,10 +46,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer_display.SetText("{0}",Mathf.Round(WaveDuration));
-        WaveDuration -= Time.deltaTime;
-        seconds = (int) WaveDuration;
-        secondscount = seconds.ToString();
+        // timer_display.SetText("{0}",Mathf.Round(WaveDuration));
+        // WaveDuration -= Time.deltaTime;
+        // seconds = (int) WaveDuration;
+        // secondscount = seconds.ToString();
         PhaseControl();
     }
 
@@ -86,14 +75,14 @@ public class EnemySpawner : MonoBehaviour
 
         
 
-        if(WaveDuration <= 0)
-        {
-            SpawnWave -= 1;  
-            SpawnStatus = true;
-            WaveDuration = MaxWaveDuration;
-            //phase = PhaseEnum.Quiz;
-            //Quiztime();
-        }
+        // if(WaveDuration <= 0)
+        // {
+        //     SpawnWave -= 1;  
+        //     SpawnStatus = true;
+        //     WaveDuration = MaxWaveDuration;
+        //     //phase = PhaseEnum.Quiz;
+        //     //Quiztime();
+        // }
         // if(SpawnWave == 5 && SpawnStatus == true) 
         // {
         //     if(Difficulty == DifficultyEnum.Easy)
@@ -150,11 +139,6 @@ public class EnemySpawner : MonoBehaviour
         Time.timeScale =1f;
     }
 
-    public void Quiztime()
-    {
-        QuizMenu.SetActive(true);
-        Time.timeScale = 0f;
-    }
 
 
     void SpawnControl(float a)

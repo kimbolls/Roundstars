@@ -10,10 +10,17 @@ public class player_flag : MonoBehaviour
     public P2_Attributes player2;
     public float playerHP;
     public GameObject ThisPlayer;
+    public EnemySpawner enemySpawner;
     void Start()
     {
+        enemySpawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
-        player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+
+        if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        {
+            player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
+        }
+        
     }
 
     // Update is called once per frame
