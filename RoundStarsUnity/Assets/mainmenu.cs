@@ -38,7 +38,7 @@ public class mainmenu : MonoBehaviour
     }
     public void PlaySingleplayer()
     {
-
+        SceneManager.LoadScene(2);
     }
 
     public void PlayTutorial()

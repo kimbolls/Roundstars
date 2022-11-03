@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 public class score_tracker : MonoBehaviour
 {
-    public float P1_score,P2_score;
+    public float P1_points,P2_points;
     public GameObject[] p1_upgradeimage;
     public GameObject[] p2_upgradeimage;
     // public GameObject p1_charimage,p2_charimage;
@@ -19,6 +19,7 @@ public class score_tracker : MonoBehaviour
     public Slider gametimer_slider;
     private float slidermaxvalue;
     public TMP_Text p1score_text,p2score_text;
+    public TMP_Text p1points_text;
 
     public  int player1_correctpoint,player2_correctpoint;
     public Slider braceslider;
@@ -30,8 +31,8 @@ public class score_tracker : MonoBehaviour
     {
         enemySpawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         slidermaxvalue = gametimer;
-        P1_score = 0;
-        P2_score = 0;
+        P1_points = 0;
+        P2_points = 0;
         gametimer_slider.maxValue = slidermaxvalue;
         bracemax = quizmenu.max_bracetimer;
         braceslider.maxValue = bracemax;
@@ -51,6 +52,10 @@ public class score_tracker : MonoBehaviour
 
         if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
         {p2score_text.SetText("{0}",player2_correctpoint);}
+        else
+        {
+            p1points_text.SetText(P1_points.ToString());
+        }
         gametimer_slider.value = gametimer;
 
         if(quizmenu.bracetimer > 0)
@@ -120,12 +125,16 @@ public class score_tracker : MonoBehaviour
     {
         if(player == 1)
         {
-            P1_score += enemyValue;
+            P1_points += enemyValue;
         }
         else
         {
-            P2_score += enemyValue;
+            P2_points += enemyValue;
         }
+
+        
+
+
     }
 
 
