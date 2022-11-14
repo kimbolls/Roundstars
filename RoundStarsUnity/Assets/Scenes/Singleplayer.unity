@@ -3937,6 +3937,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  questioncount: 0
   CurrentQuestionList:
     questions: []
 --- !u!114 &361698693
@@ -9387,7 +9388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 8
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ed7906e76e6728419238f9b148acae8, type: 2}
   m_sharedMaterial: {fileID: 6983537545056094114, guid: 4ed7906e76e6728419238f9b148acae8, type: 2}
@@ -17754,7 +17755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1250
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ed7906e76e6728419238f9b148acae8, type: 2}
   m_sharedMaterial: {fileID: 6983537545056094114, guid: 4ed7906e76e6728419238f9b148acae8, type: 2}

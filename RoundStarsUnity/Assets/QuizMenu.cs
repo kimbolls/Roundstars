@@ -42,6 +42,7 @@ public class QuizMenu : MonoBehaviour
     public ReadDatabase readdatabase;
     public string questionDescription,correctAnswer;
     public string[] answerDescription = new string[3];
+    public int questioncount = 0;
 
     //new list
     [System.Serializable]
@@ -270,7 +271,12 @@ public class QuizMenu : MonoBehaviour
         score.bracecur = 0;
         levelCount++;
         
-        FetchQuestions2();
+        questioncount++;
+        Debug.Log(CurrentQuestionList.questions.Length);
+        if(questioncount >= CurrentQuestionList.questions.Length)  //end game if all q answered
+        {CheckEndGame();
+        Debug.Log("endgame");}
+        else{FetchQuestions2();}
         enemyspawner.ResetPlayerPos(0);
         ActivateBrace();
         if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
@@ -388,6 +394,7 @@ public class QuizMenu : MonoBehaviour
     {
         int i;
         int x = 0;
+        
         do{
             i = Random.Range(0,CurrentQuestionList.questions.Length);
            
@@ -434,7 +441,7 @@ public class QuizMenu : MonoBehaviour
         {
             if(score.player1_correctpoint != score.player2_correctpoint)
             { 
-                if(score.gametimer <= 0 )
+                if(score.gametimer <= 0 || questioncount >= CurrentQuestionList.questions.Length)
                 {
                     WinMenu win = winmenu.GetComponent<WinMenu>();
                     winmenu.SetActive(true);
@@ -451,15 +458,13 @@ public class QuizMenu : MonoBehaviour
             }
         }
         else{
-             if(score.gametimer <= 0 )
+             if(score.gametimer <= 0 || questioncount >= CurrentQuestionList.questions.Length)
                 {
                     WinMenu win = winmenu2.GetComponent<WinMenu>();
                     winmenu2.SetActive(true);
                     Time.timeScale = 0f;
-                    if(score.player1_correctpoint > score.player2_correctpoint)
-                    {
-                        win.SetWinner(0);
-                    }
+                    win.SetWinner(0);
+                    
                 }
         }
     }
