@@ -23,6 +23,8 @@ public class P2_Attributes : MonoBehaviour
     [SerializeField]
     public  float regen_hp = 5f;
     private bool gunFound = false;
+
+    public Slider[] CDdisplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,11 @@ public class P2_Attributes : MonoBehaviour
 
          // update player hp with UI 
         HP_Slider.value = current_hp;
+
+        CDdisplay[0].maxValue = shooting.triplerate;
+        CDdisplay[0].value = shooting.tripletimer;
+        CDdisplay[1].maxValue = movement.dashingCooldown;
+        CDdisplay[1].value = movement.dashingtimer;
         //player_Ui.Setmana(current_mp);
     }
 

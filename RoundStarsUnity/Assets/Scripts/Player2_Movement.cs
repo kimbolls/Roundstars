@@ -11,6 +11,7 @@ public class  Player2_Movement : MonoBehaviour
     public float jumpForce;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+    public JoystickAim aiming;
 
     public int MaxJumpCharge;
     public int CurrentJumpCharge;
@@ -21,6 +22,17 @@ public class  Player2_Movement : MonoBehaviour
 
     public float facingDirection;
     public float lookingDirection;
+
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.15f;
+    public float dashingCooldown;
+    public float dashingtimer;
+    [SerializeField] private TrailRenderer tr;
+
+    private bool dashed = false;
+    
 
     //trial
     
@@ -39,11 +51,33 @@ public class  Player2_Movement : MonoBehaviour
         //jumped = context.ReadValue<bool>();
         jumped = context.action.triggered;
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        dashed = context.action.triggered;
+    }
     // Update is called once per frame
     void Update()
     {
+        if(isDashing)
+        {   
+            return;
+        }
         Move();
         Jump();
+        if(dashed && canDash)
+        {
+            StartCoroutine(Dash());
+            
+        }
+        
+
+        
+
+         if(dashingtimer >=0)
+        {
+            dashingtimer -= Time.deltaTime;
+        }
 
         facingDirection = transform.eulerAngles.y;
         lookingDirection = transform.eulerAngles.y;
@@ -61,15 +95,7 @@ public class  Player2_Movement : MonoBehaviour
 
     void Jump()
     {
-        // if(Input.GetKey("rightTrigger"))
-        // {
-        //     jumped = true;
-            
-        // }
-        // else
-        // {
-        //     jumped = false;
-        // }
+       
         if ( jumped && CurrentJumpCharge != 0 && Time.timeScale != 0f) // allow user to jump when space is inputted, prevents jumping when no stamina
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);  // set velocity with jumpforce
@@ -79,6 +105,8 @@ public class  Player2_Movement : MonoBehaviour
             
            
         }
+
+       
          
         BetterJump();
         
@@ -115,5 +143,25 @@ public class  Player2_Movement : MonoBehaviour
     {
         Debug.Log("Rotate180");
         transform.rotation = Quaternion.Euler(new Vector3(0,lookingDirection,0)); 
+    }
+
+    private IEnumerator Dash()
+    {
+        dashingtimer = dashingCooldown;
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        if(aiming.aimValue.x < 0)
+       { rb.velocity = new Vector2(-transform.localScale.x * dashingPower, 0f);}
+       else{rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);}
+        tr.emitting = true;
+
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }

@@ -10,6 +10,8 @@ public class P1_Aiming : MonoBehaviour
     private GameObject Gun;
     public P1_Movement movement;
     public bool shoot = false;
+    public bool boom = false;
+    public float angle;
    //InputDevice mouse = Mouse.current;
     // Start is called before the first frame update
 
@@ -20,6 +22,11 @@ public class P1_Aiming : MonoBehaviour
     void Start()
     {
         Gun = Instantiate(GunPrefab,rb.position,Quaternion.identity);
+    }
+
+    public void OnGrenade(InputAction.CallbackContext context){
+        
+        boom = context.action.triggered;
     }
 
     // Update is called once per frame
@@ -55,7 +62,7 @@ public class P1_Aiming : MonoBehaviour
         Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
         difference.Normalize();
 
-        float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+         angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         Gunrb.transform.rotation = Quaternion.Euler(0f,0f,angle);
         Gunrb.position = rb.position;

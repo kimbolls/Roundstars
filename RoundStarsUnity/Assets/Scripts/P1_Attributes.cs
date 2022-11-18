@@ -22,6 +22,8 @@ public class P1_Attributes : MonoBehaviour
 
     public float regen_hp = 5f;
     private bool gunFound = false;
+    public Slider[] CDdisplay;
+    public float passiveregen = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,11 @@ public class P1_Attributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(current_hp <= 100)
+        {
+            current_hp += passiveregen* Time.deltaTime;
+        }
         if(GameObject.Find("P1_Gun(Clone)") && gunFound == false)
         {
             FindGun();
@@ -63,6 +70,11 @@ public class P1_Attributes : MonoBehaviour
 
          // update player hp with UI 
         HP_Slider.value = current_hp;
+
+        CDdisplay[0].maxValue = shooting.triplerate;
+        CDdisplay[0].value = shooting.tripletimer;
+        CDdisplay[1].maxValue = movement.dashingCooldown;
+        CDdisplay[1].value = movement.dashingtimer;
         //player_Ui.Setmana(current_mp);
     }
 

@@ -15,6 +15,7 @@ public class JoystickAim : MonoBehaviour
     private Gun2_Shooting gun2;
     public Vector2 aimValue = Vector2.zero;
 
+    public bool tripleshoot = false;
     public void OnShoot(InputAction.CallbackContext context){
         //jumped = context.ReadValue<bool>();
         shoot = context.action.triggered;
@@ -22,6 +23,11 @@ public class JoystickAim : MonoBehaviour
 
     public void OnAim(InputAction.CallbackContext context){
         aimValue = context.ReadValue<Vector2>();
+    }
+
+    public void OnTriple(InputAction.CallbackContext context)
+    {
+        tripleshoot = context.action.triggered;
     }
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,11 @@ public class JoystickAim : MonoBehaviour
             gun2.Shoot();  
         }
 
+        if(tripleshoot)
+        {
+            gun2.tripleShoot();
+        }
+
         if(GunPrefab != null)
         {
         StickGun();
@@ -54,5 +65,6 @@ public class JoystickAim : MonoBehaviour
         Transform GunPosition = Gun.GetComponent<Transform>();
         Gunrb.position = rb.position;
        
+      
     }
 }

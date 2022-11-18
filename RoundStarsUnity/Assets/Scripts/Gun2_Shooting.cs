@@ -10,6 +10,9 @@ public class Gun2_Shooting : MonoBehaviour
     public JoystickAim joystick;
     public Vector3 angle;
 
+
+    public Transform[] TripleFP;
+
     //
     public Transform Firepoint;
     public GameObject BulletPrefab;
@@ -17,6 +20,10 @@ public class Gun2_Shooting : MonoBehaviour
     public float bulletForce;
 
     public float attackrate = 2f;
+    public float triplerate = 5f;
+    public float tripletimer;
+
+    public GameObject LesserBullet;
     //public AudioSource ShootSound;
     float nextAttacktime;
     //
@@ -31,7 +38,10 @@ public class Gun2_Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(tripletimer > 0)
+        {
+            tripletimer -= Time.deltaTime;
+        }
         Aim();
         
     }
@@ -83,7 +93,34 @@ public class Gun2_Shooting : MonoBehaviour
             nextAttacktime = Time.time + 1f/ attackrate;
             //ShootSound.Play();
         }
-        }
+    }
+
+    public void tripleShoot()
+    {
+        if(Time.timeScale != 0f && tripletimer <=0)
+        {
+        Vector3 FProtation = new Vector3(Firepoint.position.x,Firepoint.position.y,Mathf.Abs(Firepoint.position.z)); //neutralize negative value
+        GameObject bullet = Instantiate(LesserBullet, FProtation, Firepoint.rotation);  // spawns bullet
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
+        rb.AddForce(Firepoint.right * (bulletForce-5), ForceMode2D.Impulse);  //add force to the bullet
+
+        Vector3 FProtation2 = new Vector3(TripleFP[0].position.x,TripleFP[0].position.y,Mathf.Abs(TripleFP[0].position.z)); //neutralize negative value
+        GameObject bullet2 = Instantiate(LesserBullet, FProtation2, TripleFP[0].rotation);  // spawns bullet
+        Rigidbody2D rb2 = bullet2.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
+        rb2.AddForce(TripleFP[0].right * (bulletForce-5), ForceMode2D.Impulse);  //add force to the bullet
+
+        Vector3 FProtation3 = new Vector3(TripleFP[1].position.x,TripleFP[1].position.y,Mathf.Abs(TripleFP[1].position.z)); //neutralize negative value
+        GameObject bullet3 = Instantiate(LesserBullet, FProtation3, TripleFP[1].rotation);  // spawns bullet
+        Rigidbody2D rb3 = bullet3.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
+        rb3.AddForce(TripleFP[1].right * (bulletForce-5), ForceMode2D.Impulse);  //add force to the bullet
+        tripletimer = triplerate;
+}
+        
+        // Firepoint.transform.position - transform.position;
+        // var direction = Quaternion.Euler(0, 0, 45) * (Firepoint - transform.position);
+        // _targetPosition = transform.position + direction;   
+        // transform.position = Vector2.Lerp(transform.position, _targetPosition, Time.deltaTime * Speed);
+    }
         
        
        
