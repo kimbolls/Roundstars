@@ -29,13 +29,12 @@ public class score_tracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetTimer();
         enemySpawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         slidermaxvalue = gametimer;
         P1_points = 0;
         P2_points = 0;
-        gametimer_slider.maxValue = slidermaxvalue;
-        bracemax = quizmenu.max_bracetimer;
-        braceslider.maxValue = bracemax;
+        
         // set color
 
         //
@@ -131,10 +130,24 @@ public class score_tracker : MonoBehaviour
         {
             P2_points += enemyValue;
         }
+    }
 
+    public void SetTimer()
+    {
+        int x;
         
+        x = PlayerPrefs.GetInt("GameTimer");
+        
+        Debug.Log(x);
+        
+        if(x == 0){gametimer = 90;}
+        else if(x == 1){gametimer = 180;}
+        else{gametimer = 300;}
 
-
+        gametimer_slider.maxValue = slidermaxvalue;
+        bracemax = quizmenu.max_bracetimer;
+        braceslider.maxValue = bracemax;
+        
     }
 
 

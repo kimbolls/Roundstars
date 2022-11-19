@@ -106,10 +106,10 @@ public class ReadDatabase : MonoBehaviour
 
         if(MainMenu != null)
         {
-            MainMenu.dropdown.options.Clear();
+            MainMenu.dropdown[0].options.Clear();
             foreach(string option in uniquetype)
             {
-                MainMenu.dropdown.options.Add(new TMP_Dropdown.OptionData(option));
+                MainMenu.dropdown[0].options.Add(new TMP_Dropdown.OptionData(option));
             }
         }
         

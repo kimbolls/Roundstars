@@ -10,7 +10,7 @@ public class mainmenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject SettingsMenu;
     public GameObject Customizechar;
-    public TMP_Dropdown dropdown;   
+    public TMP_Dropdown[] dropdown;   
     // public int test;
     public GameObject playmenu;
     //public GameObject QuitConfirm;
@@ -56,13 +56,27 @@ public class mainmenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         SettingsMenu.SetActive(true);
-        dropdown.value = PlayerPrefs.GetInt("QuestionType");
+        dropdown[0].value = PlayerPrefs.GetInt("QuestionType");
+        dropdown[1].value = PlayerPrefs.GetInt("GameTimer");
+        dropdown[2].value = PlayerPrefs.GetInt("BraceTimer");
     }
 
     public void SetQuestionType(int i)
     {
-        PlayerPrefs.SetInt("QuestionType",dropdown.value);
+        PlayerPrefs.SetInt("QuestionType",dropdown[0].value);
     }
+
+    public void SetGameTimer(int i)
+    {
+        PlayerPrefs.SetInt("GameTimer",dropdown[1].value);
+    }
+
+    public void SetBraceTimer(int i)
+    {
+        PlayerPrefs.SetInt("BraceTimer",dropdown[2].value);
+    }
+
+    
 
     public void backtoMenu()
     {

@@ -65,6 +65,8 @@ public class QuizMenu : MonoBehaviour
         Time.timeScale = 1f;
         questiontype = PlayerPrefs.GetInt("QuestionType");
         //quiz_timer = max_timer;
+         GetTimer();
+         score.SetTimer();
         bracetimer = max_bracetimer;
         
         // FetchQuestions(questiontype);
@@ -87,6 +89,7 @@ public class QuizMenu : MonoBehaviour
 
     void Update()
     {
+       
         // if(quiz_timer >= 0)
         // {quiz_timer -= Time.deltaTime;}
         quizTimerDisplay.SetText("{0}",Mathf.Round(bracetimer));
@@ -467,6 +470,15 @@ public class QuizMenu : MonoBehaviour
                     
                 }
         }
+    }
+
+    void GetTimer()
+    {
+        int y = PlayerPrefs.GetInt("BraceTimer"); 
+
+        if(y == 0){max_bracetimer = 3;}
+        else if(y == 1){max_bracetimer = 5;}
+        else{max_bracetimer = 10;}
     }
 
     

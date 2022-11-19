@@ -36,9 +36,11 @@ public class CustomizeMenu : MonoBehaviour
         torsoItem[torsoIndex].SetActive(true);
         if(torsoIndex != 1)
         {
+            if(!PlayerPrefs.HasKey("player1Name")) PlayerPrefs.SetString("player1Name","Player 1");
             playername_display.SetText(PlayerPrefs.GetString("player1Name"));
         }
         else{
+            if(!PlayerPrefs.HasKey("player2Name")) PlayerPrefs.SetString("player2Name","Player 2");
             playername_display.SetText(PlayerPrefs.GetString("player2Name"));
         }
         // eyesItem[eyesIndex].transform.position = eyesPos.position;

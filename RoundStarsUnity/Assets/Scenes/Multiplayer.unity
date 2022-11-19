@@ -3019,6 +3019,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5100406446504871944, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100406446504871944, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: da8a4c06-7e73-423d-a005-370cb9c629a0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100406446504871944, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: Player/Tripleshot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100406446504871944, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1138170278}
+    - target: {fileID: 5100406446504871944, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPaused
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100406446504871944, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Master_Navigator, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
 --- !u!1 &255193989
@@ -11397,6 +11421,25 @@ TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 8692251089251951651, guid: bd9c4de8ea074734a827d60d748898dc, type: 3}
   m_PrefabInstance: {fileID: 247170101}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1138170278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138170245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd21f1f77cf0704fbd41201d200a890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaviInput: {x: 0, y: 0}
+  spawner: {fileID: 49419720}
+  paused: 0
+  LeftInput: 0
+  RightInput: 0
+  DownInput: 0
+  UpInput: 0
 --- !u!1 &1151728875
 GameObject:
   m_ObjectHideFlags: 0
