@@ -21,9 +21,13 @@ public class score_tracker : MonoBehaviour
     public TMP_Text p1score_text,p2score_text;
     public TMP_Text p1points_text;
 
-    public  int player1_correctpoint,player2_correctpoint;
+    public int player1_correctpoint,player2_correctpoint;
     public Slider braceslider;
     public float bracemax,bracecur;
+
+    public int[] player_shotsfired;
+    public float[] player_hitrate;
+    public int[] player_shotsHit;
 
     public EnemySpawner enemySpawner;
     // Start is called before the first frame update
@@ -148,6 +152,39 @@ public class score_tracker : MonoBehaviour
         bracemax = quizmenu.max_bracetimer;
         braceslider.maxValue = bracemax;
         
+    }
+
+    public void ShotsTracker(int x,int type,int player)
+    {
+        if(type == 0) //shots fired
+        {
+            player_shotsfired[player] += x;
+        }
+        else //shots confirmed
+        {
+            player_shotsHit[player]++;
+        }
+    }
+
+    public void CalculateHitRate()
+    {
+        if(player_shotsfired[0] == 0)
+        {
+            player_hitrate[0] = 0;
+        }
+        else
+        {
+            player_hitrate[0] = 100 * ((float)player_shotsHit[0] / (float)player_shotsfired[0]);
+        }
+
+        if(player_shotsfired[1] == 0)
+        {
+            player_hitrate[1] = 0;
+        }
+        else
+        {
+            player_hitrate[1] = 100 * ((float)player_shotsHit[1] / (float)player_shotsfired[1]);
+        }
     }
 
 

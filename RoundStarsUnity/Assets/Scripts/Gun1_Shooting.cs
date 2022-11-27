@@ -20,6 +20,8 @@ public class Gun1_Shooting : MonoBehaviour
     public GameObject LesserBullet;
     public GameObject GrenadePrefab;
 
+    score_tracker score_menu;
+
     //public AudioSource ShootSound;
     public float nextAttacktime;
     public float nextGrenadetime;
@@ -27,6 +29,7 @@ public class Gun1_Shooting : MonoBehaviour
     void Start()
     {
         aiming = GameObject.Find("Player 1").GetComponent<P1_Aiming>();
+        score_menu = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
     }
 
     // Update is called once per frame
@@ -76,6 +79,8 @@ public class Gun1_Shooting : MonoBehaviour
         GameObject bullet = Instantiate(BulletPrefab, FProtation, Firepoint.rotation);  // spawns bullet
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
         rb.AddForce(Firepoint.right * bulletForce, ForceMode2D.Impulse);  //add force to the bullet
+
+        score_menu.ShotsTracker(1,0,0);
     }
 
     void tripleShoot()
@@ -95,6 +100,8 @@ public class Gun1_Shooting : MonoBehaviour
         Rigidbody2D rb3 = bullet3.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
         rb3.AddForce(TripleFP[1].right * (bulletForce-5), ForceMode2D.Impulse);  //add force to the bullet
 
+
+        score_menu.ShotsTracker(3,0,0);
         // Firepoint.transform.position - transform.position;
         // var direction = Quaternion.Euler(0, 0, 45) * (Firepoint - transform.position);
         // _targetPosition = transform.position + direction;   
@@ -110,4 +117,6 @@ public class Gun1_Shooting : MonoBehaviour
         Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
         rb.AddForce(Firepoint.right * bulletForce, ForceMode2D.Impulse);  //add force to the bullet
     }
+
+    
 }

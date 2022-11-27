@@ -19,6 +19,8 @@ public class Enemy_Attributes : MonoBehaviour
     private Regular_projectile projectile;
     private float damage;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +59,14 @@ public class Enemy_Attributes : MonoBehaviour
             projectile = hitInfo.gameObject.GetComponent<Regular_projectile>();
             damage = projectile.damage;
             TakeDamage(damage,1);
+            score.ShotsTracker(0,1,0);
         }
         else if(hitInfo.gameObject.layer == 11)
         {
             projectile = hitInfo.gameObject.GetComponent<Regular_projectile>();
              damage = projectile.damage;
             TakeDamage(damage,2);
+            score.ShotsTracker(0,1,1);
         }
     }
 }

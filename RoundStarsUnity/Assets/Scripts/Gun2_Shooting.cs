@@ -26,6 +26,8 @@ public class Gun2_Shooting : MonoBehaviour
     public GameObject LesserBullet;
     //public AudioSource ShootSound;
     float nextAttacktime;
+
+    score_tracker score_menu;
     //
 
     // Start is called before the first frame update
@@ -33,6 +35,8 @@ public class Gun2_Shooting : MonoBehaviour
     {
        movement = GameObject.Find("Player 2").GetComponent<Player2_Movement>();
        joystick = GameObject.Find("Player 2").GetComponent<JoystickAim>();
+
+       score_menu = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
     }
 
     // Update is called once per frame
@@ -83,13 +87,14 @@ public class Gun2_Shooting : MonoBehaviour
 
         if(Time.time >= nextAttacktime)
         {
-        if(Time.timeScale != 0f ) // pressing Mouse 1 will trigger this
-        {
-            Vector3 FProtation = new Vector3(Firepoint.position.x,Firepoint.position.y,Mathf.Abs(Firepoint.position.z)); //neutralize negative value
-            GameObject bullet = Instantiate(BulletPrefab, FProtation, Firepoint.rotation);  // spawns bullet
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
-            rb.AddForce(Firepoint.right * bulletForce, ForceMode2D.Impulse);  //add force to the bullet
-    }
+            if(Time.timeScale != 0f ) // pressing Mouse 1 will trigger this
+            {
+                Vector3 FProtation = new Vector3(Firepoint.position.x,Firepoint.position.y,Mathf.Abs(Firepoint.position.z)); //neutralize negative value
+                GameObject bullet = Instantiate(BulletPrefab, FProtation, Firepoint.rotation);  // spawns bullet
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
+                rb.AddForce(Firepoint.right * bulletForce, ForceMode2D.Impulse);  //add force to the bullet
+                score_menu.ShotsTracker(1,0,1);
+            }
             nextAttacktime = Time.time + 1f/ attackrate;
             //ShootSound.Play();
         }
@@ -114,6 +119,8 @@ public class Gun2_Shooting : MonoBehaviour
         Rigidbody2D rb3 = bullet3.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
         rb3.AddForce(TripleFP[1].right * (bulletForce-5), ForceMode2D.Impulse);  //add force to the bullet
         tripletimer = triplerate;
+
+        score_menu.ShotsTracker(3,0,1);
 }
         
         // Firepoint.transform.position - transform.position;

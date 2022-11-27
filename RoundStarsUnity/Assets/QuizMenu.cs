@@ -44,6 +44,8 @@ public class QuizMenu : MonoBehaviour
     public string[] answerDescription = new string[3];
     public int questioncount = 0;
 
+    WinMenu win;
+
     //new list
     [System.Serializable]
     public class Question
@@ -328,22 +330,22 @@ public class QuizMenu : MonoBehaviour
             ResetScore(2);
         }
 
-        if(score.player1_correctpoint != score.player2_correctpoint)
-        { 
-            if(score.gametimer <= 0 )
-            {
-                WinMenu win = winmenu.GetComponent<WinMenu>();
-                winmenu.SetActive(true);
-                if(score.player1_correctpoint > score.player2_correctpoint)
-                {
-                    win.SetWinner(0);
-                }
-                else
-                {
-                    win.SetWinner(1);
-                }
-            }
-        }
+        // if(score.player1_correctpoint != score.player2_correctpoint)
+        // { 
+        //     if(score.gametimer <= 0 )
+        //     {
+        //         WinMenu win = winmenu.GetComponent<WinMenu>();
+        //         winmenu.SetActive(true);
+        //         if(score.player1_correctpoint > score.player2_correctpoint)
+        //         {
+        //             win.SetWinner(0);
+        //         }
+        //         else
+        //         {
+        //             win.SetWinner(1);
+        //         }
+        //     }
+        // }
     }
 
     void ResetScore(int player)
@@ -446,8 +448,12 @@ public class QuizMenu : MonoBehaviour
             { 
                 if(score.gametimer <= 0 || questioncount >= CurrentQuestionList.questions.Length)
                 {
-                    WinMenu win = winmenu.GetComponent<WinMenu>();
-                    winmenu.SetActive(true);
+                    if(win == null)
+                    {
+                        win = winmenu.GetComponent<WinMenu>();
+                        winmenu.SetActive(true);
+                    }
+                   
                     Time.timeScale = 0f;
                     if(score.player1_correctpoint > score.player2_correctpoint)
                     {
@@ -463,8 +469,12 @@ public class QuizMenu : MonoBehaviour
         else{
              if(score.gametimer <= 0 || questioncount >= CurrentQuestionList.questions.Length)
                 {
-                    WinMenu win = winmenu2.GetComponent<WinMenu>();
-                    winmenu2.SetActive(true);
+                    if(win == null)
+                    {
+                        win = winmenu2.GetComponent<WinMenu>();
+                        winmenu2.SetActive(true);
+                    }
+                    Debug.Log("Active state" + winmenu2.activeSelf);
                     Time.timeScale = 0f;
                     win.SetWinner(0);
                     

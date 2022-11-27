@@ -15,6 +15,8 @@ public class WinMenu : MonoBehaviour
     public TMP_Text winnertext,scoretext;
     public TMP_Text pointstext;
 
+    public GameObject[] menus;
+
     public score_tracker score;
     // Start is called before the first frame update
     void Start()
@@ -37,8 +39,8 @@ public class WinMenu : MonoBehaviour
     public void OnMenu(){
         SceneManager.LoadScene(0);
     }
-    void OnQuit(){
-
+    public void OnQuit(){
+        Application.Quit();
     }
 
     public void SetWinner(int x)
@@ -68,5 +70,12 @@ public class WinMenu : MonoBehaviour
         Time.timeScale = 1f;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void OnScoreBoard()
+    {
+        
+        menus[1].SetActive(true);
+        menus[0].SetActive(false); 
     }
 }

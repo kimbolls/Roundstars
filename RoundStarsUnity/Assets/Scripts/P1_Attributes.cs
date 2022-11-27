@@ -16,6 +16,7 @@ public class P1_Attributes : MonoBehaviour
     private Gun1_Shooting shooting;
     private GameObject gun;
     public TMP_Text playername;
+    public GameObject hybernate_symbol;
 
     [SerializeField]
     private float bfr_attackrate,bfr_movementspeed;
@@ -24,12 +25,15 @@ public class P1_Attributes : MonoBehaviour
     private bool gunFound = false;
     public Slider[] CDdisplay;
     public float passiveregen = 0f;
+
+    score_tracker score_script;
     // Start is called before the first frame update
     void Start()
     {
         current_hp = max_hp;
         HP_Slider.maxValue = max_hp;
         playername.SetText(PlayerPrefs.GetString("player1Name"));
+        score_script = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
        
     }
 
@@ -64,8 +68,12 @@ public class P1_Attributes : MonoBehaviour
         if(hybernate == true )
         {
             RegenFull();
-           
+            hybernate_symbol.SetActive(true);
             // movement.speed = 1f;
+        }
+        else
+        {
+             hybernate_symbol.SetActive(false);
         }
 
          // update player hp with UI 
@@ -89,6 +97,8 @@ public class P1_Attributes : MonoBehaviour
             current_hp -= damage;
 
         }
+        
+        score_script.ShotsTracker(1,1,1);
     }
 
     void RegenFull()
