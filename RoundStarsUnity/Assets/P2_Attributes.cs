@@ -43,12 +43,10 @@ public class P2_Attributes : MonoBehaviour
         {
             FindGun();
         }
-        if(current_hp <= 0)
+        if(current_hp <= 0 && hybernate == false)
         {
             // enter hybernation, and regen HP until full
             hybernate = true; 
-            bfr_attackrate = shooting.attackrate;
-            bfr_movementspeed = movement.speed;
             shooting.attackrate = shooting.attackrate / 2;
             movement.speed = movement.speed / 5;
         }
@@ -70,12 +68,7 @@ public class P2_Attributes : MonoBehaviour
         }
 
          // update player hp with UI 
-        HP_Slider.value = current_hp;
-
-        CDdisplay[0].maxValue = shooting.triplerate;
-        CDdisplay[0].value = shooting.tripletimer;
-        CDdisplay[1].maxValue = movement.dashingCooldown;
-        CDdisplay[1].value = movement.dashingtimer;
+        UpdateParameters();
         //player_Ui.Setmana(current_mp);
     }
 
@@ -106,5 +99,14 @@ public class P2_Attributes : MonoBehaviour
         bfr_attackrate = shooting.attackrate;
         bfr_movementspeed = movement.speed;
         gunFound = true;
+    }
+
+    void UpdateParameters()
+    {
+        HP_Slider.value = current_hp;
+        CDdisplay[0].maxValue = shooting.triplerate;
+        CDdisplay[0].value = shooting.tripletimer;
+        CDdisplay[1].maxValue = movement.dashingCooldown;
+        CDdisplay[1].value = movement.dashingtimer;
     }
 }

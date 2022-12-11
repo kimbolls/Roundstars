@@ -18,12 +18,18 @@ public class WinMenu : MonoBehaviour
     public GameObject[] menus;
 
     public score_tracker score;
+
+    [SerializeField] Image i_medal;
+    [SerializeField] Sprite[] s_medal;
+    [SerializeField] float[] points_milestone;
     // Start is called before the first frame update
     void Start()
     {
         eventsystem.SetSelectedGameObject(buttonlist[0]);
-        
+        updateMedal();
         Time.timeScale = 0f;
+
+
     }
 
     // Update is called once per frame
@@ -50,11 +56,13 @@ public class WinMenu : MonoBehaviour
         {
             winnertext.SetText(PlayerPrefs.GetString("player1Name") + " WINS!");
             scoretext.SetText("{0}",score.player1_correctpoint);
+            pointstext.SetText("{0}",score.P1_points);
         }
         else
         {
             winnertext.SetText(PlayerPrefs.GetString("player2Name") + " WINS!");
             scoretext.SetText("{0}",score.player2_correctpoint);
+            pointstext.SetText("{0}",score.P2_points);
         }
 
         if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
@@ -77,5 +85,39 @@ public class WinMenu : MonoBehaviour
         
         menus[1].SetActive(true);
         menus[0].SetActive(false); 
+    }
+
+    void updateMedal()
+    {
+        float WinnerPoints = 0;
+        if(score.P1_points > score.P2_points)
+        {
+            WinnerPoints = score.P1_points;
+        }
+        else
+        {
+            WinnerPoints = score.P2_points;
+        }
+
+        if(WinnerPoints <= points_milestone[0]) //bronze
+        {
+            i_medal.sprite = s_medal[0];
+        }
+        else if(WinnerPoints <= points_milestone[1]) //silver
+        {
+            i_medal.sprite = s_medal[1];
+        }
+        else if(WinnerPoints <= points_milestone[2]) //gold
+        {
+            i_medal.sprite = s_medal[2];
+        }
+        else //plat
+        {
+            i_medal.sprite = s_medal[3]; 
+        }
+
+
+
+
     }
 }

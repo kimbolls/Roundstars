@@ -34,6 +34,7 @@ public class P1_Attributes : MonoBehaviour
         HP_Slider.maxValue = max_hp;
         playername.SetText(PlayerPrefs.GetString("player1Name"));
         score_script = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
+
        
     }
 
@@ -49,12 +50,10 @@ public class P1_Attributes : MonoBehaviour
         {
             FindGun();
         }
-        if(current_hp <= 0)
+        if(current_hp <= 0 && hybernate == false)
         {
             // enter hybernation, and regen HP until full
             hybernate = true; 
-            bfr_attackrate = shooting.attackrate;
-            bfr_movementspeed = movement.speed;
             shooting.attackrate = shooting.attackrate / 2;
             movement.speed = movement.speed / 5;
         }
@@ -76,13 +75,8 @@ public class P1_Attributes : MonoBehaviour
              hybernate_symbol.SetActive(false);
         }
 
-         // update player hp with UI 
-        HP_Slider.value = current_hp;
-
-        CDdisplay[0].maxValue = shooting.triplerate;
-        CDdisplay[0].value = shooting.tripletimer;
-        CDdisplay[1].maxValue = movement.dashingCooldown;
-        CDdisplay[1].value = movement.dashingtimer;
+        // update player hp with UI 
+        UpdateParameters();
         //player_Ui.Setmana(current_mp);
     }
 
@@ -113,5 +107,14 @@ public class P1_Attributes : MonoBehaviour
         bfr_attackrate = shooting.attackrate;
         bfr_movementspeed = movement.speed;
         gunFound = true;
+    }
+
+    void UpdateParameters()
+    {
+        HP_Slider.value = current_hp;
+        CDdisplay[0].maxValue = shooting.triplerate;
+        CDdisplay[0].value = shooting.tripletimer;
+        CDdisplay[1].maxValue = movement.dashingCooldown;
+        CDdisplay[1].value = movement.dashingtimer;
     }
 }

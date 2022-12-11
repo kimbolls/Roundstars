@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MasterQuiz : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MasterQuiz : MonoBehaviour
     public float P1_timer,P2_timer;
     public float max_timer;
     public float quiz_timer;
+
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -64,4 +67,6 @@ public class MasterQuiz : MonoBehaviour
             }
         }
     }
+    
+   
 }
