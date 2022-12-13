@@ -14,10 +14,11 @@ GameObject:
   - component: {fileID: 7730156155509919992}
   - component: {fileID: 5271893378054274527}
   - component: {fileID: 7047623006427762678}
+  - component: {fileID: 6077487328899568408}
   m_Layer: 10
   m_Name: gun1_projectile
   m_TagString: bullets
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -238,3 +239,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   Particle: {fileID: 7730156155509919991}
+--- !u!61 &6077487328899568408
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730156155509919991}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.003567934, y: -0.0071354657}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.81, y: 0.81}
+    newSize: {x: 0.81, y: 0.81}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4159801, y: 0.32422778}
+  m_EdgeRadius: 0
