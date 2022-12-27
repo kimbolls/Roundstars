@@ -51,13 +51,17 @@ public class score_tracker : MonoBehaviour
 
         //primary scoreboard HUD
         gametimer_text.SetText("{0}", Mathf.Round(gametimer));
-        p1score_text.SetText("{0}", player1_correctpoint);
+        p1score_text.SetText("{0}", P1_points);
 
-        if (enemySpawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
-        { p2score_text.SetText("{0}", player2_correctpoint); }
-        else
+       
+
+        if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
         {
             p1points_text.SetText(P1_points.ToString());
+        }
+        else
+        {
+            p2score_text.SetText("{0}", P2_points); 
         }
         gametimer_slider.value = gametimer;
 
@@ -78,7 +82,11 @@ public class score_tracker : MonoBehaviour
         // {
         //     gametimer -= Time.deltaTime;
         // }
-        gametimer -= Time.deltaTime;
+        if (enemySpawner.gameMode != EnemySpawner.GameModeEnum.Tutorial)
+        {
+            gametimer -= Time.deltaTime;
+        }
+
         if (gametimer <= 0)
         {
             gametimer = 0;

@@ -16,7 +16,7 @@ public class player_flag : MonoBehaviour
         enemySpawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         player1 = GameObject.Find("Player 1").GetComponent<P1_Attributes>();
 
-        if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
+        if(enemySpawner.gameMode != EnemySpawner.GameModeEnum.Singleplayer)
         {
             player2 = GameObject.Find("Player 2").GetComponent<P2_Attributes>();
         }

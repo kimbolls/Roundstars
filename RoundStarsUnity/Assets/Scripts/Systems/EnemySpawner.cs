@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
  
 
     [SerializeField]
-    public enum GameModeEnum{Singleplayer,Multiplayer};
+    public enum GameModeEnum{Singleplayer,Multiplayer,Tutorial};
     [SerializeField]
     private GameObject enemy_1;
     [SerializeField]
