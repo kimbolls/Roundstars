@@ -43,7 +43,7 @@ public class mainmenu : MonoBehaviour
 
     public void PlayTutorial()
     {
-
+        SceneManager.LoadScene(3);
     }
 
 
