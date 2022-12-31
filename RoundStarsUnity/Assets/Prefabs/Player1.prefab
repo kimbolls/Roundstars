@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc9177868847b47a46da52307fb3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 4.5
   jumpForce: 5
   fallMultiplier: 2
   lowJumpMultiplier: 2
@@ -757,7 +757,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   jumped: 0
   lookingDirection: 0
-  dashingCooldown: 0
+  dashingCooldown: 6
   dashingtimer: 0
   tr: {fileID: 0}
 --- !u!114 &874706032

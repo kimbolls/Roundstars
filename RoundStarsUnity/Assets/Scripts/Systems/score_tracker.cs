@@ -57,7 +57,7 @@ public class score_tracker : MonoBehaviour
 
         if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
         {
-            p1points_text.SetText(P1_points.ToString());
+            p1points_text.SetText(player1_correctpoint.ToString());
         }
         else
         {

@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: f5d7646dc0c9b4247b12b8016fb0ffac, type: 3}
-  m_Color: {r: 0.96548563, g: 0.49685526, b: 1, a: 1}
+  m_Color: {r: 0.9716981, g: 0.7630838, b: 0.4919603, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -188,8 +188,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.96862745, g: 0.49803922, b: 1, a: 1}
-      key1: {r: 0.24705882, g: 0.88235295, b: 1, a: 0.43137255}
+      key0: {r: 0.9716981, g: 0.7630838, b: 0.4919603, a: 1}
+      key1: {r: 0.9716981, g: 0.7630838, b: 0.4919603, a: 0.43137255}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -237,4 +237,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  Particle: {fileID: 7730156155509919991}
+  Particle: {fileID: 3436683331161176662, guid: 7b9c805ea205a3644824bcec7c6df2d6, type: 3}
+  Sprite: {fileID: 7730156155509919994}

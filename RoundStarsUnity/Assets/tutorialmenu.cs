@@ -35,12 +35,6 @@ public class tutorialmenu : MonoBehaviour
         Active_Menu.SetActive(true);
     }
 
-    public void menu_Basics(int i)
-    {
 
-    }
-    public void menu_Abilities() { }
-    public void menu_Obj1() { }
-    public void menu_Obj2() { }
 
 }

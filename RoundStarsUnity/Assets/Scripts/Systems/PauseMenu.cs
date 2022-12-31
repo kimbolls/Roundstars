@@ -19,15 +19,17 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void OnResume(){
+    public void OnResume()
+    {
         enemyspawner.ResumeGame();
     }
 
-    public void OnMenu(){
+    public void OnMenu()
+    {
         SceneManager.LoadScene(0);
     }
-    void OnQuit(){}
+    void OnQuit() { Application.Quit(); }
 }

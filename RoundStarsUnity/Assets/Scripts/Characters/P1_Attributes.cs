@@ -6,7 +6,7 @@ using TMPro;
 
 public class P1_Attributes : MonoBehaviour
 {
-    public float max_hp = 100f,current_hp;
+    public float max_hp = 100f, current_hp;
     public P1_Movement movement;
     //public float max_mp,current_mp;
     public Slider HP_Slider;
@@ -19,12 +19,13 @@ public class P1_Attributes : MonoBehaviour
     public GameObject hybernate_symbol;
 
     [SerializeField]
-    private float bfr_attackrate,bfr_movementspeed;
+    private float bfr_attackrate, bfr_movementspeed;
 
     public float regen_hp = 5f;
     private bool gunFound = false;
     public Slider[] CDdisplay;
     public float passiveregen = 0f;
+     public GameObject floatingnum;
 
     score_tracker score_script;
     // Start is called before the first frame update
@@ -35,36 +36,36 @@ public class P1_Attributes : MonoBehaviour
         playername.SetText(PlayerPrefs.GetString("player1Name"));
         score_script = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
 
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if(current_hp <= 100)
+
+        if (current_hp <= 100)
         {
-            current_hp += passiveregen* Time.deltaTime;
+            current_hp += passiveregen * Time.deltaTime;
         }
-        if(GameObject.Find("P1_Gun(Clone)") && gunFound == false)
+        if (GameObject.Find("P1_Gun(Clone)") && gunFound == false)
         {
             FindGun();
         }
-        if(current_hp <= 0 && hybernate == false)
+        if (current_hp <= 0 && hybernate == false)
         {
             // enter hybernation, and regen HP until full
-            hybernate = true; 
+            hybernate = true;
             shooting.attackrate = shooting.attackrate / 2;
             movement.speed = movement.speed / 5;
         }
-        else if(current_hp >= max_hp && gunFound == true && hybernate==true)
+        else if (current_hp >= max_hp && gunFound == true && hybernate == true)
         {
             current_hp = max_hp;
             hybernate = false;
-            shooting.attackrate = bfr_attackrate; 
+            shooting.attackrate = bfr_attackrate;
             movement.speed = bfr_movementspeed;
-        }   
-        if(hybernate == true )
+        }
+        if (hybernate == true)
         {
             RegenFull();
             hybernate_symbol.SetActive(true);
@@ -72,7 +73,7 @@ public class P1_Attributes : MonoBehaviour
         }
         else
         {
-             hybernate_symbol.SetActive(false);
+            hybernate_symbol.SetActive(false);
         }
 
         // update player hp with UI 
@@ -83,16 +84,19 @@ public class P1_Attributes : MonoBehaviour
     public void TakeDamage(float damage)
     {
 
-        if(hybernate == true)
+        if (hybernate == true)
         {
             //take no damage
         }
-        else{
+        else
+        {
             current_hp -= damage;
-
+            GameObject FloatNumbers = Instantiate(floatingnum, transform.position, Quaternion.identity);
+            FloatingHandler FloatScript = FloatNumbers.GetComponent<FloatingHandler>();
+            FloatScript.DisplayDamage(damage);
         }
-        
-        score_script.ShotsTracker(1,1,1);
+
+        score_script.ShotsTracker(1, 1, 1);
     }
 
     void RegenFull()

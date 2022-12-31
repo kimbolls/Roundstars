@@ -98,7 +98,7 @@ public class EnemySpawner : MonoBehaviour
                    
                     
                 }
-                else if(playerpoints <= 6)
+                else if(playerpoints <= 5)
                 {
                     delay = 1.5f;
                     intervals = 3f;
@@ -113,7 +113,7 @@ public class EnemySpawner : MonoBehaviour
                 Spawn_Repeating(delay,intervals);
                 SpawnStatus = false;
 
-                 Debug.Log("Spawner Active : " + tempvar);
+                 Debug.Log("Spawner Active : " + tempvar + "/ Intervals = " +intervals);
             }
         }
 
