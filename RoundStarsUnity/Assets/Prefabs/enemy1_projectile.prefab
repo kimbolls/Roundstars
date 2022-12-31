@@ -189,7 +189,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 0.5411765, b: 0.49803922, a: 1}
-      key1: {r: 0.24705882, g: 0.88235295, b: 1, a: 0.43137255}
+      key1: {r: 1, g: 0.375566, b: 0.2783019, a: 0.43137255}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -237,4 +237,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  Particle: {fileID: 7730156155509919991}
+  Particle: {fileID: 3436683331161176662, guid: 7b9c805ea205a3644824bcec7c6df2d6, type: 3}
+  Sprite: {fileID: 7730156155509919994}
