@@ -45,6 +45,7 @@ public class Master_Navigator : MonoBehaviour
     
     void Start()
     {
+        
         // activemenu = quizmenu;
     }
 

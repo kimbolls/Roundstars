@@ -14,6 +14,7 @@ public class CustomizeMenu : MonoBehaviour
     public GameObject[] torsoItem;
     public int torsoIndex;
     public TMP_Text playername_display;
+    public TMP_Text eyes_text,mouths_text;
     // public TMP_Text playername_edit;
     public TMP_InputField playername_edit;
 
@@ -34,6 +35,9 @@ public class CustomizeMenu : MonoBehaviour
         eyesItem[eyesIndex].SetActive(true);
         mouthItem[mouthIndex].SetActive(true);
         torsoItem[torsoIndex].SetActive(true);
+
+        eyes_text.SetText((eyesIndex+1).ToString());
+        mouths_text.SetText((mouthIndex+1).ToString());
         if(torsoIndex != 1)
         {
             if(!PlayerPrefs.HasKey("player1Name")) PlayerPrefs.SetString("player1Name","Player 1");

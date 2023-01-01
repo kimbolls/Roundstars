@@ -43,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
         //find scripts
         quizmenu = GameObject.Find("Quiz_Manager").GetComponent<QuizMenu>();
         scoretracker = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
+        // pausemenu = GameObject.Find("PauseMenu");
         //
         SpawnStatus = true;
         index = SpawnPoint.Length;
@@ -57,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
         // WaveDuration -= Time.deltaTime;
         // seconds = (int) WaveDuration;
         // secondscount = seconds.ToString();
+        
         if(gameMode == GameModeEnum.Singleplayer)
         {
             enemyList = GameObject.FindGameObjectsWithTag("Enemy");
@@ -126,6 +128,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void PauseGame(bool paused)
     {
+        if(pausemenu== null)
+        {
+            Debug.Log("pausemenu empty");
+            pausemenu = GameObject.Find("PauseMenu");
+        }
         if(paused && phase == PhaseEnum.Game)
         {
             pausemenu.SetActive(true);
