@@ -82,42 +82,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""NaviUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""daacf151-9183-42fe-8562-7dd6fd026134"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NaviDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""064b4930-87cd-4088-8b4d-6c82fccabf4b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NaviLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""3bfa3fd5-296f-47b1-bb08-d1813af2d1aa"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NaviRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""138759a3-d242-4d2a-9ee7-5fd5841abaf4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""cd604a03-da71-4d9a-b7f7-f6454e3f06ec"",
@@ -293,50 +257,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""790b27ab-d43e-4a0a-b5ca-7afac9a086f9"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""NaviRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""790f377d-97da-4fdc-af58-e4daf8faad48"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""NaviLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""65975748-3b59-4800-8ac3-a013e2d6cada"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""NaviDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1013ae00-de2d-4c82-80af-8874a8414a4a"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""NaviUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9be4a553-3103-49e5-a6af-80ce31cfe1c4"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -410,10 +330,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
-        m_Player_NaviUp = m_Player.FindAction("NaviUp", throwIfNotFound: true);
-        m_Player_NaviDown = m_Player.FindAction("NaviDown", throwIfNotFound: true);
-        m_Player_NaviLeft = m_Player.FindAction("NaviLeft", throwIfNotFound: true);
-        m_Player_NaviRight = m_Player.FindAction("NaviRight", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Tripleshot = m_Player.FindAction("Tripleshot", throwIfNotFound: true);
         // Navi
@@ -483,10 +399,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Mouse;
-    private readonly InputAction m_Player_NaviUp;
-    private readonly InputAction m_Player_NaviDown;
-    private readonly InputAction m_Player_NaviLeft;
-    private readonly InputAction m_Player_NaviRight;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Tripleshot;
     public struct PlayerActions
@@ -499,10 +411,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
-        public InputAction @NaviUp => m_Wrapper.m_Player_NaviUp;
-        public InputAction @NaviDown => m_Wrapper.m_Player_NaviDown;
-        public InputAction @NaviLeft => m_Wrapper.m_Player_NaviLeft;
-        public InputAction @NaviRight => m_Wrapper.m_Player_NaviRight;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Tripleshot => m_Wrapper.m_Player_Tripleshot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -532,18 +440,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Mouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouse;
                 @Mouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouse;
                 @Mouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouse;
-                @NaviUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
-                @NaviUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
-                @NaviUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviUp;
-                @NaviDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
-                @NaviDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
-                @NaviDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviDown;
-                @NaviLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
-                @NaviLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
-                @NaviLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviLeft;
-                @NaviRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
-                @NaviRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
-                @NaviRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNaviRight;
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
@@ -572,18 +468,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Mouse.started += instance.OnMouse;
                 @Mouse.performed += instance.OnMouse;
                 @Mouse.canceled += instance.OnMouse;
-                @NaviUp.started += instance.OnNaviUp;
-                @NaviUp.performed += instance.OnNaviUp;
-                @NaviUp.canceled += instance.OnNaviUp;
-                @NaviDown.started += instance.OnNaviDown;
-                @NaviDown.performed += instance.OnNaviDown;
-                @NaviDown.canceled += instance.OnNaviDown;
-                @NaviLeft.started += instance.OnNaviLeft;
-                @NaviLeft.performed += instance.OnNaviLeft;
-                @NaviLeft.canceled += instance.OnNaviLeft;
-                @NaviRight.started += instance.OnNaviRight;
-                @NaviRight.performed += instance.OnNaviRight;
-                @NaviRight.canceled += instance.OnNaviRight;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
@@ -645,10 +529,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
-        void OnNaviUp(InputAction.CallbackContext context);
-        void OnNaviDown(InputAction.CallbackContext context);
-        void OnNaviLeft(InputAction.CallbackContext context);
-        void OnNaviRight(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnTripleshot(InputAction.CallbackContext context);
     }

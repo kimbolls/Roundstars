@@ -803,6 +803,7 @@ MonoBehaviour:
   regen_hp: 20
   CDdisplay: []
   passiveregen: 0
+  floatingnum: {fileID: 0}
 --- !u!96 &8692251089251951651
 TrailRenderer:
   serializedVersion: 2
@@ -854,7 +855,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.50515175
+        value: 0.28866005
         inSlope: 0
         outSlope: 0
         tangentMode: 0
