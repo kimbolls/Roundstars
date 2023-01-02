@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using System.IO;
 
 public class ReadDatabase : MonoBehaviour
 {
@@ -36,7 +37,11 @@ public class ReadDatabase : MonoBehaviour
     void Start()
     {
         jsonFile = Resources.Load<TextAsset>("listofquestions(json)");
-        textAssetData = Resources.Load<TextAsset>("listofquestions(tsv)");
+        // textAssetData = Resources.Load<TextAsset>("listofquestions(tsv)");
+
+        string FileContent = File.ReadAllText(Application.streamingAssetsPath + "/listofquestions(tsv).txt");
+
+        textAssetData = new TextAsset(FileContent);
         if (jsonFile != null)
         {
             ReadCSV2();
@@ -47,7 +52,7 @@ public class ReadDatabase : MonoBehaviour
         }
 
         countUnique();
-       
+
         if (quizmenu != null)
         { quizmenu.CreateNewQuestionList(); }
     }
@@ -123,10 +128,10 @@ public class ReadDatabase : MonoBehaviour
     {
         int currentType = MainMenu.dropdown[0].value;
         int totalquestions = myQuestionList.questions.Length;
-         count = 0;
+        count = 0;
         for (int i = 0; i < totalquestions; i++)
         {
-            if(myQuestionList.questions[i].type == uniquetype[currentType])
+            if (myQuestionList.questions[i].type == uniquetype[currentType])
             {
                 count++;
             }
