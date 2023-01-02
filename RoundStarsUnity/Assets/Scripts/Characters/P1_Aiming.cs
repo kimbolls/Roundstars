@@ -12,6 +12,7 @@ public class P1_Aiming : MonoBehaviour
     public bool shoot = false;
     public bool boom = false;
     public float angle;
+
    //InputDevice mouse = Mouse.current;
     // Start is called before the first frame update
 
@@ -22,11 +23,12 @@ public class P1_Aiming : MonoBehaviour
     void Start()
     {
         Gun = Instantiate(GunPrefab,rb.position,Quaternion.identity);
+        movement = GameObject.Find("Player 1").GetComponent<P1_Movement>();
     }
 
     public void OnGrenade(InputAction.CallbackContext context){
         
-        boom = context.action.triggered;
+        movement.dashed = context.action.triggered;
     }
 
     // Update is called once per frame

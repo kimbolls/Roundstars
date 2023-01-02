@@ -16,6 +16,8 @@ public class mainmenu : MonoBehaviour
 
     public GameObject LoadingMenu;
     public Slider loadingSlider;
+
+    public ReadDatabase readDB;
     //public GameObject QuitConfirm;
     // Start is called before the first frame update
     void Start()
@@ -63,6 +65,8 @@ public class mainmenu : MonoBehaviour
         dropdown[0].value = PlayerPrefs.GetInt("QuestionType");
         dropdown[1].value = PlayerPrefs.GetInt("GameTimer");
         dropdown[2].value = PlayerPrefs.GetInt("BraceTimer");
+        readDB.countQuestions();
+
     }
 
     public void SetQuestionType(int i)

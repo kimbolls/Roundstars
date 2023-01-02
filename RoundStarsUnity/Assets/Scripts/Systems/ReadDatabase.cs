@@ -12,7 +12,10 @@ public class ReadDatabase : MonoBehaviour
     public int col;
     public mainmenu MainMenu;
     public QuizMenu quizmenu;
-  [System.Serializable]
+
+    public int count;
+    public TMP_Text countText;
+    [System.Serializable]
     public class Question
     {
         public string description;
@@ -20,57 +23,58 @@ public class ReadDatabase : MonoBehaviour
         public string[] possibleAnswer = new string[3];
         public string correctAnswer;
     }
-[System.Serializable]
+    [System.Serializable]
     public class QuestionList
     {
         public Question[] questions;
     }
     public List<string> uniquetype;
     public QuestionList myQuestionList = new QuestionList();
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
         jsonFile = Resources.Load<TextAsset>("listofquestions(json)");
         textAssetData = Resources.Load<TextAsset>("listofquestions(tsv)");
-       if(jsonFile != null)
-       {
-        ReadCSV2();
-       }
-       if(textAssetData != null)
-       {
-        ReadCSV1();
-       }
+        if (jsonFile != null)
+        {
+            ReadCSV2();
+        }
+        if (textAssetData != null)
+        {
+            ReadCSV1();
+        }
 
-       countUnique();
-       if(quizmenu != null)
-       {quizmenu.CreateNewQuestionList();}
+        countUnique();
+       
+        if (quizmenu != null)
+        { quizmenu.CreateNewQuestionList(); }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void ReadCSV1()
     {
 
-        string[] data = textAssetData.text.Split(new string[] {"\t","\n"}, StringSplitOptions.None);
+        string[] data = textAssetData.text.Split(new string[] { "\t", "\n" }, StringSplitOptions.None);
 
-        int tableSize = data.Length / col-1;
+        int tableSize = data.Length / col - 1;
         myQuestionList.questions = new Question[tableSize];
 
-        for(int i = 0; i <tableSize; i++)
+        for (int i = 0; i < tableSize; i++)
         {
             myQuestionList.questions[i] = new Question();
-            myQuestionList.questions[i].type = data[col* (i+1)];
-            myQuestionList.questions[i].description = data[col* (i+1) + 1];
-            myQuestionList.questions[i].possibleAnswer[0] = data[col* (i+1) + 2];
-            myQuestionList.questions[i].possibleAnswer[1] = data[col* (i+1) + 3];
-            myQuestionList.questions[i].possibleAnswer[2] = data[col* (i+1) + 4];
-            myQuestionList.questions[i].correctAnswer = data[col* (i+1) + 5];
+            myQuestionList.questions[i].type = data[col * (i + 1)];
+            myQuestionList.questions[i].description = data[col * (i + 1) + 1];
+            myQuestionList.questions[i].possibleAnswer[0] = data[col * (i + 1) + 2];
+            myQuestionList.questions[i].possibleAnswer[1] = data[col * (i + 1) + 3];
+            myQuestionList.questions[i].possibleAnswer[2] = data[col * (i + 1) + 4];
+            myQuestionList.questions[i].correctAnswer = data[col * (i + 1) + 5];
         }
     }
 
@@ -90,9 +94,9 @@ public class ReadDatabase : MonoBehaviour
     {
         int totalquestions = myQuestionList.questions.Length;
         uniquetype = new List<string>();
-        for(int i = 0; i < totalquestions; i++)
+        for (int i = 0; i < totalquestions; i++)
         {
-            if(!uniquetype.Contains(myQuestionList.questions[i].type))
+            if (!uniquetype.Contains(myQuestionList.questions[i].type))
             {
                 uniquetype.Add(myQuestionList.questions[i].type);
             }
@@ -104,14 +108,30 @@ public class ReadDatabase : MonoBehaviour
         // }
 
 
-        if(MainMenu != null)
+        if (MainMenu != null)
         {
             MainMenu.dropdown[0].options.Clear();
-            foreach(string option in uniquetype)
+            foreach (string option in uniquetype)
             {
                 MainMenu.dropdown[0].options.Add(new TMP_Dropdown.OptionData(option));
             }
         }
-        
+
+    }
+
+    public void countQuestions()
+    {
+        int currentType = MainMenu.dropdown[0].value;
+        int totalquestions = myQuestionList.questions.Length;
+         count = 0;
+        for (int i = 0; i < totalquestions; i++)
+        {
+            if(myQuestionList.questions[i].type == uniquetype[currentType])
+            {
+                count++;
+            }
+        }
+        countText.SetText("Total : " + count.ToString());
+
     }
 }

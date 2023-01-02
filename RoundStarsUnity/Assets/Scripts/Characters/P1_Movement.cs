@@ -31,7 +31,7 @@ public class P1_Movement : MonoBehaviour
     public float dashingCooldown;
     public float dashingtimer;
 
-    private bool dashed = false;
+    public bool dashed = false;
     // private float horizontal;
     // private bool isFacingRight = true;
 
