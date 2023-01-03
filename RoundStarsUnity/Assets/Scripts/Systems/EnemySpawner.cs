@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemy_1;
     [SerializeField]
+    private GameObject enemy_2;
+    [SerializeField]
     public bool SpawnStatus = true;
     public GameModeEnum  gameMode;
     public enum PhaseEnum{Game,Upgrade,Quiz,Pause};
@@ -93,8 +95,8 @@ public class EnemySpawner : MonoBehaviour
                 // }
                 if(playerpoints <= 3)
                 {
-                    delay = 2f;
-                    intervals = 4f;
+                    delay = 4f;
+                    intervals = 8f;
 
                     tempvar++;
                    
@@ -102,14 +104,14 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else if(playerpoints <= 5)
                 {
-                    delay = 1.5f;
-                    intervals = 3f;
+                    delay = 3f;
+                    intervals = 6f;
                     tempvar++;
                 }
                 else
                 {
-                    delay = 1f;
-                    intervals = 2f;
+                    delay = 2f;
+                    intervals = 4f;
                     tempvar++;
                 }
                 Spawn_Repeating(delay,intervals);
@@ -157,11 +159,13 @@ public class EnemySpawner : MonoBehaviour
     void Spawn_Repeating(float delay,float intervals)
     {
         InvokeRepeating("Spawn_Regular",delay,intervals);
+        InvokeRepeating("Spawn_Tank",delay+5f,intervals+4f);
     }
 
     public void Spawn_Stop()
     {
         CancelInvoke("Spawn_Regular");
+        CancelInvoke("Spawn_Tank");
     }
 
     // enemy spawn
@@ -169,6 +173,12 @@ public class EnemySpawner : MonoBehaviour
     {
         i = Randomize(i);
         GameObject enemy_1_spawn = Instantiate(enemy_1,SpawnPoint[i].position,Quaternion.identity);
+    }
+
+    void Spawn_Tank()
+    {
+        i = Randomize(i);
+        GameObject enemy_1_spawn = Instantiate(enemy_2,SpawnPoint[i].position,Quaternion.identity);
     }
 //
 
