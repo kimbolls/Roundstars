@@ -30,9 +30,19 @@ public class upgradescript : MonoBehaviour
     [SerializeField] private GameObject[] torso_image;
     [SerializeField] private Sprite[] eyes_sprites, mouths_sprites;
     public Player_Customization customization;
+
+    public AudioManager audiomanage;
+    
+    public GameObject[] buttonlist;
+    public EventSystem eventsystem;
     // Start is called before the first frame update
+    private void OnEnable()
+    {
+        eventsystem.SetSelectedGameObject(buttonlist[0]);
+    }
     void Start()
     {
+        audiomanage = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         enemyspawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         customization = GameObject.Find("GameMaster").GetComponent<Player_Customization>();
         if (enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
@@ -47,6 +57,13 @@ public class upgradescript : MonoBehaviour
 
         eyes_sprites = customization.eyes;
         mouths_sprites = customization.mouths;
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (i == 1)
         {
             playername.SetText(PlayerPrefs.GetString("player1Name"));
@@ -60,16 +77,12 @@ public class upgradescript : MonoBehaviour
             playername.SetText(PlayerPrefs.GetString("player2Name"));
             eyes_image.sprite = eyes_sprites[PlayerPrefs.GetInt("player2Eyes")];
             mouths_image.sprite = mouths_sprites[PlayerPrefs.GetInt("player2Mouths")];
-             torso_image[0].SetActive(false);
+            torso_image[0].SetActive(false);
             torso_image[1].SetActive(true);
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (!audiomanage.upgrade_music.isPlaying)
+            audiomanage.Upgrade_Music(0);
     }
 
     public void UpgradeNo1()
@@ -84,6 +97,7 @@ public class upgradescript : MonoBehaviour
         {
             player2_atr.regen_hp += addregen;
         }
+        audiomanage.Upgrade_Music(1);
         Time.timeScale = 1f;
     }
 
@@ -99,6 +113,7 @@ public class upgradescript : MonoBehaviour
         {
             player2_gun.attackrate += addatkspd;
         }
+        audiomanage.Upgrade_Music(1);
         Time.timeScale = 1f;
     }
 
@@ -114,6 +129,7 @@ public class upgradescript : MonoBehaviour
         {
             player2_mov.speed += addmovspd;
         }
+        audiomanage.Upgrade_Music(1);
         Time.timeScale = 1f;
     }
 
@@ -130,7 +146,7 @@ public class upgradescript : MonoBehaviour
         {
             player2_mov.dashingCooldown -= 1;
         }
-
+        audiomanage.Upgrade_Music(1);
         Time.timeScale = 1f;
     }
 }

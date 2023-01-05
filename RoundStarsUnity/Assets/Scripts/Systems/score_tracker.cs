@@ -30,19 +30,17 @@ public class score_tracker : MonoBehaviour
     public int[] player_shotsHit;
 
     public EnemySpawner enemySpawner;
+    [SerializeField] public float[] points_milestone;
+    public WinMenu winmenu;
     // Start is called before the first frame update
     void Start()
     {
         SetTimer();
         enemySpawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
+        winmenu.points_milestone = points_milestone;
         slidermaxvalue = gametimer;
         P1_points = 0;
         P2_points = 0;
-
-        // set color
-
-        //
-
     }
 
     // Update is called once per frame
@@ -52,9 +50,6 @@ public class score_tracker : MonoBehaviour
         //primary scoreboard HUD
         gametimer_text.SetText("{0}", Mathf.Round(gametimer));
         p1score_text.SetText("{0}", P1_points);
-
-       
-
         if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
         {
             p1points_text.SetText(player1_correctpoint.ToString());

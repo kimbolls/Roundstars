@@ -455,7 +455,7 @@ public class QuizMenu : MonoBehaviour
     {
         if (enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
         {
-            if (score.player1_correctpoint != score.player2_correctpoint)
+            if (score.P1_points != score.P2_points)
             {
                 if (score.gametimer <= 0 || questioncount >= CurrentQuestionList.questions.Length)
                 {

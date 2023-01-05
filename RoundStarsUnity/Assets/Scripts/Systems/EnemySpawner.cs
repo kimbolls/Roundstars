@@ -93,16 +93,15 @@ public class EnemySpawner : MonoBehaviour
                 //     CancelInvoke("Spawn_Repeating");
                 //     tempvar = 0;
                 // }
-                if(playerpoints <= 3)
+                if(playerpoints <= 4)
                 {
                     delay = 4f;
                     intervals = 8f;
-
                     tempvar++;
                    
                     
                 }
-                else if(playerpoints <= 5)
+                else if(playerpoints <= 7)
                 {
                     delay = 3f;
                     intervals = 6f;

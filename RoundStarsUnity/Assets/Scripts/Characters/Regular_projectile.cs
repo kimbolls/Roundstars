@@ -7,10 +7,10 @@ public class Regular_projectile : MonoBehaviour
     public int damage;
     public GameObject Particle;
     public SpriteRenderer Sprite;
-    int bouncecount;
+    public int bouncecount = 2;
     void Start()
     {
-        bouncecount = 2;
+        // bouncecount = 2;
         StartCoroutine(DestroyAfterTime(3f));
     }
 

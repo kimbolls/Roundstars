@@ -13,6 +13,11 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    private void OnEnable()
+    {
         eventsystem.SetSelectedGameObject(buttonlist[0]);
     }
 

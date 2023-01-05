@@ -239,3 +239,4 @@ MonoBehaviour:
   damage: 20
   Particle: {fileID: 3436683331161176662, guid: 7b9c805ea205a3644824bcec7c6df2d6, type: 3}
   Sprite: {fileID: 7730156155509919994}
+  bouncecount: 1

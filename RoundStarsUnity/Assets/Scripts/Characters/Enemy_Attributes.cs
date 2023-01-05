@@ -19,6 +19,7 @@ public class Enemy_Attributes : MonoBehaviour
     private Regular_projectile projectile;
     private float damage;
     public GameObject DeathParticles;
+    public AudioSource damage_Sound;
 
 
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class Enemy_Attributes : MonoBehaviour
         GameObject FloatNumbers = Instantiate(floatingnum, transform.position, Quaternion.identity);
         FloatingHandler FloatScript = FloatNumbers.GetComponent<FloatingHandler>();
         FloatScript.DisplayDamage(damage);
+        damage_Sound.Play();
         if (current_hp <= 0 && alive_status == true)
         {
             //score increase to player here

@@ -32,7 +32,7 @@ public class  Player2_Movement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
 
     private bool dashed = false;
-    
+    public AudioSource dash_sound;
 
     //trial
     
@@ -156,7 +156,7 @@ public class  Player2_Movement : MonoBehaviour
        { rb.velocity = new Vector2(-transform.localScale.x * dashingPower, 0f);}
        else{rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);}
         tr.emitting = true;
-
+        dash_sound.Play();
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;

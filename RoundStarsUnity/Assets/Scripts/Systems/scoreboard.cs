@@ -30,7 +30,8 @@ public class scoreboard : MonoBehaviour
         player_shotsfired[0] = Score_script.player_shotsfired[0];
         player_hitrate[0] = Score_script.player_hitrate[0];
         
-
+        player1_text[3].SetText(PlayerPrefs.GetString("player1Name"));
+        player2_text[3].SetText(PlayerPrefs.GetString("player2Name"));
         if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
         {   
             playerarea[1].SetActive(true);

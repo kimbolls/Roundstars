@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 public class mainmenu : MonoBehaviour
 {
 
@@ -16,6 +17,11 @@ public class mainmenu : MonoBehaviour
 
     public GameObject LoadingMenu;
     public Slider loadingSlider;
+    public Slider VolumeSlider;
+    public AudioMixer audioMixer;
+
+    public AudioSource hoverSound;
+    public AudioSource clickSound;
 
     public ReadDatabase readDB;
     //public GameObject QuitConfirm;
@@ -62,6 +68,7 @@ public class mainmenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         SettingsMenu.SetActive(true);
+        LoadVolume();
         dropdown[0].value = PlayerPrefs.GetInt("QuestionType");
         dropdown[1].value = PlayerPrefs.GetInt("GameTimer");
         dropdown[2].value = PlayerPrefs.GetInt("BraceTimer");
@@ -100,6 +107,32 @@ public class mainmenu : MonoBehaviour
 
     }
     public void QuitGame() { Application.Quit(); }
+
+    public void LoadVolume()
+    {
+        if (!PlayerPrefs.HasKey("MasterVolume"))
+            PlayerPrefs.SetFloat("MasterVolume", -10);
+        VolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+    }
+
+    public void SetVolume()
+    {
+
+        // audioMixer.volume = VolumeSlider.value();
+        audioMixer.SetFloat("volume", VolumeSlider.value);
+        PlayerPrefs.SetFloat("MasterVolume", VolumeSlider.value);
+
+    }
+
+    public void HoverAction()
+    {
+        hoverSound.Play();
+    }
+
+    public void ClickAction()
+    {
+        clickSound.Play();
+    }
 
     // IEnumerator LoadAsynchronously(int sceneIndex)
     // {

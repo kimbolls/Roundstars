@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37ad8a916b2eb14c83b46b52a7c3e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 10
   Particle: {fileID: 3436683331161176662, guid: 7b9c805ea205a3644824bcec7c6df2d6, type: 3}
   Sprite: {fileID: 7730156155509919994}
+  bouncecount: 1

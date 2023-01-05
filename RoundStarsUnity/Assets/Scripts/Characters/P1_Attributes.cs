@@ -10,6 +10,7 @@ public class P1_Attributes : MonoBehaviour
     public P1_Movement movement;
     //public float max_mp,current_mp;
     public Slider HP_Slider;
+    public Slider HP_SliderBig;
 
     public bool hybernate = false;
     [SerializeField]
@@ -25,7 +26,8 @@ public class P1_Attributes : MonoBehaviour
     private bool gunFound = false;
     public Slider[] CDdisplay;
     public float passiveregen = 0f;
-     public GameObject floatingnum;
+    public GameObject floatingnum;
+    [SerializeField] private AudioSource damage_Sound;
 
     score_tracker score_script;
     // Start is called before the first frame update
@@ -33,6 +35,7 @@ public class P1_Attributes : MonoBehaviour
     {
         current_hp = max_hp;
         HP_Slider.maxValue = max_hp;
+        HP_SliderBig.maxValue = max_hp;
         playername.SetText(PlayerPrefs.GetString("player1Name"));
         score_script = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
 
@@ -94,6 +97,7 @@ public class P1_Attributes : MonoBehaviour
             GameObject FloatNumbers = Instantiate(floatingnum, transform.position, Quaternion.identity);
             FloatingHandler FloatScript = FloatNumbers.GetComponent<FloatingHandler>();
             FloatScript.DisplayDamage(damage);
+            damage_Sound.Play();
         }
 
         score_script.ShotsTracker(1, 1, 1);
@@ -116,6 +120,7 @@ public class P1_Attributes : MonoBehaviour
     void UpdateParameters()
     {
         HP_Slider.value = current_hp;
+        HP_SliderBig.value = current_hp;
         CDdisplay[0].maxValue = shooting.triplerate;
         CDdisplay[0].value = shooting.tripletimer;
         CDdisplay[1].maxValue = movement.dashingCooldown;

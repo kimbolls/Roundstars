@@ -21,14 +21,17 @@ public class WinMenu : MonoBehaviour
 
     [SerializeField] Image i_medal;
     [SerializeField] Sprite[] s_medal;
-    [SerializeField] float[] points_milestone;
+    [SerializeField] public float[] points_milestone;
+    [SerializeField] public AudioManager audiomanage;
     // Start is called before the first frame update
     void Start()
     {
+        audiomanage = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         eventsystem.SetSelectedGameObject(buttonlist[0]);
         updateMedal();
         Time.timeScale = 0f;
 
+        audiomanage.Win_Music();
 
     }
 

@@ -26,6 +26,8 @@ public class Gun1_Shooting : MonoBehaviour
     public float nextAttacktime;
     public float nextGrenadetime;
 
+    [SerializeField] private AudioSource shoot_sound;
+
     void Start()
     {
         aiming = GameObject.Find("Player 1").GetComponent<P1_Aiming>();
@@ -79,8 +81,8 @@ public class Gun1_Shooting : MonoBehaviour
         GameObject bullet = Instantiate(BulletPrefab, FProtation, Firepoint.rotation);  // spawns bullet
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
         rb.AddForce(Firepoint.right * bulletForce, ForceMode2D.Impulse);  //add force to the bullet
-
         score_menu.ShotsTracker(1,0,0);
+        shoot_sound.Play();
     }
 
     void tripleShoot()
@@ -100,7 +102,7 @@ public class Gun1_Shooting : MonoBehaviour
         Rigidbody2D rb3 = bullet3.GetComponent<Rigidbody2D>();  // set rigidbody of the bullet
         rb3.AddForce(TripleFP[1].right * (bulletForce-5), ForceMode2D.Impulse);  //add force to the bullet
 
-
+        shoot_sound.Play();
         score_menu.ShotsTracker(3,0,0);
         // Firepoint.transform.position - transform.position;
         // var direction = Quaternion.Euler(0, 0, 45) * (Firepoint - transform.position);

@@ -32,6 +32,7 @@ public class P1_Movement : MonoBehaviour
     public float dashingtimer;
 
     public bool dashed = false;
+    public AudioSource dash_sound;
     // private float horizontal;
     // private bool isFacingRight = true;
 
@@ -171,7 +172,8 @@ public class P1_Movement : MonoBehaviour
         { rb.velocity = new Vector2(-transform.localScale.x * dashingPower, 0f); }
         else { rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f); }
         tr.emitting = true;
-
+        dash_sound.Play();
+        
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
