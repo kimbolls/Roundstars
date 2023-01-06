@@ -43,7 +43,7 @@ public class QuizMenu : MonoBehaviour
     public string questionDescription, correctAnswer;
     public string[] answerDescription = new string[3];
     public int questioncount = 0;
-    [SerializeField] private bool winStatus = false;
+    [SerializeField] public bool winStatus = false;
 
     WinMenu win;
 

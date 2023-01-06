@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private EnemySpawner enemyspawner;
     [SerializeField] private score_tracker scoretracker;
+    [SerializeField] private QuizMenu quizmenu;
     [SerializeField] private AudioSource[] Singleplayer_music;
     [SerializeField] private AudioSource[] Multiplayer_music;
     [SerializeField] private AudioSource tutorial_music;
@@ -21,6 +22,7 @@ public class AudioManager : MonoBehaviour
     {
         enemyspawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         scoretracker = GameObject.Find("ScoreHUD").GetComponent<score_tracker>();
+        quizmenu = GameObject.Find("Quiz_Manager").GetComponent<QuizMenu>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,11 @@ public class AudioManager : MonoBehaviour
             {
                 Tuto_music();
             }
+        }
+
+        if(quizmenu.winStatus == true)
+        {
+            Current_music.Stop();
         }
     }
 
