@@ -225,6 +225,10 @@ MonoBehaviour:
   collider: {fileID: 6211289438420497975}
   rb: {fileID: 6211289438420497968}
   player: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  playerList:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7093714238304413587
 GameObject:
   m_ObjectHideFlags: 0

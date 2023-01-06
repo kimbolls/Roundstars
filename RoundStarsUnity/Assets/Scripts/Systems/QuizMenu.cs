@@ -43,6 +43,7 @@ public class QuizMenu : MonoBehaviour
     public string questionDescription, correctAnswer;
     public string[] answerDescription = new string[3];
     public int questioncount = 0;
+    [SerializeField] private bool winStatus = false;
 
     WinMenu win;
 
@@ -117,7 +118,7 @@ public class QuizMenu : MonoBehaviour
                 slowMoStatus = false;
                 scoredmenu.SetActive(false);
                 ResetLevel();
-                CheckEndGame();
+                // CheckEndGame();
             }
         }
         else
@@ -170,7 +171,7 @@ public class QuizMenu : MonoBehaviour
                 slowMoStatus = true;
                 scoredmenu.SetActive(true);
                 scoredscript.player1Win();
-                // ResetLevel(1);
+
             }
             else
             {
@@ -189,7 +190,7 @@ public class QuizMenu : MonoBehaviour
                 slowMoStatus = true;
                 scoredmenu.SetActive(true);
                 scoredscript.player2Win();
-                // ResetLevel(2);
+
             }
             else
             {
@@ -198,66 +199,6 @@ public class QuizMenu : MonoBehaviour
         }
     }
 
-    // void FetchQuestions(int questiontype)
-    // {
-    //     int i;
-    //     if(questiontype == 0)
-    //     {
-    //         do{
-    //             i = Random.Range(0,questionsList1.Length);
-    //         questionschosen = questionsList1[i];
-    //         }while(questionschosen == null);
-
-
-    //     }
-    //     else if(questiontype == 1)
-    //     {
-    //         do{
-    //         i = Random.Range(0,questionsList2.Length);
-    //         questionschosen = questionsList2[i];
-    //         }while(questionschosen == null);
-    //     }
-    //     else if(questiontype == 2)
-    //     {
-    //         do{
-    //         i = Random.Range(0,questionsList3.Length);
-    //         questionschosen = questionsList3[i];
-    //         }while(questionschosen == null);
-
-    //     }
-
-    //     questions questionsScript = questionschosen.GetComponent<questions>();
-    //     for(int x = 0; x < questionsScript.answerChoices.Length; x++)
-    //     {
-    //         answerChoices[x] = questionsScript.answerChoices[x];
-
-    //     }
-
-    //     for(int x = 0; x < answerChoices.Length; x++)
-    //     {
-    //         int rnd = Random.Range(0, answerChoices.Length);
-    //         string tempGO = answerChoices[rnd];
-    //         answerChoices[rnd] = answerChoices[x];
-    //         answerChoices[x] = tempGO;
-    //         // if(answerChoices[x] == questionsScript.TrueAnswer)
-    //         // {
-    //         //     TrueAnswer = x;
-    //         // }
-
-    //     }
-    //     for(int x = 0; x < answerChoices.Length; x++)
-    //     {
-    //         answerdescription[x].SetText(answerChoices[x]);
-    //         if(answerChoices[x] == questionsScript.TrueAnswer)
-    //         {
-    //             TrueAnswer = x;
-    //         }
-    //     }
-    //     questionDescription = questionsScript.questionDescription;
-    //     quizDescription.SetText(questionDescription);   
-    //     Destroy(questionschosen);
-
-    // }
 
     void DisableBrace()
     {
@@ -296,8 +237,6 @@ public class QuizMenu : MonoBehaviour
         ActivateBrace();
         if (enemyspawner.gameMode == EnemySpawner.GameModeEnum.Multiplayer)
         {
-
-
             enemyspawner.ResetPlayerPos(1);
             player2.current_hp = player2.max_hp;
         }
@@ -329,42 +268,33 @@ public class QuizMenu : MonoBehaviour
 
         player1.current_hp = player1.max_hp;
 
-
-        if (player1_upgPoint == 3)
+        CheckEndGame();
+        if (winStatus == false)
         {
+            if (player1_upgPoint == 3)
+            {
 
-            ResetScore(1);
-        }
-        else if (player2_upgPoint == 3)
-        {
-            ResetScore(2);
+                ResetScore(1);
+            }
+            else if (player2_upgPoint == 3)
+            {
+                ResetScore(2);
+            }
         }
 
-        // if(score.player1_correctpoint != score.player2_correctpoint)
-        // { 
-        //     if(score.gametimer <= 0 )
-        //     {
-        //         WinMenu win = winmenu.GetComponent<WinMenu>();
-        //         winmenu.SetActive(true);
-        //         if(score.player1_correctpoint > score.player2_correctpoint)
-        //         {
-        //             win.SetWinner(0);
-        //         }
-        //         else
-        //         {
-        //             win.SetWinner(1);
-        //         }
-        //     }
-        // }
+
     }
 
     void ResetScore(int player)
     {
         player1_upgPoint = 0;
         player2_upgPoint = 0;
-        upgrademenu.SetActive(true);
-        UpgradeScript.i = player;
-        Time.timeScale = 0f;
+        if (winStatus == false)
+        {
+            upgrademenu.SetActive(true);
+            UpgradeScript.i = player;
+            Time.timeScale = 0f;
+        }
     }
 
     public void CreateNewQuestionList()
@@ -469,10 +399,11 @@ public class QuizMenu : MonoBehaviour
                     if (score.player1_correctpoint > score.player2_correctpoint)
                     {
                         win.SetWinner(0);
+                        winStatus = true;
                     }
                     else
                     {
-                        win.SetWinner(1);
+                        win.SetWinner(1); winStatus = true;
                     }
                 }
             }
@@ -488,7 +419,7 @@ public class QuizMenu : MonoBehaviour
                 }
                 Debug.Log("Active state" + winmenu2.activeSelf);
                 Time.timeScale = 0f;
-                win.SetWinner(0);
+                win.SetWinner(0); winStatus = true;
 
             }
         }

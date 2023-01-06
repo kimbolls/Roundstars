@@ -72,7 +72,7 @@ public class WinMenu : MonoBehaviour
         {
             
             
-            winnertext.SetText("TIME OUT!");
+            winnertext.SetText(PlayerPrefs.GetString("player1Name") + " WINS!");
             pointstext.SetText("{0}",score.P1_points);
         }
     }
