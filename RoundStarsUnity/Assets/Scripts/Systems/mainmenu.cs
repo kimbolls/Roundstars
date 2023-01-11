@@ -29,6 +29,7 @@ public class mainmenu : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+         LoadVolume();
     }
 
     // Update is called once per frame

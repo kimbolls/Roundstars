@@ -42,6 +42,7 @@ public class upgradescript : MonoBehaviour
     }
     void Start()
     {
+        eventsystem.SetSelectedGameObject(buttonlist[0]);
         audiomanage = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         enemyspawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
         customization = GameObject.Find("GameMaster").GetComponent<Player_Customization>();
