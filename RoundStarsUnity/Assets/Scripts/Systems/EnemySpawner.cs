@@ -10,22 +10,22 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     private Transform[] SpawnPoint;
- 
+
 
     [SerializeField]
-    public enum GameModeEnum{Singleplayer,Multiplayer,Tutorial};
+    public enum GameModeEnum { Singleplayer, Multiplayer, Tutorial };
     [SerializeField]
     private GameObject enemy_1;
     [SerializeField]
     private GameObject enemy_2;
     [SerializeField]
     public bool SpawnStatus = true;
-    public GameModeEnum  gameMode;
-    public enum PhaseEnum{Game,Upgrade,Quiz,Pause};
+    public GameModeEnum gameMode;
+    public enum PhaseEnum { Game, Upgrade, Quiz, Pause };
     public PhaseEnum phase;
     public GameObject pausemenu;
     private int index;
-    private int i,seconds;
+    private int i, seconds;
     public bool paused;
     public Transform[] player_respawn;
     public GameObject[] Player;
@@ -35,8 +35,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] bulletList;
     public int tempvar = 0;
 
-    public void OnPaused(InputAction.CallbackContext context){
-        
+    public void OnPaused(InputAction.CallbackContext context)
+    {
+
         paused = context.action.triggered;
         PauseGame(paused);
     }
@@ -60,48 +61,40 @@ public class EnemySpawner : MonoBehaviour
         // WaveDuration -= Time.deltaTime;
         // seconds = (int) WaveDuration;
         // secondscount = seconds.ToString();
-        
-        if(gameMode == GameModeEnum.Singleplayer)
+
+        if (gameMode == GameModeEnum.Singleplayer)
         {
             enemyList = GameObject.FindGameObjectsWithTag("Enemy");
             bulletList = GameObject.FindGameObjectsWithTag("bullets");
             SpawnControl();
         }
 
-        
+
     }
 
     int Randomize(int num)
     {
-        num = Random.Range(0,index);
+        num = Random.Range(0, index);
         return num;
     }
 
     void SpawnControl()
     {
-        
 
-        if(quizmenu.bracetimer <= 0)
+
+        if (quizmenu.bracetimer <= 0)
         {
-            if(SpawnStatus == true)
-            { 
-                float delay,intervals;
+            if (SpawnStatus == true)
+            {
+                float delay, intervals;
                 int playerpoints = scoretracker.player1_correctpoint;
-                
-                // if(tempvar >= 1) //stop current spawner
-                // {
-                //     CancelInvoke("Spawn_Repeating");
-                //     tempvar = 0;
-                // }
-                if(playerpoints <= 4)
+                if (playerpoints <= 4)
                 {
                     delay = 4f;
                     intervals = 8f;
                     tempvar++;
-                   
-                    
                 }
-                else if(playerpoints <= 7)
+                else if (playerpoints <= 7)
                 {
                     delay = 3f;
                     intervals = 6f;
@@ -113,34 +106,34 @@ public class EnemySpawner : MonoBehaviour
                     intervals = 4f;
                     tempvar++;
                 }
-                Spawn_Repeating(delay,intervals);
+                Spawn_Repeating(delay, intervals);
                 SpawnStatus = false;
 
-                 Debug.Log("Spawner Active : " + tempvar + "/ Intervals = " +intervals);
+                Debug.Log("Spawner Active : " + tempvar + "/ Intervals = " + intervals);
             }
         }
 
-        if(quizmenu.bracetimer == quizmenu.max_bracetimer)
+        if (quizmenu.bracetimer == quizmenu.max_bracetimer)
         {
             SpawnStatus = true;
         }
-        
+
     }
 
     public void PauseGame(bool paused)
     {
-        if(pausemenu== null)
+        if (pausemenu == null)
         {
             Debug.Log("pausemenu empty");
             pausemenu = GameObject.Find("PauseMenu");
         }
-        if(paused && phase == PhaseEnum.Game)
+        if (paused && phase == PhaseEnum.Game)
         {
             pausemenu.SetActive(true);
             Time.timeScale = 0f;
             phase = PhaseEnum.Pause;
         }
-        else if(paused && phase == PhaseEnum.Pause)
+        else if (paused && phase == PhaseEnum.Pause)
         {
             ResumeGame();
         }
@@ -150,15 +143,15 @@ public class EnemySpawner : MonoBehaviour
     {
         pausemenu.SetActive(false);
         phase = PhaseEnum.Game;
-        Time.timeScale =1f;
+        Time.timeScale = 1f;
     }
 
 
 
-    void Spawn_Repeating(float delay,float intervals)
+    void Spawn_Repeating(float delay, float intervals)
     {
-        InvokeRepeating("Spawn_Regular",delay,intervals);
-        InvokeRepeating("Spawn_Tank",delay+5f,intervals+4f);
+        InvokeRepeating("Spawn_Regular", delay, intervals);
+        InvokeRepeating("Spawn_Tank", delay + 5f, intervals + 4f);
     }
 
     public void Spawn_Stop()
@@ -171,20 +164,20 @@ public class EnemySpawner : MonoBehaviour
     void Spawn_Regular()
     {
         i = Randomize(i);
-        GameObject enemy_1_spawn = Instantiate(enemy_1,SpawnPoint[i].position,Quaternion.identity);
+        GameObject enemy_1_spawn = Instantiate(enemy_1, SpawnPoint[i].position, Quaternion.identity);
     }
 
     void Spawn_Tank()
     {
         i = Randomize(i);
-        GameObject enemy_1_spawn = Instantiate(enemy_2,SpawnPoint[i].position,Quaternion.identity);
+        GameObject enemy_1_spawn = Instantiate(enemy_2, SpawnPoint[i].position, Quaternion.identity);
     }
-//
+    //
 
     public void ResetPlayerPos(int i)
     {
         Player[i].transform.position = player_respawn[i].position;
-        
+
     }
-    
+
 }

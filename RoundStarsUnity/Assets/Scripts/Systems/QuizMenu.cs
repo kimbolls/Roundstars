@@ -94,17 +94,8 @@ public class QuizMenu : MonoBehaviour
     void Update()
     {
 
-        // if(quiz_timer >= 0)
-        // {quiz_timer -= Time.deltaTime;}
         quizTimerDisplay.SetText("{0}", Mathf.Round(bracetimer));
-        // if(quiz_timer <= 25 && fetchstatus == false)
-        // {
-        //     fetchstatus = true;
-        // }
-        // else if(quiz_timer <= 10 && fetchstatus == false)
-        // {
-        //     fetchstatus = true;
-        // }
+
 
         if (slowMoStatus == true)
         {
@@ -145,13 +136,6 @@ public class QuizMenu : MonoBehaviour
             DisableBrace();
             bracetimer = 0;
         }
-
-
-
-
-
-        //-------------------
-
     }
 
 
@@ -378,7 +362,6 @@ public class QuizMenu : MonoBehaviour
 
         //prevents same questions repeated
         CurrentQuestionList.questions[i].answerstatus = true;
-
 
     }
     public void CheckEndGame()

@@ -49,7 +49,7 @@ public class scoreboard : MonoBehaviour
             }
             else
             {
-                win_image[1].SetActive(false);
+                win_image[1].SetActive(true);
             }
 
 
@@ -57,10 +57,7 @@ public class scoreboard : MonoBehaviour
         playerarea[0].SetActive(true);
         player1_text[0].SetText("{0}",player_correctpoint[0]);
         player1_text[1].SetText("{0}",player_shotsfired[0]);
-        player1_text[2].SetText("{0}%",Mathf.Round(player_hitrate[0]));
-
-
-        
+        player1_text[2].SetText("{0}%",Mathf.Round(player_hitrate[0]));        
     }
 
     // Update is called once per frame

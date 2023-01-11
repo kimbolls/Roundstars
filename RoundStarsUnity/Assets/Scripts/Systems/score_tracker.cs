@@ -41,6 +41,10 @@ public class score_tracker : MonoBehaviour
         slidermaxvalue = gametimer;
         P1_points = 0;
         P2_points = 0;
+
+        if (!PlayerPrefs.HasKey("highscore_points")) PlayerPrefs.SetFloat("highscore_points", 0f);
+        float highpoints = PlayerPrefs.GetFloat("highscore_points");
+        Debug.Log("Highscore" + highpoints);
     }
 
     // Update is called once per frame
@@ -50,13 +54,13 @@ public class score_tracker : MonoBehaviour
         //primary scoreboard HUD
         gametimer_text.SetText("{0}", Mathf.Round(gametimer));
         p1score_text.SetText("{0}", P1_points);
-        if(enemySpawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
+        if (enemySpawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
         {
             p1points_text.SetText(player1_correctpoint.ToString());
         }
         else
         {
-            p2score_text.SetText("{0}", P2_points); 
+            p2score_text.SetText("{0}", P2_points);
         }
         gametimer_slider.value = gametimer;
 
@@ -71,12 +75,6 @@ public class score_tracker : MonoBehaviour
         }
 
         braceslider.value = bracecur;
-
-        //game timer
-        // if(quizmenu.bracetimer < 0)
-        // {
-        //     gametimer -= Time.deltaTime;
-        // }
         if (enemySpawner.gameMode != EnemySpawner.GameModeEnum.Tutorial)
         {
             gametimer -= Time.deltaTime;
@@ -86,12 +84,13 @@ public class score_tracker : MonoBehaviour
         {
             gametimer = 0;
         }
-        //adaptive scoreboard here
-
-        //display score if singleplayer
-
 
         //display upgrade points
+        DisplayUpgrade();
+    }
+
+    void DisplayUpgrade()
+    {
         if (quizmenu.player1_upgPoint > 0 && quizmenu.player1_upgPoint < 3)
         {
             for (int i = 0; i < quizmenu.player1_upgPoint; i++)

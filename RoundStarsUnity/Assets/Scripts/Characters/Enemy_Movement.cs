@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy_Movement : MonoBehaviour
 {
     public GameObject player1;
+
+    P1_Attributes playerscript;
     // player2;
     public Rigidbody2D rb;
     public GameObject aimedplayer;
@@ -17,6 +19,7 @@ public class Enemy_Movement : MonoBehaviour
     {
         player1 = GameObject.Find("Player 1");
         aimedplayer = player1;
+        playerscript = player1.GetComponent<P1_Attributes>();
         // player2 = GameObject.Find("Player 2");
         // RandomAim();
 
@@ -39,6 +42,16 @@ public class Enemy_Movement : MonoBehaviour
         //     }
         //     aimtimer = maxaimtimer;
         // }
+
+        if(playerscript.hybernate == true)
+        {
+            speed = 0f;
+        }
+        else
+        {
+            speed = 0.1f;
+        }
+
     }
 
     void FixedUpdate()

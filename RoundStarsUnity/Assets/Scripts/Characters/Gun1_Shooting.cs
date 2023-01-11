@@ -104,10 +104,6 @@ public class Gun1_Shooting : MonoBehaviour
 
         shoot_sound.Play();
         score_menu.ShotsTracker(3,0,0);
-        // Firepoint.transform.position - transform.position;
-        // var direction = Quaternion.Euler(0, 0, 45) * (Firepoint - transform.position);
-        // _targetPosition = transform.position + direction;   
-        // transform.position = Vector2.Lerp(transform.position, _targetPosition, Time.deltaTime * Speed);
     }
 
     void GrenadeShoot()

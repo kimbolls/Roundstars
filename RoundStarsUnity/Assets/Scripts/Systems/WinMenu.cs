@@ -12,7 +12,7 @@ public class WinMenu : MonoBehaviour
     public GameObject selected;
     public EventSystem eventsystem;
     public EnemySpawner enemyspawner;
-    public TMP_Text winnertext,scoretext;
+    public TMP_Text winnertext, scoretext;
     public TMP_Text pointstext;
 
     public GameObject[] menus;
@@ -20,6 +20,7 @@ public class WinMenu : MonoBehaviour
     public score_tracker score;
 
     [SerializeField] Image i_medal;
+    [SerializeField] GameObject i_highscore;
     [SerializeField] Sprite[] s_medal;
     [SerializeField] public float[] points_milestone;
     [SerializeField] public AudioManager audiomanage;
@@ -38,42 +39,64 @@ public class WinMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void OnResume(){
+    public void OnResume()
+    {
         enemyspawner.ResumeGame();
     }
 
-    public void OnMenu(){
+    public void OnMenu()
+    {
         SceneManager.LoadScene(0);
     }
-    public void OnQuit(){
+    public void OnQuit()
+    {
         Application.Quit();
     }
 
     public void SetWinner(int x)
     {
+        if (!PlayerPrefs.HasKey("highscore_points")) PlayerPrefs.SetFloat("highscore_points", 0f);
+
         enemyspawner = GameObject.Find("GameMaster").GetComponent<EnemySpawner>();
-        if(x == 0)
+        float highpoints = PlayerPrefs.GetFloat("highscore_points");
+
+        Debug.Log(highpoints);
+        if (x == 0)
         {
             winnertext.SetText(PlayerPrefs.GetString("player1Name") + " WINS!");
-            scoretext.SetText("{0}",score.player1_correctpoint);
-            pointstext.SetText("{0}",score.P1_points);
+            scoretext.SetText("{0}", score.player1_correctpoint);
+            pointstext.SetText("{0}", score.P1_points);
+            if (score.P1_points > highpoints)
+            {
+                i_highscore.SetActive(true);
+                PlayerPrefs.SetFloat("highscore_points", score.P1_points);
+            }
+
         }
         else
         {
             winnertext.SetText(PlayerPrefs.GetString("player2Name") + " WINS!");
-            scoretext.SetText("{0}",score.player2_correctpoint);
-            pointstext.SetText("{0}",score.P2_points);
+            scoretext.SetText("{0}", score.player2_correctpoint);
+            pointstext.SetText("{0}", score.P2_points);
+            if (score.P2_points > highpoints)
+            {
+                i_highscore.SetActive(true);
+                PlayerPrefs.SetFloat("highscore_points", score.P2_points);
+            }
         }
 
-        if(enemyspawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
+        if (enemyspawner.gameMode == EnemySpawner.GameModeEnum.Singleplayer)
         {
-            
-            
             winnertext.SetText(PlayerPrefs.GetString("player1Name") + " WINS!");
-            pointstext.SetText("{0}",score.P1_points);
+            pointstext.SetText("{0}", score.P1_points);
+            if (score.P1_points > highpoints)
+            {
+                i_highscore.SetActive(true);
+                PlayerPrefs.SetFloat("highscore_points", score.P1_points);
+            }
         }
     }
     public void OnRestart()
@@ -85,15 +108,20 @@ public class WinMenu : MonoBehaviour
 
     public void OnScoreBoard()
     {
-        
+
         menus[1].SetActive(true);
-        menus[0].SetActive(false); 
+        menus[0].SetActive(false);
+    }
+
+    public void highScore()
+    {
+
     }
 
     void updateMedal()
     {
         float WinnerPoints = 0;
-        if(score.P1_points > score.P2_points)
+        if (score.P1_points > score.P2_points)
         {
             WinnerPoints = score.P1_points;
         }
@@ -102,21 +130,21 @@ public class WinMenu : MonoBehaviour
             WinnerPoints = score.P2_points;
         }
 
-        if(WinnerPoints <= points_milestone[0]) //bronze
+        if (WinnerPoints <= points_milestone[0]) //bronze
         {
             i_medal.sprite = s_medal[0];
         }
-        else if(WinnerPoints <= points_milestone[1]) //silver
+        else if (WinnerPoints <= points_milestone[1]) //silver
         {
             i_medal.sprite = s_medal[1];
         }
-        else if(WinnerPoints <= points_milestone[2]) //gold
+        else if (WinnerPoints <= points_milestone[2]) //gold
         {
             i_medal.sprite = s_medal[2];
         }
         else //plat
         {
-            i_medal.sprite = s_medal[3]; 
+            i_medal.sprite = s_medal[3];
         }
 
 
