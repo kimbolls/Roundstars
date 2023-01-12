@@ -32,6 +32,7 @@ public class score_tracker : MonoBehaviour
     public EnemySpawner enemySpawner;
     [SerializeField] public float[] points_milestone;
     public WinMenu winmenu;
+    public TMP_Text[] playername_text;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,8 @@ public class score_tracker : MonoBehaviour
         P1_points = 0;
         P2_points = 0;
 
+        playername_text[0].SetText(PlayerPrefs.GetString("player1Name"));
+        playername_text[1].SetText(PlayerPrefs.GetString("player2Name"));
         if (!PlayerPrefs.HasKey("highscore_points")) PlayerPrefs.SetFloat("highscore_points", 0f);
         float highpoints = PlayerPrefs.GetFloat("highscore_points");
         Debug.Log("Highscore" + highpoints);

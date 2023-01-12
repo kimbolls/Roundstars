@@ -24,12 +24,16 @@ public class mainmenu : MonoBehaviour
     public AudioSource clickSound;
 
     public ReadDatabase readDB;
+    public TMP_Text highscore_text;
     //public GameObject QuitConfirm;
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
          LoadVolume();
+
+        if(!PlayerPrefs.HasKey("player1Name")) PlayerPrefs.SetString("player1Name","Player 1");
+        if(!PlayerPrefs.HasKey("player2Name")) PlayerPrefs.SetString("player2Name","Player 2");
     }
 
     // Update is called once per frame
@@ -69,12 +73,20 @@ public class mainmenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         SettingsMenu.SetActive(true);
+        if (!PlayerPrefs.HasKey("highscore_points")) PlayerPrefs.SetFloat("highscore_points", 0f);
+        highscore_text.SetText(PlayerPrefs.GetFloat("highscore_points").ToString() );
         LoadVolume();
         dropdown[0].value = PlayerPrefs.GetInt("QuestionType");
         dropdown[1].value = PlayerPrefs.GetInt("GameTimer");
         dropdown[2].value = PlayerPrefs.GetInt("BraceTimer");
         readDB.countQuestions();
 
+    }
+
+    public void ResetHighscore()
+    {
+        PlayerPrefs.SetFloat("highscore_points",0f);
+         highscore_text.SetText(PlayerPrefs.GetFloat("highscore_points").ToString() );
     }
 
     public void SetQuestionType(int i)
